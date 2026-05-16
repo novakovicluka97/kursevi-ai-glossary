@@ -14,7 +14,7 @@
     <h1>Workflow</h1>
 
     <p class="definition">
-        A workflow is a defined sequence of steps or processes that accomplish a task — in AI context, it refers to automated multi-step pipelines where <a href="ai-agent.html">AI agents</a> or models perform a series of actions to complete a goal.
+        A workflow is a predetermined sequence of steps where <strong>you</strong> define the path and the <a href="llm.html">LLM</a> executes each step — but never decides what to do next. This contrasts with <a href="ai-agent.html">AI agents</a>, where the model dynamically chooses its own path.
     </p>
 
     <h2>What is a Workflow?</h2>
@@ -22,40 +22,101 @@
         A workflow is any repeatable process with defined steps. In traditional business: "receive order → process payment → ship product → send confirmation email." In AI: "receive user request → search knowledge base → generate draft → check for accuracy → deliver response."
     </p>
     <p>
-        AI workflows connect multiple AI operations together, often combining <a href="llm.html">LLM</a> calls with tool use, data retrieval, and decision logic.
+        The critical insight: in a workflow, the code defines what happens at each step. The LLM does the work, but never makes strategic decisions about what to do next. The path is hardcoded in your script.
     </p>
 
-    <h2>AI Workflow Patterns</h2>
-    <ul>
-        <li><strong>Sequential:</strong> Step A → Step B → Step C (like a recipe)</li>
-        <li><strong>Branching:</strong> If condition X, do A; otherwise do B (like a decision tree)</li>
-        <li><strong>Loop:</strong> Repeat until quality threshold met (like editing a draft)</li>
-        <li><strong>Parallel:</strong> Do A and B simultaneously, combine results</li>
-        <li><strong>Human-in-the-loop:</strong> AI does work, human approves, AI continues</li>
-    </ul>
-
-    <h2>Examples</h2>
+    <h2>Workflow vs Agent: The Key Distinction</h2>
+    <table style="width:100%; border-collapse:collapse; margin:15px 0;">
+        <tr style="border-bottom:2px solid #ddd;">
+            <th style="text-align:left; padding:8px;"></th>
+            <th style="text-align:left; padding:8px;">Workflow</th>
+            <th style="text-align:left; padding:8px;">Agent</th>
+        </tr>
+        <tr style="border-bottom:1px solid #eee;">
+            <td style="padding:8px;"><strong>Who decides the next step?</strong></td>
+            <td style="padding:8px;">You (the developer)</td>
+            <td style="padding:8px;">The model</td>
+        </tr>
+        <tr style="border-bottom:1px solid #eee;">
+            <td style="padding:8px;"><strong>Predictability</strong></td>
+            <td style="padding:8px;">High — same path every time</td>
+            <td style="padding:8px;">Variable — depends on what model finds</td>
+        </tr>
+        <tr style="border-bottom:1px solid #eee;">
+            <td style="padding:8px;"><strong>Cost</strong></td>
+            <td style="padding:8px;">Predictable, usually lower</td>
+            <td style="padding:8px;">Variable, can spiral</td>
+        </tr>
+        <tr style="border-bottom:1px solid #eee;">
+            <td style="padding:8px;"><strong>Flexibility</strong></td>
+            <td style="padding:8px;">Rigid — change the path, change the code</td>
+            <td style="padding:8px;">Handles edge cases you didn't plan for</td>
+        </tr>
+        <tr>
+            <td style="padding:8px;"><strong>Best for</strong></td>
+            <td style="padding:8px;">Repetitive, well-defined tasks</td>
+            <td style="padding:8px;">Open-ended, novel tasks</td>
+        </tr>
+    </table>
     <p>
-        <strong>Code review workflow:</strong> <a href="claude-code.html">Claude Code</a> reads a pull request → analyzes for bugs → checks style → suggests improvements → posts review comments.
+        Anthropic's strong advice: start with a single prompt, then a workflow, and only reach for an agent when the task genuinely needs the LLM to make decisions about what to do next. Most production "AI agents" are actually workflows — and that is correct.
     </p>
+
+    <h2>Anthropic's Workflow Building Blocks</h2>
     <p>
-        <strong>Content workflow:</strong> AI researches topic → writes draft → fact-checks against sources via <a href="rag.html">RAG</a> → formats output → human reviews.
+        Anthropic identifies five composable patterns for building AI workflows, from simplest to most complex:
+    </p>
+
+    <h3>1. Prompt Chaining</h3>
+    <p>
+        The simplest pattern: a fixed sequence of LLM calls where the output of one becomes the input to the next. Each step has its own specialized prompt. Like a relay race — each runner (prompt) handles their leg, then passes the baton.
+    </p>
+
+    <h3>2. Routing</h3>
+    <p>
+        One LLM call classifies the input, then directs it to the appropriate specialized path. After that one decision, the path is fixed. See the full <a href="routing.html">Routing</a> topic for details.
+    </p>
+
+    <h3>3. Parallelization</h3>
+    <p>
+        Fan-out: send the same input to multiple LLMs simultaneously (e.g., generate 3 different drafts). Fan-in: aggregate the results (e.g., pick the best one, or combine insights from all three). Trades cost for speed and quality.
+    </p>
+
+    <h3>4. Orchestrator-Workers</h3>
+    <p>
+        One LLM breaks a task into subtasks and delegates them — but the workers execute fixed, predetermined operations. The orchestrator adds a light layer of dynamic task decomposition while keeping execution predictable.
+    </p>
+
+    <h3>5. Evaluator-Optimizer</h3>
+    <p>
+        A generate-then-evaluate loop: one LLM produces output, another evaluates it against criteria, and the first revises based on feedback. The iteration pattern is predetermined (generate → evaluate → revise), even though the content evolves.
     </p>
 
     <div class="example-box">
         <h4>Layman's Analogy</h4>
-        <p>A workflow is like an assembly line in a factory. Each station does one specific job, and the product moves from station to station until it's complete. AI workflows are the same — except the "stations" are AI operations, and the "product" is information being processed and refined at each step.</p>
+        <p>A workflow is like an assembly line in a factory. Each station does one specific job, and the product moves from station to station until it's complete. The assembly line never decides to skip a station or add a new one — that's predetermined by the factory manager. AI workflows are the same: the "stations" are AI operations, and the "product" is information being processed and refined at each step.</p>
+    </div>
+
+    <div class="example-box">
+        <h4>Real-World Example: E-Commerce Review Pipeline</h4>
+        <p>An online shop gets 50 customer reviews daily in mixed languages and wants a summary report:</p>
+        <p><strong>Step 1:</strong> Take each review → LLM prompt: "Translate this to English." → Output: English review.</p>
+        <p><strong>Step 2:</strong> Take English review → LLM prompt: "Classify as positive, neutral, or negative." → Output: a label.</p>
+        <p><strong>Step 3:</strong> Send all 50 classified reviews → LLM prompt: "Write a one-paragraph summary highlighting the top three complaints and top three praises." → Output: daily report.</p>
+        <p>Each step is hardcoded. The code says "first translate, then classify, then summarize." The LLM never decides what to do next — it just executes the task in front of it. This is a workflow, not an agent.</p>
     </div>
 
     <div class="related-topics">
         <h3>Related Topics</h3>
         <ul>
             <li><a href="ai-agent.html">AI Agent</a></li>
+            <li><a href="routing.html">Routing</a></li>
+            <li><a href="tool-use.html">Tool Use</a></li>
+            <li><a href="human-in-the-loop.html">Human-in-the-Loop</a></li>
+            <li><a href="ai-automation.html">AI Automation</a></li>
             <li><a href="agent-sdk.html">Agent SDK</a></li>
-            <li><a href="claude-code.html">Claude Code</a></li>
-            <li><a href="claude-skills.html">Claude Skills</a></li>
             <li><a href="mcp.html">MCP</a></li>
-            <li><a href="prompt.html">Prompt</a></li>
+            <li><a href="multi-agent.html">Multi-Agent Systems</a></li>
         </ul>
     </div>
 
@@ -63,8 +124,8 @@
         <h3>References</h3>
         <ol>
             <li><a href="https://www.anthropic.com/research/building-effective-agents">Building Effective Agents — Anthropic</a></li>
+            <li><a href="https://www.promptingguide.ai/agents/ai-workflows-vs-ai-agents">AI Workflows vs. AI Agents — Prompt Engineering Guide</a></li>
             <li><a href="https://en.wikipedia.org/wiki/Workflow">Workflow — Wikipedia</a></li>
-            <li><a href="https://www.ibm.com/think/topics/ai-workflow">AI Workflow — IBM</a></li>
         </ol>
     </div>
 </body>

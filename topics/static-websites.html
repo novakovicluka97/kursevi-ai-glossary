@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static Websites - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; <a href="applications.html">Applications</a> &rsaquo; <a href="web-apps.html">Web Apps</a> &rsaquo; Static Websites
+    </nav>
+
+    <h1>Static Websites</h1>
+
+    <p class="definition">
+        A static website is a collection of pre-built files (HTML, CSS, JavaScript) served directly to the browser without any server-side processing. The content is "static" — it doesn't change per request. What you write is exactly what visitors see.
+    </p>
+
+    <h2>The Three Languages of Static Websites</h2>
+    <p>Every static website is built from three core technologies that work together:</p>
+
+    <h3>HTML (Structure)</h3>
+    <p>
+        <a href="html.html">HyperText Markup Language</a> defines <em>what</em> is on the page — headings, paragraphs, links, images, lists. It's the skeleton of every web page. Without HTML, there is no web page.
+    </p>
+    <pre><code>&lt;h1&gt;Welcome to My Site&lt;/h1&gt;
+&lt;p&gt;This is a paragraph of text.&lt;/p&gt;
+&lt;a href="about.html"&gt;Learn more&lt;/a&gt;</code></pre>
+
+    <h3>CSS (Appearance)</h3>
+    <p>
+        Cascading Style Sheets control <em>how</em> things look — colors, fonts, spacing, layout, responsive design. CSS transforms plain HTML structure into visually appealing pages.
+    </p>
+    <pre><code>body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+}
+h1 { color: #2c3e50; }</code></pre>
+
+    <h3>JavaScript (Behavior)</h3>
+    <p>
+        JavaScript adds <em>interactivity</em> — clicking buttons, showing/hiding elements, form validation, animations, fetching data. Not required for basic sites, but essential for dynamic behavior.
+    </p>
+    <pre><code>document.querySelector('button').addEventListener('click', () => {
+    alert('You clicked the button!');
+});</code></pre>
+
+    <div class="ai-hint">
+        Static websites are the single easiest type of software for AI to generate. A single prompt like "create a portfolio website with a dark theme and project gallery" produces complete, working HTML/CSS/JS that you can immediately deploy. AI tools like Claude, v0, and Bolt.new generate pixel-perfect static sites in seconds. This is the best starting point for anyone learning to build with AI.
+    </div>
+
+    <h2>What Static Sites Are Good For</h2>
+    <ul>
+        <li><strong>Portfolios and resumes</strong> — showcase your work</li>
+        <li><strong>Blogs and documentation</strong> — publish information</li>
+        <li><strong>Landing pages</strong> — promote a product or idea</li>
+        <li><strong>Business websites</strong> — basic company presence</li>
+        <li><strong>Glossaries and wikis</strong> — like this site you're reading</li>
+    </ul>
+
+    <h2>What Static Sites Cannot Do</h2>
+    <ul>
+        <li>User accounts and login systems</li>
+        <li>Saving data to a database</li>
+        <li>Sending emails or processing payments</li>
+        <li>Personalized content per user</li>
+    </ul>
+    <p>For these, you need a <a href="full-stack-apps.html">full-stack application</a>.</p>
+
+    <h2>How to Deploy a Static Site</h2>
+    <p>Static sites are free to host because they require no server processing. The most common option:</p>
+    <ol>
+        <li>Write your HTML/CSS/JS files</li>
+        <li>Push to a Git repository</li>
+        <li>Enable <a href="github-pages.html">GitHub Pages</a> — your site is live at <code>username.github.io/repo-name</code></li>
+    </ol>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>A static website is like a printed poster pinned to a bulletin board. Everyone who walks by sees the same poster. If you want to update it, you print a new one and pin it up. A full-stack app is like a counter with a person behind it — they look up your name, pull your file, and give you personalized information.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="applications.html">Applications</a></li>
+            <li><a href="web-apps.html">Web Apps</a></li>
+            <li><a href="full-stack-apps.html">Full-Stack Apps</a></li>
+            <li><a href="html.html">HTML</a></li>
+            <li><a href="html-vs-full-stack.html">HTML vs Full Stack App</a></li>
+            <li><a href="github-pages.html">GitHub Pages</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics">HTML Basics — MDN Web Docs</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps">CSS First Steps — MDN Web Docs</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps">JavaScript First Steps — MDN Web Docs</a></li>
+            <li><a href="https://www.cloudflare.com/learning/performance/static-site-generator/">What is a Static Site? — Cloudflare</a></li>
+        </ol>
+    </div>
+</body>
+</html>

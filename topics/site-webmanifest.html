@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>site.webmanifest - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; <a href="technical-seo.html">Technical SEO</a> &rsaquo; site.webmanifest
+    </nav>
+
+    <h1>site.webmanifest</h1>
+
+    <p class="definition">
+        A site.webmanifest (or web app manifest) is a <a href="json.html">JSON</a> file that tells browsers metadata about your website — its name, icons, theme color, and how it should behave when installed as an app on a user's device.
+    </p>
+
+    <h2>What is a Web Manifest?</h2>
+    <p>
+        The manifest is a small JSON file, typically placed in your project root, that describes your site to browsers. It's what enables the "Add to Home Screen" feature on mobile devices — turning your website into something that looks and feels like a native app (called a Progressive Web App or PWA).
+    </p>
+    <p>
+        You link to it from every <a href="html.html">HTML</a> page:
+    </p>
+    <pre><code>&lt;link rel="manifest" href="/site.webmanifest"&gt;</code></pre>
+
+    <h2>What It Looks Like</h2>
+    <pre><code>{
+  "name": "AI Glossary",
+  "short_name": "AI Glossary",
+  "description": "A comprehensive dictionary for understanding AI",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0645ad",
+  "icons": [
+    {
+      "src": "/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}</code></pre>
+
+    <h2>Key Fields</h2>
+    <ul>
+        <li><strong><code>name</code></strong> — Full name of your site (shown on splash screens)</li>
+        <li><strong><code>short_name</code></strong> — Abbreviated name (shown under the app icon on home screens)</li>
+        <li><strong><code>start_url</code></strong> — Which page opens when the app is launched</li>
+        <li><strong><code>display</code></strong> — How the app looks: <code>"standalone"</code> (like a native app, no browser chrome), <code>"browser"</code> (normal tab), or <code>"fullscreen"</code></li>
+        <li><strong><code>theme_color</code></strong> — Color of the browser address bar on mobile</li>
+        <li><strong><code>icons</code></strong> — App icons in multiple sizes (192px and 512px are the minimum)</li>
+    </ul>
+
+    <h2>Is It Necessary?</h2>
+    <p>
+        <strong>For SEO ranking: No.</strong> A web manifest has no direct impact on Google rankings. A missing manifest won't hurt your search position.
+    </p>
+    <p>
+        <strong>For user experience and professionalism: Yes.</strong> It signals a modern, well-built site. Without it:
+    </p>
+    <ul>
+        <li>Chrome on Android won't show an "Add to Home Screen" install prompt</li>
+        <li>Your PWA won't have a splash screen or proper icon</li>
+        <li>The browser address bar won't match your brand color</li>
+    </ul>
+    <p>
+        <strong>Priority:</strong> This is a Tier 3 item — nice to have, not critical. Focus on <a href="meta-tags.html">meta tags</a>, <a href="sitemap-xml.html">sitemap</a>, and <a href="robots-txt.html">robots.txt</a> first.
+    </p>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>A web manifest is like a business card for your website that it hands to phones and browsers. It says: "Hi, my name is AI Glossary, my brand color is blue, here's my logo, and if you want to pin me to your home screen, open me like this." Without the business card, phones treat your site as just another anonymous web page.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="technical-seo.html">Technical SEO (parent topic)</a></li>
+            <li><a href="meta-tags.html">Meta Tags &amp; OG Tags</a></li>
+            <li><a href="json.html">JSON</a></li>
+            <li><a href="html.html">HTML</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://web.dev/learn/pwa/web-app-manifest">Web App Manifest — web.dev</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Manifest">Web Application Manifest — MDN Web Docs</a></li>
+            <li><a href="https://www.appassetgenerator.com/blog/site-webmanifest-guide">site.webmanifest Guide — App Asset Generator</a></li>
+        </ol>
+    </div>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full-Stack Apps - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; <a href="applications.html">Applications</a> &rsaquo; <a href="web-apps.html">Web Apps</a> &rsaquo; Full-Stack Apps
+    </nav>
+
+    <h1>Full-Stack Applications</h1>
+
+    <p class="definition">
+        A full-stack application is a complete software system with three layers: a frontend (what users see), a backend (server logic), and a database (persistent storage). Together, these enable dynamic behavior — user accounts, data processing, payments, and personalized experiences.
+    </p>
+
+    <h2>The Three Required Layers</h2>
+
+    <h3>1. Frontend (Client-Side)</h3>
+    <p>
+        The user interface — what people see and interact with in their browser. Built with HTML, CSS, and JavaScript, often using a framework.
+    </p>
+    <ul>
+        <li><strong>Must have:</strong> HTML, CSS, JavaScript</li>
+        <li><strong>Common frameworks:</strong> React, Vue.js, Next.js, Svelte</li>
+        <li><strong>Responsibility:</strong> Display data, handle user interactions, send requests to the backend</li>
+    </ul>
+
+    <h3>2. Backend (Server-Side)</h3>
+    <p>
+        The logic layer — processes requests, enforces business rules, communicates with the database, handles authentication, and sends responses back to the frontend.
+    </p>
+    <ul>
+        <li><strong>Must have:</strong> A server that listens for requests and sends responses</li>
+        <li><strong>Common technologies:</strong> Node.js (Express), Python (Django/FastAPI), Go, Ruby (Rails)</li>
+        <li><strong>Responsibility:</strong> <a href="api.html">API</a> endpoints, authentication, authorization, data validation</li>
+    </ul>
+
+    <h3>3. Database (Data Layer)</h3>
+    <p>
+        Persistent storage — where user data, content, transactions, and application state live. Without a database, the app forgets everything when the server restarts.
+    </p>
+    <ul>
+        <li><strong>Must have:</strong> A way to store and query data</li>
+        <li><strong>Relational (SQL):</strong> PostgreSQL, MySQL — structured tables with relationships</li>
+        <li><strong>Document (NoSQL):</strong> MongoDB, Redis — flexible JSON-like documents</li>
+        <li><strong>Responsibility:</strong> Persist data, handle queries, maintain data integrity</li>
+    </ul>
+
+    <h2>How the Layers Communicate</h2>
+    <pre><code>User clicks "Sign Up"
+    → Frontend sends POST /api/users with form data
+        → Backend validates data, hashes password
+            → Database stores new user record
+        ← Backend responds: { success: true }
+    ← Frontend shows "Welcome!" message</code></pre>
+
+    <h2>Common Full-Stack Combinations (2026)</h2>
+    <table>
+        <thead>
+            <tr><th>Stack Name</th><th>Frontend</th><th>Backend</th><th>Database</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><strong>MERN</strong></td><td>React</td><td>Express (Node.js)</td><td>MongoDB</td></tr>
+            <tr><td><strong>Next.js + Supabase</strong></td><td>React (Next.js)</td><td>Next.js API routes</td><td>PostgreSQL (Supabase)</td></tr>
+            <tr><td><strong>Django</strong></td><td>Templates or React</td><td>Django (Python)</td><td>PostgreSQL</td></tr>
+            <tr><td><strong>Rails</strong></td><td>Hotwire or React</td><td>Ruby on Rails</td><td>PostgreSQL</td></tr>
+        </tbody>
+    </table>
+
+    <div class="ai-hint">
+        AI can scaffold a full-stack app — generating API routes, database schemas, and UI components — but you still need human judgment for architecture decisions, security (authentication, authorization, input validation), and deployment configuration. AI accelerates building the layers; humans ensure they work together securely. Tools like Cursor, Claude Code, and Bolt.new can generate a working full-stack prototype from a description, but production apps need careful review.
+    </div>
+
+    <h2>Full-Stack vs Static — When Do You Need This?</h2>
+    <p>You need a full-stack app when your project requires any of these:</p>
+    <ul>
+        <li>User accounts (sign up, log in, profiles)</li>
+        <li>Saving user data (posts, orders, settings)</li>
+        <li>Payments (Stripe, PayPal integration)</li>
+        <li>Real-time features (chat, notifications, live updates)</li>
+        <li>Admin dashboards (managing content or users)</li>
+    </ul>
+    <p>If you don't need any of these, a <a href="static-websites.html">static website</a> is simpler, cheaper, and faster.</p>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>A full-stack app is like a bank. The lobby and forms (frontend) are what you see. The tellers and vault policies (backend) decide what's allowed. The vault itself (database) holds your money. All three must work together — a lobby without a vault is just a pretty room, and a vault without a lobby is inaccessible.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="applications.html">Applications</a></li>
+            <li><a href="web-apps.html">Web Apps</a></li>
+            <li><a href="static-websites.html">Static Websites</a></li>
+            <li><a href="html-vs-full-stack.html">HTML vs Full Stack App</a></li>
+            <li><a href="api.html">API</a></li>
+            <li><a href="json.html">JSON</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://www.mongodb.com/resources/basics/full-stack-development">Full Stack Development — MongoDB</a></li>
+            <li><a href="https://www.mindstudio.ai/blog/what-is-a-full-stack-app">What Is a Full-Stack App? — MindStudio</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Introduction">Introduction to the Server Side — MDN Web Docs</a></li>
+        </ol>
+    </div>
+</body>
+</html>

@@ -14,15 +14,29 @@
     <h1>AI Automation</h1>
 
     <p class="definition">
-        AI Automation is the practice of building automated <a href="workflow.html">workflows</a> that use <a href="ai-model.html">AI models</a> to perform tasks without human intervention — connecting apps, processing data, making decisions, and executing actions across systems.
+        AI Automation is the umbrella term for using <a href="ai-model.html">AI</a> to perform tasks without human intervention — spanning from simple prompt chains and predetermined <a href="workflow.html">workflows</a> to fully autonomous <a href="ai-agent.html">AI agents</a>. It encompasses both the patterns (how work flows) and the platforms (where you build it).
     </p>
 
     <h2>What is AI Automation?</h2>
     <p>
-        Traditional automation follows rigid rules: "When an email arrives, save the attachment." AI automation adds intelligence: "When an email arrives, read it, classify its intent, extract key data, update the CRM, and draft a response." By combining <a href="llm.html">LLMs</a> with workflow tools, you create systems that handle complex, judgment-based tasks autonomously.
+        Traditional automation follows rigid rules: "When an email arrives, save the attachment." AI automation adds intelligence: "When an email arrives, read it, classify its intent, extract key data, update the CRM, and draft a response." By combining <a href="llm.html">LLMs</a> with <a href="tool-use.html">tool use</a> and workflow platforms, you create systems that handle complex, judgment-based tasks autonomously.
     </p>
     <p>
         In 2026, AI automation platforms are the primary way non-developers build <a href="ai-agent.html">AI agents</a> and connect AI to their business tools — without writing code.
+    </p>
+
+    <h2>The Automation Spectrum</h2>
+    <p>
+        AI automation is not one thing — it's a spectrum from simple to complex:
+    </p>
+    <ol>
+        <li><strong>Single prompt:</strong> One LLM call solves the task ("Summarize this email")</li>
+        <li><strong>Prompt chain:</strong> Fixed sequence of LLM calls, output feeds into next ("Translate → Classify → Summarize")</li>
+        <li><strong><a href="workflow.html">Workflow</a>:</strong> Predetermined multi-step pipeline with <a href="routing.html">routing</a>, parallelization, and <a href="human-in-the-loop.html">human checkpoints</a></li>
+        <li><strong><a href="ai-agent.html">Agent</a>:</strong> The model dynamically decides its own path, using <a href="tool-use.html">tools</a> in a loop until the goal is achieved</li>
+    </ol>
+    <p>
+        <strong>Anthropic's guidance:</strong> Start with the simplest solution that works. A single well-crafted prompt often beats a complex workflow. A workflow often beats an agent. Only add complexity when simpler approaches genuinely fail. Most production "AI agents" are actually workflows — and that's correct.
     </p>
 
     <h2>The Big Three Platforms (2026)</h2>
@@ -130,12 +144,12 @@
         <ul>
             <li><a href="workflow.html">Workflow</a></li>
             <li><a href="ai-agent.html">AI Agent</a></li>
+            <li><a href="tool-use.html">Tool Use</a></li>
+            <li><a href="human-in-the-loop.html">Human-in-the-Loop</a></li>
+            <li><a href="multi-agent.html">Multi-Agent Systems</a></li>
+            <li><a href="routing.html">Routing</a></li>
             <li><a href="agent-sdk.html">Agent SDK</a></li>
             <li><a href="mcp.html">MCP</a></li>
-            <li><a href="api.html">API</a></li>
-            <li><a href="json.html">JSON</a></li>
-            <li><a href="rag.html">RAG</a></li>
-            <li><a href="claude.html">Claude</a></li>
         </ul>
     </div>
 

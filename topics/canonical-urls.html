@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canonical URLs - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; <a href="technical-seo.html">Technical SEO</a> &rsaquo; Canonical URLs
+    </nav>
+
+    <h1>Canonical URLs</h1>
+
+    <p class="definition">
+        A canonical URL is a tag that tells search engines "this is the official version of this page" — preventing duplicate content problems when the same content is accessible at multiple URLs.
+    </p>
+
+    <h2>The Problem</h2>
+    <p>
+        The same page can often be reached via multiple URLs:
+    </p>
+    <ul>
+        <li><code>https://yoursite.com/article</code></li>
+        <li><code>https://yoursite.com/article/</code> (trailing slash)</li>
+        <li><code>https://yoursite.com/article?ref=twitter</code> (with tracking parameters)</li>
+        <li><code>http://yoursite.com/article</code> (HTTP vs HTTPS)</li>
+        <li><code>https://www.yoursite.com/article</code> (www vs non-www)</li>
+    </ul>
+    <p>
+        Google sees these as five different pages with identical content. This splits your SEO value across all of them instead of concentrating it on one. Canonical tags solve this.
+    </p>
+
+    <h2>The Solution</h2>
+    <pre><code>&lt;link rel="canonical" href="https://yoursite.com/article"&gt;</code></pre>
+    <p>
+        Add this to the <code>&lt;head&gt;</code> of every page. It tells search engines: "Regardless of how you arrived at this page, the official URL is this one. Give all the SEO credit here."
+    </p>
+
+    <h2>2026 Context</h2>
+    <p>
+        Canonical URLs are increasingly important because AI search engines (Google AI Overviews, ChatGPT, Perplexity, <a href="claude.html">Claude</a>) also rely on canonical signals to determine which version of a page to ingest and cite. Without clear canonicalization, AI systems might cite a URL with tracking parameters — or worse, ignore your page entirely because it looks like a duplicate.
+    </p>
+
+    <h2>Rules</h2>
+    <ul>
+        <li>Every page should have a canonical tag, even if it only has one URL (self-referencing canonical)</li>
+        <li>Always use the HTTPS version</li>
+        <li>Pick one style (www or non-www) and stick with it</li>
+        <li>Pick one style (trailing slash or not) and stick with it</li>
+        <li>The canonical URL should be the fully qualified URL (including <code>https://</code>)</li>
+    </ul>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>Imagine a book published under three different covers with slightly different titles, but the same content inside. Libraries would catalog it as three separate books, splitting reviews and lending records. A canonical URL is like telling libraries: "These are all the same book — please file everything under this one ISBN." All the "credit" consolidates under one entry.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="technical-seo.html">Technical SEO (parent topic)</a></li>
+            <li><a href="meta-tags.html">Meta Tags &amp; OG Tags</a></li>
+            <li><a href="sitemap-xml.html">sitemap.xml</a></li>
+            <li><a href="google-search-console.html">Google Search Console</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls">Consolidate Duplicate URLs — Google Search Central</a></li>
+            <li><a href="https://searchengineland.com/canonicalization-seo-448161">Canonicalization and SEO: A Guide for 2026 — Search Engine Land</a></li>
+            <li><a href="https://www.semrush.com/blog/canonical-url-guide/">Canonical URL Guide — Semrush</a></li>
+        </ol>
+    </div>
+</body>
+</html>

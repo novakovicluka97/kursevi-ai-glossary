@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Pages - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; GitHub Pages
+    </nav>
+
+    <h1>GitHub Pages (Deploying a Static Site)</h1>
+
+    <p class="definition">
+        GitHub Pages is a free hosting service by GitHub that turns a repository of <a href="html.html">HTML</a> files into a live website with a real URL — the standard way to host static sites like documentation, portfolios, and glossaries.
+    </p>
+
+    <h2>What is GitHub Pages?</h2>
+    <p>
+        GitHub is where developers store and collaborate on code. GitHub Pages is a feature that takes a repository (a project folder on GitHub) and serves its HTML files as a public website. No server setup, no hosting fees, no configuration. You push your files, GitHub hosts them.
+    </p>
+    <p>
+        Your site gets a URL like <code>https://yourusername.github.io/your-project/</code>. You can also connect a custom domain (like <code>yourbrand.com</code>) later.
+    </p>
+
+    <h2>Prerequisites</h2>
+    <p>You need two tools installed on your computer:</p>
+    <ul>
+        <li><strong>Git</strong> — Version control (tracks changes to your files). Check: <code>git --version</code></li>
+        <li><strong>GitHub CLI (gh)</strong> — GitHub's command-line tool. Check: <code>gh --version</code></li>
+    </ul>
+    <p>If you don't have them:</p>
+    <pre><code># Install Git (if not already installed)
+# Download from https://git-scm.com/downloads
+
+# Install GitHub CLI
+winget install GitHub.cli      # Windows
+brew install gh                # macOS
+
+# Authenticate (one-time setup)
+gh auth login</code></pre>
+
+    <h2>Step-by-Step: Deploy Your Site</h2>
+
+    <h3>Step 1: Initialize Git</h3>
+    <p>Open your terminal, navigate to your project folder, and initialize a Git repository:</p>
+    <pre><code>cd /path/to/your-project
+git init</code></pre>
+    <p><strong>What this does:</strong> Creates a hidden <code>.git</code> folder that tracks all changes to your files. Your project is now a Git repository.</p>
+
+    <h3>Step 2: Stage and Commit Your Files</h3>
+    <pre><code>git add .
+git commit -m "Initial commit: project files"</code></pre>
+    <p><strong>What this does:</strong> <code>git add .</code> tells Git to track all files in the folder. <code>git commit</code> saves a snapshot of your project with a description message. Think of it as pressing "Save" with a label.</p>
+
+    <h3>Step 3: Create the GitHub Repository and Push</h3>
+    <pre><code>gh repo create your-project-name --public --source=. --push</code></pre>
+    <p><strong>What this does:</strong> This single command does three things at once:</p>
+    <ol>
+        <li>Creates a new repository on your GitHub account</li>
+        <li>Connects your local folder to that repository</li>
+        <li>Pushes (uploads) all your files to GitHub</li>
+    </ol>
+    <p>Use <code>--public</code> for a site anyone can view, or <code>--private</code> if you want to restrict access (GitHub Pages still works with private repos on paid plans).</p>
+
+    <h3>Step 4: Enable GitHub Pages</h3>
+    <pre><code>gh api repos/{owner}/{repo}/pages -X POST \
+  -f source.branch=main \
+  -f source.path=/</code></pre>
+    <p>Replace <code>{owner}</code> with your GitHub username and <code>{repo}</code> with the repository name.</p>
+    <p><strong>What this does:</strong> Tells GitHub to serve your <code>main</code> branch as a website, using the root folder (<code>/</code>) as the source.</p>
+    <p><strong>Alternative:</strong> You can also do this in the browser — go to your repository on github.com → Settings → Pages → select "main" branch → Save.</p>
+
+    <h3>Step 5: Visit Your Live Site</h3>
+    <p>Wait about 60 seconds, then visit:</p>
+    <pre><code>https://yourusername.github.io/your-project-name/</code></pre>
+    <p>Your site is now live on the internet with HTTPS, accessible to anyone.</p>
+
+    <h2>Updating Your Site</h2>
+    <p>After making changes to your files locally, push updates with:</p>
+    <pre><code>git add .
+git commit -m "Description of what you changed"
+git push</code></pre>
+    <p>GitHub Pages automatically rebuilds your site within seconds of each push. No redeployment needed.</p>
+
+    <h2>Optional: Custom Domain</h2>
+    <p>To use your own domain (e.g., <code>glossary.yourbrand.com</code>):</p>
+    <ol>
+        <li>Buy a domain from any registrar (Namecheap, Cloudflare, Google Domains)</li>
+        <li>Add a CNAME record pointing to <code>yourusername.github.io</code></li>
+        <li>In your repo, go to Settings → Pages → Custom domain → enter your domain</li>
+        <li>GitHub provides free HTTPS for custom domains automatically</li>
+    </ol>
+
+    <h2>Your Live URL</h2>
+    <p>
+        Once deployed, your site is immediately accessible at:
+    </p>
+    <pre><code>https://yourusername.github.io/your-repo-name/</code></pre>
+    <p>
+        This is the fastest way to see your deployment — no dashboard needed. Just construct the URL from your GitHub username and repository name. For example, user <code>janedoe</code> with repo <code>my-portfolio</code> would visit <code>https://janedoe.github.io/my-portfolio/</code>.
+    </p>
+
+    <h2>GitHub Pages vs Netlify</h2>
+    <p>Both are popular free options for hosting static sites. Here's how they compare:</p>
+    <table>
+        <thead>
+            <tr><th></th><th>GitHub Pages</th><th>Netlify</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><strong>Cost</strong></td><td>Always free (public repos)</td><td>Free tier, 100GB bandwidth/month limit</td></tr>
+            <tr><td><strong>Setup</strong></td><td><code>git push</code> — that's it</td><td>Connect repo or drag-and-drop</td></tr>
+            <tr><td><strong>What it hosts</strong></td><td>Static files only (HTML/CSS/JS)</td><td>Static files + serverless functions</td></tr>
+            <tr><td><strong>Build tools</strong></td><td>Jekyll only (or pre-built files)</td><td>Many (React, Vue, Hugo, Next.js, etc.)</td></tr>
+            <tr><td><strong>Forms</strong></td><td>Not included</td><td>Built-in form handling</td></tr>
+            <tr><td><strong>Custom domains</strong></td><td>1 per site</td><td>Multiple per site</td></tr>
+            <tr><td><strong>Default URL</strong></td><td><code>username.github.io/repo</code></td><td><code>project.netlify.app</code></td></tr>
+        </tbody>
+    </table>
+    <p>
+        <strong>Verdict:</strong> For plain HTML/CSS/JS sites, GitHub Pages is the simpler choice — zero configuration, no bandwidth limits that matter, and you already use Git for version control. Netlify is better when you need build pipelines for frameworks, serverless functions, or built-in form handling. Neither URL is SEO-friendly by default; use a custom domain for that.
+    </p>
+    <p>
+        <strong>What GitHub Pages cannot host:</strong> Server-side applications (Node/Express, Django, Rails), anything requiring a database, or apps needing server-side processing at request time. It serves static files only.
+    </p>
+
+    <h2>Why GitHub Pages?</h2>
+    <ul>
+        <li><strong>Free:</strong> No hosting costs for static sites</li>
+        <li><strong>Professional:</strong> Real URL with HTTPS, not <code>file:///C:/...</code></li>
+        <li><strong>Version controlled:</strong> Every change is tracked in Git history</li>
+        <li><strong>Auto-deploys:</strong> Push code → site updates automatically</li>
+        <li><strong>Reliable:</strong> Backed by GitHub's infrastructure (99.9% uptime)</li>
+        <li><strong>Industry standard:</strong> Used by millions of developers and companies</li>
+    </ul>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>Dragging an HTML file into your browser is like printing a flyer and showing it to someone by hand. Deploying to GitHub Pages is like putting that flyer on a billboard on a public street — anyone with the address can see it, it's always there, and you can update it anytime by pushing a button from your desk.</p>
+    </div>
+
+    <div class="example-box">
+        <h4>Complete Example: From Zero to Live</h4>
+        <pre><code># Navigate to your project
+cd /c/PROJECTS/kursevi-ai-glossary
+
+# Initialize Git and make first commit
+git init
+git add .
+git commit -m "Initial commit: AI Glossary with 36 topics and quiz"
+
+# Create repo on GitHub and push (one command)
+gh repo create kursevi-ai-glossary --public --source=. --push
+
+# Enable GitHub Pages
+gh api repos/YOUR_USERNAME/kursevi-ai-glossary/pages \
+  -X POST -f source.branch=main -f source.path=/
+
+# Wait ~60 seconds, then visit:
+# https://YOUR_USERNAME.github.io/kursevi-ai-glossary/</code></pre>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="html.html">HTML</a></li>
+            <li><a href="html-vs-full-stack.html">HTML vs Full Stack App</a></li>
+            <li><a href="ide.html">IDE</a></li>
+            <li><a href="api.html">API</a></li>
+            <li><a href="claude-code.html">Claude Code</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://pages.github.com/">GitHub Pages — Official Site</a></li>
+            <li><a href="https://docs.github.com/en/pages/getting-started-with-github-pages">Getting Started with GitHub Pages — GitHub Docs</a></li>
+            <li><a href="https://cli.github.com/">GitHub CLI — Official Site</a></li>
+            <li><a href="https://git-scm.com/">Git — Official Site</a></li>
+        </ol>
+    </div>
+</body>
+</html>

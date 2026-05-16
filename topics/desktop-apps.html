@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desktop Apps - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; <a href="applications.html">Applications</a> &rsaquo; Desktop Apps
+    </nav>
+
+    <h1>Desktop Apps</h1>
+
+    <p class="definition">
+        A desktop application is software installed and run directly on a computer (Windows, macOS, or Linux). Desktop apps have full access to the file system, hardware, and OS features — making them ideal for heavy computation, professional tools, and offline use.
+    </p>
+
+    <h2 id="native">Native Desktop Apps</h2>
+    <p>
+        Built specifically for one operating system using platform-native tools. Offers maximum performance and the most natural user experience for that OS.
+    </p>
+    <table>
+        <thead>
+            <tr><th>Platform</th><th>Languages / Frameworks</th><th>Examples</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><strong>Windows</strong></td><td>C#/.NET (WinUI), C++ (Win32)</td><td>File Explorer, Visual Studio</td></tr>
+            <tr><td><strong>macOS</strong></td><td>Swift/SwiftUI, Objective-C</td><td>Finder, Xcode, Final Cut Pro</td></tr>
+            <tr><td><strong>Linux</strong></td><td>C/C++ (GTK, Qt), Rust</td><td>GIMP, Blender</td></tr>
+        </tbody>
+    </table>
+    <p><strong>Pros:</strong> Best performance, smallest memory footprint, OS-native look and feel, full hardware access.</p>
+    <p><strong>Cons:</strong> Separate codebase per OS, smaller developer pools for some platforms.</p>
+
+    <h2 id="cross-platform">Cross-Platform Desktop Apps</h2>
+    <p>
+        One codebase that runs on Windows, macOS, and Linux. The two dominant approaches in 2026:
+    </p>
+
+    <h3>Electron</h3>
+    <p>
+        Packages a full Chromium browser + Node.js runtime with your web app. Write HTML/CSS/JavaScript, get a desktop app.
+    </p>
+    <ul>
+        <li><strong>Used by:</strong> VS Code, Discord, Slack, Notion, Figma</li>
+        <li><strong>Pros:</strong> Massive ecosystem, easy for web developers, mature and stable</li>
+        <li><strong>Cons:</strong> Large binary size (~60MB+), high memory usage (~200MB+), bundles entire Chromium</li>
+    </ul>
+
+    <h3>Tauri</h3>
+    <p>
+        Uses the OS's native webview (not bundled Chromium) with a Rust backend. The modern alternative to Electron, growing rapidly since 2024.
+    </p>
+    <ul>
+        <li><strong>Used by:</strong> Growing number of developer tools, AI applications, note-taking apps</li>
+        <li><strong>Pros:</strong> Tiny binaries (~2MB), low memory (~50MB), fast startup, better security model</li>
+        <li><strong>Cons:</strong> Smaller ecosystem, requires Rust knowledge for backend, inconsistent webview rendering across OS</li>
+        <li><strong>New in 2026:</strong> Tauri 2.x supports mobile targets too (iOS + Android from same codebase)</li>
+    </ul>
+
+    <h3>Comparison</h3>
+    <table>
+        <thead>
+            <tr><th></th><th>Electron</th><th>Tauri</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><strong>Binary size</strong></td><td>~60MB+</td><td>~2MB</td></tr>
+            <tr><td><strong>RAM usage</strong></td><td>~200MB</td><td>~50MB</td></tr>
+            <tr><td><strong>Startup time</strong></td><td>Slower</td><td>Under 1 second</td></tr>
+            <tr><td><strong>Backend language</strong></td><td>JavaScript (Node.js)</td><td>Rust</td></tr>
+            <tr><td><strong>Frontend</strong></td><td>Any web framework</td><td>Any web framework</td></tr>
+            <tr><td><strong>Ecosystem maturity</strong></td><td>Very mature</td><td>Growing fast (55% YoY)</td></tr>
+        </tbody>
+    </table>
+
+    <div class="ai-hint">
+        Cross-platform desktop apps built with Electron or Tauri use web technologies (HTML/CSS/JS) for the frontend — meaning AI generates the UI layer just as easily as for web apps. The challenge is the native backend: Electron's Node.js layer is straightforward for AI, while Tauri's Rust backend is harder for AI to generate correctly due to Rust's strict type system and ownership rules. For desktop AI tools specifically, Tauri + Rust is increasingly popular due to performance advantages with large model inference.
+    </div>
+
+    <h2>When Do You Need a Desktop App?</h2>
+    <ul>
+        <li><strong>Heavy computation</strong> — Video editing, 3D rendering, large dataset processing</li>
+        <li><strong>File system access</strong> — Managing local files, bulk operations</li>
+        <li><strong>Offline-first</strong> — Must work without internet</li>
+        <li><strong>OS integration</strong> — System tray, keyboard shortcuts, notifications</li>
+        <li><strong>Performance-critical</strong> — Real-time audio/video, gaming</li>
+    </ul>
+    <p>If none of these apply, a <a href="web-apps.html">web app</a> is usually simpler to build and distribute.</p>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>A native desktop app is like a custom-built workshop tool — perfectly fitted for one workbench, extremely efficient. A cross-platform app (Electron/Tauri) is like a multi-tool — works in any workshop, does most jobs well, trades some specialization for versatility. Electron is the heavier multi-tool with every attachment; Tauri is the sleek one that weighs almost nothing.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="applications.html">Applications</a></li>
+            <li><a href="web-apps.html">Web Apps</a></li>
+            <li><a href="mobile-apps.html">Mobile Apps</a></li>
+            <li><a href="ide.html">IDE</a></li>
+            <li><a href="api.html">API</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://www.electronjs.org/">Electron — Official Site</a></li>
+            <li><a href="https://tauri.app/">Tauri — Official Site</a></li>
+            <li><a href="https://tech-insider.org/tauri-vs-electron-2026/">Tauri vs Electron 2026 — Tech Insider</a></li>
+            <li><a href="https://arvucore.com/en/blog/desktop-application-development-electron-vs-tauri-vs-native/">Desktop App Development: Electron vs Tauri vs Native — Arvucore</a></li>
+        </ol>
+    </div>
+</body>
+</html>

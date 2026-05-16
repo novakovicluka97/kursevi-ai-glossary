@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Routing - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; Routing
+    </nav>
+
+    <h1>Routing</h1>
+
+    <p class="definition">
+        Routing is an AI <a href="workflow.html">workflow</a> pattern where one classification decision directs the input to the appropriate specialized path — like an air traffic controller sending each plane to the right runway based on a quick assessment.
+    </p>
+
+    <h2>What is Routing?</h2>
+    <p>
+        A router evaluates an incoming request and dispatches it to the right handler. After that one decision, the path is fixed and predetermined. This makes routing a <a href="workflow.html">workflow</a> pattern, not an <a href="ai-agent.html">agent</a> pattern — the system makes one decision, then follows a defined track.
+    </p>
+    <p>
+        This is one of Anthropic's five core building blocks for agentic systems, sitting between simple prompt chaining (zero decisions) and full agents (many decisions).
+    </p>
+
+    <h2>Why Routing Matters (2026)</h2>
+    <ul>
+        <li><strong>Cost savings:</strong> Research by LMSYS (RouteLLM) shows intelligent routing can reduce costs by over 85% — sending simple queries to smaller, cheaper models</li>
+        <li><strong>Quality:</strong> Specialized prompts and models per category outperform one-size-fits-all</li>
+        <li><strong>Speed:</strong> Lightweight models handle easy tasks in milliseconds</li>
+        <li><strong>Scale:</strong> 37% of enterprises now use 5+ models in production — routing is how they manage this complexity</li>
+    </ul>
+
+    <h2>Routing Approaches</h2>
+    <ul>
+        <li><strong>Keyword/rule-based:</strong> Cheapest and fastest. "If message contains 'billing', route to billing handler." Least flexible.</li>
+        <li><strong>LLM-as-classifier:</strong> One <a href="llm.html">LLM</a> call to categorize the input, then route to the appropriate specialized path. Most common pattern.</li>
+        <li><strong>Local classifier models:</strong> Fine-tuned lightweight models (BERT-class) that detect task type — coding, math, analysis, creative writing, etc. Fast and cheap at inference.</li>
+        <li><strong>Confidence-based:</strong> If the model's confidence falls below a threshold, escalate to a larger/better model. Used for cost optimization.</li>
+        <li><strong>Consensus-based (2026):</strong> Send the same prompt to multiple models and aggregate their responses — emerging pattern for high-stakes decisions.</li>
+    </ul>
+
+    <h2>Routing vs Agent Decision-Making</h2>
+    <p>
+        A router makes <strong>one</strong> decision at the start. An agent makes <strong>many</strong> decisions throughout execution.
+    </p>
+    <p>
+        If your problem needs exactly one classification step followed by specialized handling, use routing. If it needs ongoing judgment calls where each step depends on the previous result, use an <a href="ai-agent.html">agent</a>.
+    </p>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>Routing is like calling a company's phone line. The automated menu asks "Press 1 for billing, 2 for tech support, 3 for sales." One decision routes you to the right department, and from there the process is fixed. The menu didn't have a conversation with you — it just classified your need and sent you on your way.</p>
+    </div>
+
+    <div class="example-box">
+        <h4>Real-World Example: Customer Support</h4>
+        <p>A customer support system receives a message. A router classifies it: billing / technical / sales / complaint. Each category routes to its own specialized prompt, model size, and response template. Technical queries go to a large model with code tools and documentation access. Simple billing questions ("what's my balance?") go to a smaller, cheaper model with database access. One decision, then a fixed path.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="workflow.html">Workflow</a></li>
+            <li><a href="ai-agent.html">AI Agent</a></li>
+            <li><a href="ai-automation.html">AI Automation</a></li>
+            <li><a href="multi-agent.html">Multi-Agent Systems</a></li>
+            <li><a href="tool-use.html">Tool Use</a></li>
+            <li><a href="llm.html">Large Language Model</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://www.anthropic.com/research/building-effective-agents">Building Effective Agents — Anthropic</a></li>
+            <li><a href="https://inworld.ai/resources/what-is-an-ai-router">What Is an AI Router? LLM Model Routing Explained (2026) — Inworld</a></li>
+            <li><a href="https://www.getmaxim.ai/articles/top-5-llm-routing-techniques/">Top 5 LLM Routing Techniques — Maxim</a></li>
+        </ol>
+    </div>
+</body>
+</html>

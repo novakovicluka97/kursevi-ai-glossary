@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human-in-the-Loop - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; Human-in-the-Loop
+    </nav>
+
+    <h1>Human-in-the-Loop (HITL)</h1>
+
+    <p class="definition">
+        Human-in-the-loop is a design pattern where <a href="ai-agent.html">AI systems</a> pause at critical decision points to request human review or approval before proceeding — balancing automation speed with human judgment for safety, compliance, and trust.
+    </p>
+
+    <h2>What is Human-in-the-Loop?</h2>
+    <p>
+        Not every AI decision should be fully autonomous. Some actions are irreversible, high-stakes, or legally sensitive. Human-in-the-loop places a checkpoint at these critical moments: the AI does the heavy lifting (research, drafting, analysis), and a human validates the final decision before execution.
+    </p>
+    <p>
+        In 2026, 57% of companies have <a href="ai-agent.html">AI agents</a> in production, and 80% have encountered risky autonomous behavior. HITL is no longer a nice-to-have — it's an operational and regulatory requirement.
+    </p>
+
+    <h2>The Calibrated Autonomy Pattern</h2>
+    <p>
+        The modern approach isn't "always ask a human" or "never ask a human" — it's calibrated autonomy:
+    </p>
+    <ul>
+        <li><strong>Full autonomy</strong> for low-risk, reversible actions (reading files, searching data, generating drafts)</li>
+        <li><strong>Human approval</strong> for high-risk, irreversible actions (sending emails, making payments, deleting data, deploying code)</li>
+        <li><strong>Confidence-based escalation:</strong> When the AI's confidence drops below a threshold, it escalates to a human rather than guessing</li>
+    </ul>
+
+    <h2>Where the Gate Lives</h2>
+    <p>
+        The approval gate lives <strong>outside</strong> the model. The AI doesn't decide when to ask for permission — a policy engine evaluates each proposed action against rules (cost thresholds, permission levels, risk categories). If the policy returns REQUIRE_APPROVAL, the system holds the action in a pending queue until a human approves.
+    </p>
+    <p>
+        This separation is critical: the model proposes, the system enforces. You don't rely on the AI's judgment about its own limitations.
+    </p>
+
+    <h2>Common HITL Patterns</h2>
+    <ul>
+        <li><strong>Approve/reject:</strong> AI proposes an action, human clicks approve or deny before execution</li>
+        <li><strong>Review-then-send:</strong> AI drafts an email or message, human reviews and edits before sending</li>
+        <li><strong>Escalation on low confidence:</strong> AI handles routine cases autonomously, flags uncertain ones for human review</li>
+        <li><strong>Periodic audit:</strong> AI acts autonomously but a human reviews a sample of decisions after the fact</li>
+        <li><strong>Shadow mode:</strong> AI proposes actions, human executes them initially — building trust before granting autonomy</li>
+    </ul>
+
+    <h2>Why It Matters in 2026</h2>
+    <p>
+        The <strong>EU AI Act Article 14</strong> (enforceable August 2, 2026) mandates human oversight capabilities for high-risk AI systems. Organizations deploying AI in healthcare, finance, hiring, or critical infrastructure must implement HITL mechanisms — it's now a legal requirement, not just a best practice.
+    </p>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>Think of HITL like a self-driving car that handles highway driving perfectly but hands control back to you in construction zones. The car does 95% of the driving autonomously, but for the tricky 5% where the stakes are high, it says "your turn" — not because it can't try, but because the consequences of a mistake are too severe.</p>
+    </div>
+
+    <div class="example-box">
+        <h4>Real-World Example: Claude Code</h4>
+        <p><a href="claude-code.html">Claude Code</a> implements calibrated autonomy: it reads files and searches code freely (low-risk, reversible), but asks permission before writing files, executing shell commands, or making network requests (higher-risk, potentially irreversible). The permission gate is in the system, not in Claude's judgment — ensuring consistent safety regardless of how the model reasons.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="ai-agent.html">AI Agent</a></li>
+            <li><a href="workflow.html">Workflow</a></li>
+            <li><a href="tool-use.html">Tool Use</a></li>
+            <li><a href="ai-automation.html">AI Automation</a></li>
+            <li><a href="routing.html">Routing</a></li>
+            <li><a href="agent-sdk.html">Agent SDK</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://www.anthropic.com/research/building-effective-agents">Building Effective Agents — Anthropic</a></li>
+            <li><a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj">EU AI Act — Official Journal of the European Union</a></li>
+            <li><a href="https://galileo.ai/blog/human-in-the-loop-agent-oversight">Human-in-the-Loop Oversight for AI Agents — Galileo</a></li>
+        </ol>
+    </div>
+</body>
+</html>

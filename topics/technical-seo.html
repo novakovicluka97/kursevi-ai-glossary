@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical SEO - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; Technical SEO
+    </nav>
+
+    <h1>Technical SEO</h1>
+
+    <p class="definition">
+        Technical SEO is the practice of optimizing the infrastructure of a website so that search engines (and increasingly, AI systems) can efficiently crawl, index, understand, and surface your content.
+    </p>
+
+    <h2>Why Technical SEO Matters</h2>
+    <p>
+        You can write the best content in the world, but if search engines can't find it, read it, or trust it, nobody sees it. Technical SEO is the foundation layer — get it wrong, and nothing else matters. Get it right, and every piece of content you create has the best possible chance of being discovered.
+    </p>
+    <p>
+        In 2026, Technical SEO has expanded beyond just Google. AI search engines — Google AI Overviews, ChatGPT, Perplexity, <a href="claude.html">Claude</a> — now crawl and cite web content. These systems rely on structured, well-organized sites with clear signals about what each page is and why it matters. The same technical foundations that help Google also help AI systems surface your content.
+    </p>
+
+    <h2>The Essentials, Ranked by Impact</h2>
+    <p>Every item below has its own detailed topic page. They're listed here in order of importance:</p>
+
+    <h3>Tier 1 — Non-Negotiable (must have)</h3>
+    <ol>
+        <li>
+            <strong><a href="meta-tags.html">Meta Tags &amp; OG Tags</a></strong><br>
+            The single most impactful thing you control. Title tags and meta descriptions determine how your pages appear in search results. Open Graph tags control how links look when shared on social media. Every page needs them.
+        </li>
+        <li>
+            <strong><a href="sitemap-xml.html">sitemap.xml</a></strong><br>
+            A file that lists every page on your site, telling search engines exactly what exists and when it was last updated. Submit it to <a href="google-search-console.html">Google Search Console</a> so Google starts crawling immediately.
+        </li>
+        <li>
+            <strong><a href="robots-txt.html">robots.txt</a></strong><br>
+            A file that tells search engine crawlers which parts of your site they're allowed (or not allowed) to access. Controls what gets indexed.
+        </li>
+        <li>
+            <strong>HTTPS / SSL</strong><br>
+            Every page must load over HTTPS (encrypted connection). It's been a Google ranking signal since 2014 and is now a baseline requirement — sites on HTTP get "Not Secure" browser warnings and ranking penalties. If you use <a href="github-pages.html">GitHub Pages</a>, HTTPS is automatic.
+        </li>
+        <li>
+            <strong><a href="google-search-console.html">Google Search Console</a></strong><br>
+            Free tool that shows you exactly how Google sees your site — what's indexed, what's broken, which searches lead to your pages. Setup takes 10 minutes and is essential for monitoring everything else on this list.
+        </li>
+    </ol>
+
+    <h3>Tier 2 — Important (strong competitive advantage)</h3>
+    <ol start="6">
+        <li>
+            <strong><a href="structured-data.html">Structured Data (JSON-LD / Schema.org)</a></strong><br>
+            Machine-readable metadata that tells Google what your content <em>is</em> (an article, a FAQ, a product). Pages with structured data earn 35% higher click-through rates and are 2.3x more likely to appear in AI Overviews.
+        </li>
+        <li>
+            <strong><a href="canonical-urls.html">Canonical URLs</a></strong><br>
+            Tells search engines which version of a page is the "master copy" when multiple URLs lead to the same content. Prevents duplicate content penalties.
+        </li>
+        <li>
+            <strong>Core Web Vitals (Page Speed)</strong><br>
+            Google's performance metrics: LCP (loading speed) &lt; 2.5s, INP (interactivity) &lt; 200ms, CLS (visual stability) &lt; 0.1. Fast sites rank higher and keep users engaged.
+        </li>
+    </ol>
+
+    <h3>Tier 3 — Good to Have (polish and professionalism)</h3>
+    <ol start="9">
+        <li>
+            <strong><a href="site-webmanifest.html">site.webmanifest</a></strong><br>
+            A <a href="json.html">JSON</a> file that describes your site to browsers — name, icons, theme color. Enables "Add to Home Screen" on mobile. Not critical for SEO ranking, but signals a modern, professional site.
+        </li>
+        <li>
+            <strong>Favicon</strong><br>
+            The small icon in browser tabs. Google shows favicons in mobile search results. A missing favicon looks unprofessional and slightly hurts trust signals.
+        </li>
+    </ol>
+
+    <h2>What Your Project Root Should Look Like</h2>
+    <pre><code>your-project/
+├── index.html              ← Main page
+├── sitemap.xml             ← For search engines
+├── robots.txt              ← Crawl rules
+├── site.webmanifest        ← Browser metadata
+├── favicon.ico             ← Tab icon
+├── css/
+├── topics/
+└── images/</code></pre>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>Technical SEO is like building codes for a house. Your house might have beautiful interior design (great content), but if it doesn't have a street address (sitemap), a visible front door (meta tags), building permits on file (Search Console), locks (HTTPS), and a sign saying "open" (robots.txt) — visitors and inspectors can't find it, enter it, or trust it. Technical SEO makes sure your "house" is on the map and meets all the codes.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Subtopics</h3>
+        <ul>
+            <li><a href="meta-tags.html">Meta Tags &amp; OG Tags</a></li>
+            <li><a href="sitemap-xml.html">sitemap.xml</a></li>
+            <li><a href="robots-txt.html">robots.txt</a></li>
+            <li><a href="google-search-console.html">Google Search Console</a></li>
+            <li><a href="structured-data.html">Structured Data</a></li>
+            <li><a href="canonical-urls.html">Canonical URLs</a></li>
+            <li><a href="site-webmanifest.html">site.webmanifest</a></li>
+        </ul>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="html.html">HTML</a></li>
+            <li><a href="json.html">JSON</a></li>
+            <li><a href="github-pages.html">GitHub Pages</a></li>
+            <li><a href="html-vs-full-stack.html">HTML vs Full Stack App</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://www.debugbear.com/blog/technical-seo-checklist">Technical SEO Checklist: The Complete Guide For 2026 — DebugBear</a></li>
+            <li><a href="https://developers.google.com/search/docs">Google Search Central Documentation</a></li>
+            <li><a href="https://www.semrush.com/blog/technical-seo/">Technical SEO — Semrush</a></li>
+        </ol>
+    </div>
+</body>
+</html>

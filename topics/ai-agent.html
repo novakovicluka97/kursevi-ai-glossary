@@ -14,7 +14,7 @@
     <h1>AI Agent</h1>
 
     <p class="definition">
-        An AI agent is an <a href="artificial-intelligence.html">AI</a> system that can autonomously plan and execute multi-step tasks — not just answer questions, but take actions in the world to achieve goals.
+        An AI agent is an <a href="artificial-intelligence.html">AI</a> system that can autonomously plan and execute multi-step tasks — not just answer questions, but take actions in the world to achieve goals, dynamically deciding its own path.
     </p>
 
     <h2>What is an AI Agent?</h2>
@@ -25,34 +25,56 @@
         For example, if you tell an agent "book me a flight to London next Tuesday under $500," it would search flights, compare options, fill in your details, and complete the booking — making decisions along the way.
     </p>
 
+    <h2>Agent vs Workflow: When to Use Which</h2>
+    <p>
+        The key distinction: in an agent, <strong>the model decides the path</strong>. In a <a href="workflow.html">workflow</a>, <strong>you define the path</strong>.
+    </p>
+    <ul>
+        <li><strong>Use a workflow</strong> when the steps are predictable and the same every time (translating reviews, classifying emails, generating reports)</li>
+        <li><strong>Use an agent</strong> when the task requires ongoing judgment, the path is unknown upfront, or you need adaptive problem-solving</li>
+    </ul>
+    <p>
+        <strong>When agents pay off:</strong> Imagine the task is "investigate why customer complaints spiked this week." The agent might query the database, notice a pattern in shipping delays, check the logistics provider's status page, cross-reference with a recent deployment, and read related Slack messages. You cannot predefine these steps because you don't know where the data will lead. That's when you need an agent.
+    </p>
+
     <h2>Agent Components</h2>
     <ul>
         <li><strong>Brain:</strong> An <a href="llm.html">LLM</a> that reasons and makes decisions</li>
-        <li><strong>Tools:</strong> Capabilities like web browsing, file access, code execution (often via <a href="mcp.html">MCP</a>)</li>
+        <li><strong>Tools:</strong> Capabilities like web browsing, file access, code execution (often via <a href="mcp.html">MCP</a>) — see <a href="tool-use.html">Tool Use</a></li>
         <li><strong>Memory:</strong> Ability to remember context across steps</li>
         <li><strong>Planning:</strong> Breaking goals into sub-tasks</li>
-        <li><strong>Loop:</strong> Observe → Think → Act → Repeat until goal is achieved</li>
+        <li><strong>Tool-Use Loop:</strong> Observe → Think → Act → Get Result → Repeat until goal is achieved (see <a href="tool-use.html">Tool Use</a> for details)</li>
     </ul>
+
+    <h2>Single Agent vs Multi-Agent</h2>
+    <p>
+        Most production agents are <strong>single agents with many tools</strong>. One LLM with access to search, databases, file systems, and APIs can handle remarkably complex tasks.
+    </p>
+    <p>
+        <a href="multi-agent.html">Multi-agent systems</a> add coordination overhead — only use them when a single agent's <a href="context-window.html">context window</a> is overwhelmed, when subtasks need different permission levels, or when you need distinct expertise domains that would conflict in one system prompt.
+    </p>
 
     <h2>Examples</h2>
     <p>
-        <a href="claude-code.html">Claude Code</a> is an AI agent for software development. It reads code, plans changes, edits files, runs tests, and commits — all autonomously. Other examples include customer support agents, research agents, and data analysis agents built with the <a href="agent-sdk.html">Agent SDK</a>.
+        <a href="claude-code.html">Claude Code</a> is an AI agent for software development. It reads code, plans changes, edits files, runs tests, and commits — all autonomously, deciding what to do based on what it finds. Other examples include customer support agents, research agents, and data analysis agents built with the <a href="agent-sdk.html">Agent SDK</a>.
     </p>
 
     <div class="example-box">
         <h4>Layman's Analogy</h4>
-        <p>A regular AI is like a librarian — you ask a question, they give you an answer. An AI agent is like a personal assistant — you say "plan my vacation," and they research destinations, compare prices, book hotels, arrange transport, and send you the itinerary. They don't just inform; they act.</p>
+        <p>A regular AI is like a librarian — you ask a question, they give you an answer. An AI agent is like a personal assistant — you say "plan my vacation," and they research destinations, compare prices, book hotels, arrange transport, and send you the itinerary. They don't just inform; they act. And crucially, they decide the order themselves based on what they find — they don't follow a script.</p>
     </div>
 
     <div class="related-topics">
         <h3>Related Topics</h3>
         <ul>
+            <li><a href="workflow.html">Workflow</a></li>
+            <li><a href="tool-use.html">Tool Use</a></li>
+            <li><a href="multi-agent.html">Multi-Agent Systems</a></li>
+            <li><a href="human-in-the-loop.html">Human-in-the-Loop</a></li>
             <li><a href="agent-sdk.html">Agent SDK</a></li>
             <li><a href="claude-code.html">Claude Code</a></li>
-            <li><a href="llm.html">Large Language Model</a></li>
             <li><a href="mcp.html">MCP</a></li>
-            <li><a href="workflow.html">Workflow</a></li>
-            <li><a href="prompt.html">Prompt</a></li>
+            <li><a href="ai-automation.html">AI Automation</a></li>
         </ul>
     </div>
 

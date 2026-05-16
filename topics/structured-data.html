@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structured Data (JSON-LD / Schema.org) - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; <a href="technical-seo.html">Technical SEO</a> &rsaquo; Structured Data
+    </nav>
+
+    <h1>Structured Data (JSON-LD / Schema.org)</h1>
+
+    <p class="definition">
+        Structured data is machine-readable code (in <a href="json.html">JSON-LD</a> format) embedded in your web pages that explicitly tells search engines and AI systems <em>what</em> your content is — not just what it says, but what it <em>means</em>.
+    </p>
+
+    <h2>What is Structured Data?</h2>
+    <p>
+        When Google reads your page, it sees text. It can guess that "Marie Curie" is a person and "1867" is a year, but it might be wrong. Structured data removes the guessing — you explicitly declare: "This page is about a Person. Her name is Marie Curie. She was born in 1867. She won 2 Nobel Prizes."
+    </p>
+    <p>
+        The vocabulary comes from <strong>Schema.org</strong> (a standard maintained by Google, Microsoft, Yahoo, and Yandex). The format is <strong>JSON-LD</strong> — a block of <a href="json.html">JSON</a> inside a <code>&lt;script&gt;</code> tag that doesn't affect the visible page.
+    </p>
+
+    <h2>What It Looks Like</h2>
+    <pre><code>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What is JSON?",
+  "description": "JSON is a lightweight data format for AI APIs.",
+  "author": {
+    "@type": "Person",
+    "name": "Your Name"
+  },
+  "datePublished": "2026-05-16",
+  "publisher": {
+    "@type": "Organization",
+    "name": "AI Glossary"
+  }
+}
+&lt;/script&gt;</code></pre>
+
+    <h2>Why It Matters in 2026</h2>
+    <p>
+        Structured data has become dramatically more important because of AI search:
+    </p>
+    <ul>
+        <li><strong>35% higher click-through rates</strong> — Pages with structured data earn "rich results" (star ratings, FAQ dropdowns, images) in Google that stand out visually</li>
+        <li><strong>2.3x more likely to appear in AI Overviews</strong> — Google's AI answers and Perplexity cite structured pages more often</li>
+        <li><strong>AI systems parse it reliably</strong> — <a href="llm.html">LLMs</a> can extract JSON-LD data more accurately than unstructured prose</li>
+        <li><strong>Knowledge Graph recognition</strong> — Google's entity database uses structured data to understand who and what you are</li>
+    </ul>
+
+    <h2>Most Important Schema Types</h2>
+    <ol>
+        <li><strong>Organization</strong> — Who you are as a company/entity</li>
+        <li><strong>Article / BlogPosting</strong> — Content pages (like this glossary)</li>
+        <li><strong>FAQPage</strong> — Question-and-answer content</li>
+        <li><strong>Product</strong> — E-commerce product pages</li>
+        <li><strong>LocalBusiness</strong> — Physical business locations</li>
+    </ol>
+
+    <h2>Why JSON-LD?</h2>
+    <p>
+        Google recommends JSON-LD over alternatives (Microdata, RDFa) because it lives in a separate <code>&lt;script&gt;</code> block, doesn't mix with your HTML, is easier to maintain, and is easier for AI crawlers to parse.
+    </p>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>Regular HTML is like writing a résumé as a free-form essay. Structured data is like filling out a standardized form: Name ___, Job Title ___, Years of Experience ___. Both contain the same information, but the form lets a computer instantly extract and compare every field. That's what structured data does for search engines — turns your prose into a standardized form they can read instantly.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="technical-seo.html">Technical SEO (parent topic)</a></li>
+            <li><a href="json.html">JSON</a></li>
+            <li><a href="meta-tags.html">Meta Tags &amp; OG Tags</a></li>
+            <li><a href="google-search-console.html">Google Search Console</a></li>
+            <li><a href="html.html">HTML</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data">Introduction to Structured Data — Google Search Central</a></li>
+            <li><a href="https://schema.org/">Schema.org — Official Vocabulary</a></li>
+            <li><a href="https://www.digidop.com/blog/structured-data-secret-weapon-seo">Structured Data: SEO and GEO Optimization for AI — Digidop</a></li>
+        </ol>
+    </div>
+</body>
+</html>

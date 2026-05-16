@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Agent Systems - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; Multi-Agent Systems
+    </nav>
+
+    <h1>Multi-Agent Systems</h1>
+
+    <p class="definition">
+        A multi-agent system is an architecture where multiple specialized <a href="ai-agent.html">AI agents</a> coordinate to solve complex problems — each agent handling a distinct role, communicating through defined protocols, much like a team of specialists collaborating on a project.
+    </p>
+
+    <h2>What are Multi-Agent Systems?</h2>
+    <p>
+        A single agent can do a lot, but some problems benefit from division of labor. Instead of one agent juggling research, analysis, writing, and quality checking, you deploy several agents that each specialize in one domain and pass work between them.
+    </p>
+    <p>
+        In 2026, 57% of organizations deploy multi-step agent <a href="workflow.html">workflows</a> in production. Interest in multi-agent systems surged 1,445% in 2025 as organizations moved from single-agent prototypes to complex coordinated systems.
+    </p>
+
+    <h2>Orchestration Patterns</h2>
+
+    <h3>Supervisor/Worker</h3>
+    <p>
+        A central supervisor agent receives the goal, breaks it into subtasks, routes each subtask to a specialist worker agent, and synthesizes the results. This is the most common production pattern — clear hierarchy, easy to debug, predictable coordination.
+    </p>
+
+    <h3>Peer-to-Peer</h3>
+    <p>
+        Agents communicate and collaborate directly without a central supervisor. Each agent can request help from others, negotiate task distribution, and contribute independently. More flexible but harder to debug and monitor.
+    </p>
+
+    <h3>Hierarchical</h3>
+    <p>
+        Multiple layers of supervisors managing teams of workers. Higher levels focus on planning and coordination; lower levels focus on execution. Scales well for enterprise-level complexity but adds latency at each coordination layer.
+    </p>
+
+    <h2>Key Standards (2026)</h2>
+    <ul>
+        <li><strong>Google A2A (Agent-to-Agent):</strong> Open protocol for inter-agent communication. 150+ organizations using it in production as of April 2026. Defines how agents discover each other, exchange tasks, and report results.</li>
+        <li><strong><a href="mcp.html">MCP</a> (Model Context Protocol):</strong> Connects agents to tools and data sources. Complementary to A2A — A2A is for agents talking to agents, MCP is for agents talking to tools.</li>
+        <li><strong><a href="agent-sdk.html">Agent SDK</a>:</strong> Anthropic's SDK supports multi-agent via handoffs — one agent can transfer control to another with full context.</li>
+    </ul>
+
+    <h2>When to Use Multi-Agent (and When Not To)</h2>
+    <p>
+        <strong>Use multi-agent when:</strong> The task requires distinct expertise domains, a single agent's <a href="context-window.html">context window</a> is overwhelmed, or you need different security/permission levels for different subtasks.
+    </p>
+    <p>
+        <strong>Don't use multi-agent when:</strong> A single well-tooled agent can handle the task. Most production agents are single agents with many <a href="tool-use.html">tools</a>. Multi-agent adds coordination overhead, debugging complexity, and latency.
+    </p>
+    <p>
+        <strong>Important reality check:</strong> 40% of multi-agent pilots fail within 6 months of production deployment — overwhelmingly due to governance gaps, insufficient monitoring, and fragmented ownership. Start simple.
+    </p>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>A multi-agent system is like a hospital. You don't have one doctor doing everything — you have a triage nurse (router), a GP (generalist), specialists (cardiologist, radiologist), and a coordinator who makes sure everyone's notes end up in the right chart. Each person is excellent at their job, and the system works because they communicate clearly through structured protocols (patient charts, referral forms).</p>
+    </div>
+
+    <div class="example-box">
+        <h4>Real-World Example: Automated Code Review</h4>
+        <p>A code review system with multiple specialized agents: Agent 1 (Security Reviewer) checks for vulnerabilities using security scanning tools. Agent 2 (Style Reviewer) enforces coding conventions and formatting. Agent 3 (Performance Reviewer) identifies bottlenecks and suggests optimizations. A Supervisor agent aggregates their findings into a unified review, resolves conflicting suggestions, and posts the combined feedback. Each specialist has different tools, different system prompts, and different expertise.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="ai-agent.html">AI Agent</a></li>
+            <li><a href="agent-sdk.html">Agent SDK</a></li>
+            <li><a href="tool-use.html">Tool Use</a></li>
+            <li><a href="workflow.html">Workflow</a></li>
+            <li><a href="mcp.html">MCP</a></li>
+            <li><a href="ai-automation.html">AI Automation</a></li>
+            <li><a href="routing.html">Routing</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://developers.google.com/agent-to-agent">Agent-to-Agent (A2A) Protocol — Google</a></li>
+            <li><a href="https://www.anthropic.com/research/building-effective-agents">Building Effective Agents — Anthropic</a></li>
+            <li><a href="https://www.codebridge.tech/articles/mastering-multi-agent-orchestration-coordination-is-the-new-scale-frontier">Multi-Agent Systems & AI Orchestration Guide 2026 — Codebridge</a></li>
+        </ol>
+    </div>
+</body>
+</html>

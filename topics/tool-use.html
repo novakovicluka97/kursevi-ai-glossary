@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tool Use (Function Calling) - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; Tool Use (Function Calling)
+    </nav>
+
+    <h1>Tool Use (Function Calling)</h1>
+
+    <p class="definition">
+        Tool use (also called function calling) is the mechanism that allows an <a href="llm.html">LLM</a> to take actions beyond generating text — by outputting structured requests that a system executes on its behalf, returning real-world results back to the model.
+    </p>
+
+    <h2>What is Tool Use?</h2>
+    <p>
+        By default, an LLM is text-in, text-out. It can reason brilliantly, but it cannot check today's weather, query a database, or send an email. Tool use bridges this gap: the model outputs a structured function call (name + arguments), the host system executes it, and feeds the result back. The model never runs code itself — it requests actions and interprets results.
+    </p>
+    <p>
+        This is the foundational mechanism that makes <a href="ai-agent.html">AI agents</a> possible. Without tools, an LLM can only advise. With tools, it can act.
+    </p>
+
+    <h2>The Tool-Use Loop</h2>
+    <p>
+        The standard architecture powering all AI agents is a loop:
+    </p>
+    <ol>
+        <li><strong>Observe:</strong> The model receives context (user request, previous results)</li>
+        <li><strong>Think:</strong> The model reasons about what to do next</li>
+        <li><strong>Call Tool:</strong> The model outputs a structured function call</li>
+        <li><strong>Get Result:</strong> The system executes the call and returns the result</li>
+        <li><strong>Decide:</strong> The model evaluates the result — either calls another tool or responds to the user</li>
+    </ol>
+    <p>
+        This loop repeats until the model decides the task is complete. A single user request might trigger 1 tool call or 50, depending on complexity.
+    </p>
+
+    <h2>How It Works (Technical)</h2>
+    <ol>
+        <li><strong>Tool definitions</strong> are provided in the system prompt — each tool has a name, description, and parameter schema (usually <a href="json.html">JSON</a>)</li>
+        <li>The model decides to <strong>call a tool</strong> instead of generating a text response</li>
+        <li>The system <strong>executes the function</strong> (API call, database query, file operation)</li>
+        <li>The result is <strong>returned to the model</strong> as a new message</li>
+        <li>The model <strong>continues reasoning</strong> with the new information</li>
+    </ol>
+
+    <h2>Best Practices (2026)</h2>
+    <ul>
+        <li><strong>Start with one tool:</strong> Build an agent that calls a single function reliably before adding more</li>
+        <li><strong>Write excellent descriptions:</strong> Tool descriptions are the highest-leverage optimization. Instead of "Search the web," use "Search the web for current information. Use when the user asks about recent events or data that may have changed since training."</li>
+        <li><strong>Dynamic loading at scale:</strong> 50+ tool definitions consume ~55,000 tokens in the system prompt. The solution is loading a relevant subset per task via semantic search over tool descriptions</li>
+        <li><strong>Set iteration limits:</strong> Always set max_iterations (5–10) to prevent infinite loops</li>
+        <li><strong>Typed error signals:</strong> Return structured errors, not empty results. "Rate limited, retry in 3s" is far more useful than an empty array</li>
+        <li><strong>Log everything:</strong> Every function call with user context, arguments, result, and timestamp — essential for debugging and compliance</li>
+    </ul>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>An LLM without tools is like a brilliant advisor locked in a room with no phone or computer. They can give amazing analysis — but cannot check today's stock price, send an email, or look up a customer record. Tool use gives them a phone, a computer, and a filing cabinet. They still don't physically do the work — they write a request on a slip of paper, slide it under the door, and someone on the other side executes it and slides the answer back.</p>
+    </div>
+
+    <div class="example-box">
+        <h4>Real-World Example: Claude Code</h4>
+        <p><a href="claude-code.html">Claude Code</a> uses tool calls for everything: Read File (to understand code), Edit File (to make changes), Run Bash (to execute tests), Search (to find relevant files). Each action is a structured tool call — Claude never directly touches the filesystem. It requests, the system executes, and the result comes back for Claude to reason about next.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="ai-agent.html">AI Agent</a></li>
+            <li><a href="workflow.html">Workflow</a></li>
+            <li><a href="mcp.html">MCP</a></li>
+            <li><a href="api.html">API</a></li>
+            <li><a href="agent-sdk.html">Agent SDK</a></li>
+            <li><a href="ai-automation.html">AI Automation</a></li>
+            <li><a href="human-in-the-loop.html">Human-in-the-Loop</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://www.anthropic.com/research/building-effective-agents">Building Effective Agents — Anthropic</a></li>
+            <li><a href="https://docs.anthropic.com/en/docs/build-with-claude/tool-use">Tool Use — Anthropic Documentation</a></li>
+            <li><a href="https://composio.dev/content/ai-agent-tool-calling-guide">Tool Calling Explained: The Core of AI Agents (2026) — Composio</a></li>
+        </ol>
+    </div>
+</body>
+</html>

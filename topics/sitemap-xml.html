@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sitemap.xml - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; <a href="technical-seo.html">Technical SEO</a> &rsaquo; sitemap.xml
+    </nav>
+
+    <h1>sitemap.xml</h1>
+
+    <p class="definition">
+        A sitemap.xml is a file that lists every page on your website, telling search engines exactly what content exists, when it was last updated, and how important each page is relative to others.
+    </p>
+
+    <h2>What is a Sitemap?</h2>
+    <p>
+        A sitemap is a roadmap of your website written in <a href="xml.html">XML</a> format. You place it in your site's root directory (e.g., <code>yoursite.com/sitemap.xml</code>). Search engine crawlers (Googlebot, Bingbot) read this file to discover and understand the structure of your site.
+    </p>
+    <p>
+        Without a sitemap, search engines rely solely on following links between pages to discover content. If a page isn't linked from anywhere, it may never be found. A sitemap guarantees that every page is on the radar.
+    </p>
+
+    <h2>What It Looks Like</h2>
+    <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;
+  &lt;url&gt;
+    &lt;loc&gt;https://yoursite.com/&lt;/loc&gt;
+    &lt;lastmod&gt;2026-05-16&lt;/lastmod&gt;
+    &lt;priority&gt;1.0&lt;/priority&gt;
+  &lt;/url&gt;
+  &lt;url&gt;
+    &lt;loc&gt;https://yoursite.com/topics/claude.html&lt;/loc&gt;
+    &lt;lastmod&gt;2026-05-16&lt;/lastmod&gt;
+    &lt;priority&gt;0.8&lt;/priority&gt;
+  &lt;/url&gt;
+  &lt;!-- ... one entry per page ... --&gt;
+&lt;/urlset&gt;</code></pre>
+
+    <h2>Key Fields</h2>
+    <ul>
+        <li><strong><code>&lt;loc&gt;</code></strong> — The full URL of the page (required)</li>
+        <li><strong><code>&lt;lastmod&gt;</code></strong> — When the page was last updated (helps Google prioritize recrawling)</li>
+        <li><strong><code>&lt;priority&gt;</code></strong> — Relative importance from 0.0 to 1.0 (hint to crawlers, not a ranking factor)</li>
+        <li><strong><code>&lt;changefreq&gt;</code></strong> — How often the page changes (daily, weekly, monthly) — largely ignored by Google in 2026</li>
+    </ul>
+
+    <h2>How to Use It</h2>
+    <ol>
+        <li>Create the file and place it at your site's root</li>
+        <li>Reference it in your <a href="robots-txt.html">robots.txt</a>: <code>Sitemap: https://yoursite.com/sitemap.xml</code></li>
+        <li>Submit it in <a href="google-search-console.html">Google Search Console</a> → Sitemaps → enter the URL → Submit</li>
+    </ol>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>A sitemap is like the table of contents of a book. Without it, a reader (search engine) would have to flip through every page to find what's there. With a table of contents, they can immediately see every chapter (page), what it's called (URL), and jump straight to it. You also tell them which chapters were recently revised.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="technical-seo.html">Technical SEO (parent topic)</a></li>
+            <li><a href="robots-txt.html">robots.txt</a></li>
+            <li><a href="google-search-console.html">Google Search Console</a></li>
+            <li><a href="xml.html">XML</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview">Sitemaps Overview — Google Search Central</a></li>
+            <li><a href="https://www.sitemaps.org/protocol.html">Sitemaps Protocol — sitemaps.org</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/Sitemaps">Sitemaps — Wikipedia</a></li>
+        </ol>
+    </div>
+</body>
+</html>

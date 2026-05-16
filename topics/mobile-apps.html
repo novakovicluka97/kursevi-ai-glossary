@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Apps - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; <a href="applications.html">Applications</a> &rsaquo; Mobile Apps
+    </nav>
+
+    <h1>Mobile Apps</h1>
+
+    <p class="definition">
+        A mobile application is software designed to run on smartphones and tablets (iOS and Android). Mobile apps are distributed through app stores and can access device hardware like the camera, GPS, accelerometer, and push notifications.
+    </p>
+
+    <h2 id="native">Native Mobile Apps</h2>
+    <p>
+        Built specifically for one operating system using the platform's official language and tools. Native apps have the best performance and full access to device features.
+    </p>
+    <table>
+        <thead>
+            <tr><th>Platform</th><th>Language</th><th>IDE</th><th>Examples</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><strong>iOS</strong></td><td>Swift (or Objective-C)</td><td>Xcode</td><td>Apple Maps, iMessage</td></tr>
+            <tr><td><strong>Android</strong></td><td>Kotlin (or Java)</td><td>Android Studio</td><td>Google Messages, Files</td></tr>
+        </tbody>
+    </table>
+    <p><strong>Pros:</strong> Best performance, full hardware access, platform-specific UI conventions, app store optimization.</p>
+    <p><strong>Cons:</strong> Two separate codebases (double the work), need separate developer teams, slower to market.</p>
+
+    <h3>When to go native</h3>
+    <ul>
+        <li>Performance-critical apps (games, video editors, AR)</li>
+        <li>Deep hardware integration (real-time audio, advanced camera pipelines)</li>
+        <li>Apps that must feel indistinguishable from OS-native experiences</li>
+    </ul>
+
+    <h2 id="cross-platform">Cross-Platform Mobile Apps</h2>
+    <p>
+        One codebase that compiles to both iOS and Android. In 2026, over 65% of new mobile apps use this approach. The performance gap with native has largely closed for standard applications.
+    </p>
+
+    <h3>Leading Frameworks</h3>
+    <table>
+        <thead>
+            <tr><th>Framework</th><th>Language</th><th>By</th><th>Market Share (2026)</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><strong>Flutter</strong></td><td>Dart</td><td>Google</td><td>~46%</td></tr>
+            <tr><td><strong>React Native</strong></td><td>JavaScript / TypeScript</td><td>Meta</td><td>~35%</td></tr>
+        </tbody>
+    </table>
+
+    <p><strong>Flutter</strong> compiles Dart directly to native ARM machine code and uses its own rendering engine (Impeller) for pixel-perfect, consistent UI across platforms. Best for animation-heavy apps and consistent design.</p>
+    <p><strong>React Native</strong> renders actual native platform components, so the app feels genuinely native on each OS. Best when you have existing JavaScript/React developers or want to share code with a web app.</p>
+
+    <p><strong>Pros:</strong> Single codebase, 30-40% cost reduction, faster time to market, shared team.</p>
+    <p><strong>Cons:</strong> Slight overhead for deep hardware features, may need native modules for specialized functionality.</p>
+
+    <div class="ai-hint">
+        AI tools can generate mobile app UI layouts, navigation patterns, and API integration code effectively in both Flutter and React Native. However, mobile apps require more human oversight than web apps due to app store review processes, device-specific testing, and platform guidelines that AI may not fully account for. AI is best used for generating components and screens, not entire production mobile apps from scratch.
+    </div>
+
+    <h2>Web App vs Mobile App — Quick Decision</h2>
+    <ul>
+        <li><strong>Need a URL anyone can visit?</strong> → <a href="web-apps.html">Web app</a></li>
+        <li><strong>Need push notifications, camera, or offline?</strong> → Mobile app</li>
+        <li><strong>Budget is tight, need both platforms?</strong> → Cross-platform (Flutter/React Native)</li>
+        <li><strong>Maximum performance, one platform?</strong> → Native</li>
+    </ul>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>Native development is like hiring a French chef for a French restaurant and a Japanese chef for a Japanese restaurant — each is perfect for their cuisine. Cross-platform is like hiring one talented chef who can cook both cuisines well from a single kitchen. Most diners won't notice the difference, but for a Michelin-star experience, the specialist wins.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="applications.html">Applications</a></li>
+            <li><a href="web-apps.html">Web Apps</a></li>
+            <li><a href="desktop-apps.html">Desktop Apps</a></li>
+            <li><a href="api.html">API</a></li>
+            <li><a href="ide.html">IDE</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://flutter.dev/">Flutter — Official Site</a></li>
+            <li><a href="https://reactnative.dev/">React Native — Official Site</a></li>
+            <li><a href="https://developer.apple.com/swift/">Swift — Apple Developer</a></li>
+            <li><a href="https://kotlinlang.org/">Kotlin — Official Site</a></li>
+            <li><a href="https://innovariatech.com/blog/native-vs-cross-platform-mobile-app-development-2026">Native vs Cross-Platform 2026 — InnovariaTech</a></li>
+        </ol>
+    </div>
+</body>
+</html>
