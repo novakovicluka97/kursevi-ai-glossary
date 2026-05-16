@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; API
+    </nav>
+
+    <h1>API (Application Programming Interface)</h1>
+
+    <p class="definition">
+        An API is a set of rules and protocols that allows different software programs to communicate with each other — like a waiter taking orders between you (the application) and the kitchen (the service).
+    </p>
+
+    <h2>What is an API?</h2>
+    <p>
+        An API defines how one piece of software can request services from another. When you use a weather app, it calls a weather API to get the forecast data. When a developer uses <a href="claude.html">Claude</a> in their application, they call Anthropic's API to send <a href="prompt.html">prompts</a> and receive responses.
+    </p>
+    <p>
+        APIs are the glue of modern software. They allow different systems — built by different companies, in different languages, running on different servers — to work together seamlessly.
+    </p>
+
+    <h2>APIs in AI</h2>
+    <p>
+        AI companies provide APIs so developers can integrate <a href="ai-model.html">AI models</a> into their own applications. Instead of building and training your own model (which costs millions), you call an API and pay per use. Anthropic's Claude API, OpenAI's API, and Google's Gemini API are the main ones.
+    </p>
+    <p>
+        The <a href="mcp.html">Model Context Protocol</a> is itself an API standard — it defines how AI agents communicate with external tools and data sources.
+    </p>
+
+    <h2>REST APIs</h2>
+    <p>
+        Most web APIs use REST (Representational State Transfer) — a pattern where you send HTTP requests (GET, POST, PUT, DELETE) to specific URLs and receive JSON data back. For example, sending a POST request to <code>api.anthropic.com/v1/messages</code> with a prompt returns Claude's response.
+    </p>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>An API is like a restaurant menu. The menu (API documentation) tells you what you can order (available operations). You tell the waiter (API request) what you want. The kitchen (server) prepares it, and the waiter brings back your food (API response). You don't need to know how the kitchen works — just how to read the menu.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="mcp.html">MCP</a></li>
+            <li><a href="agent-sdk.html">Agent SDK</a></li>
+            <li><a href="claude.html">Claude</a></li>
+            <li><a href="html-vs-full-stack.html">HTML vs Full Stack</a></li>
+            <li><a href="ai-agent.html">AI Agent</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://en.wikipedia.org/wiki/API">API — Wikipedia</a></li>
+            <li><a href="https://www.ibm.com/think/topics/api">What is an API? — IBM</a></li>
+            <li><a href="https://docs.anthropic.com/en/api">Claude API Documentation — Anthropic</a></li>
+        </ol>
+    </div>
+</body>
+</html>

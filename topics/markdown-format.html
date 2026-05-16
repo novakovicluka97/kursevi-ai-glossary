@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Format - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; <a href="formats.html">Formats</a> &rsaquo; Markdown
+    </nav>
+
+    <h1>Markdown Format</h1>
+
+    <p class="definition">
+        Markdown is a lightweight text formatting language that uses simple symbols (like # for headings, * for bold) to structure documents. It's the preferred format for communicating with <a href="llm.html">AI models</a> because it survives preprocessing, is human-readable, and carries structural meaning that models have deeply learned.
+    </p>
+
+    <h2>What is Markdown?</h2>
+    <p>
+        Markdown was created in 2004 by John Gruber as a way to write formatted text using plain characters. Instead of clicking buttons to make text bold (like in Word), you wrap it in asterisks: <code>**bold**</code>. Instead of using a menu to create a heading, you prefix with hashes: <code># Heading</code>.
+    </p>
+    <p>
+        It's used everywhere in tech: GitHub READMEs, Reddit posts, Stack Overflow answers, documentation sites, blog platforms, chat platforms (Slack, Discord), and even Wikipedia (which uses a wiki markup that converts cleanly to Markdown). All of these are prominent in AI <a href="training-data.html">training data</a>.
+    </p>
+
+    <h2>Why Markdown Works So Well for AI</h2>
+    <p>
+        <a href="llm.html">LLMs</a> are not trained on raw <a href="html.html">HTML</a> the way many people assume. Training data from web crawls (like Common Crawl) goes through heavy preprocessing: HTML tags get stripped, text gets extracted, the document is cleaned. The model rarely sees raw <code>&lt;h1&gt;</code> or <code>&lt;div&gt;</code> tags.
+    </p>
+    <p>
+        <strong>This is exactly why Markdown is so powerful for AI:</strong> it survives preprocessing because it IS plain text with a few special characters. When the training pipeline strips HTML from a GitHub README, the Markdown formatting remains intact. The model has seen billions of examples of Markdown structure and learned what it means:
+    </p>
+    <ul>
+        <li><strong><code>#</code> is a top-level header:</strong> The model treats text under bigger headers as more structurally important</li>
+        <li><strong><code>**bold**</code> and <code>*italic*</code> carry semantic weight:</strong> The model learns these are emphasis markers signaling importance</li>
+        <li><strong>Lists signal discrete items:</strong> The model treats bulleted content as separate, parallel points</li>
+        <li><strong>Code blocks signal literal content:</strong> The model knows not to paraphrase text inside backticks</li>
+    </ul>
+
+    <h2>When to Use Markdown (vs. Other Formats)</h2>
+    <p>
+        The practical rule for working with <a href="claude.html">Claude</a>:
+    </p>
+    <ul>
+        <li><strong>Markdown</strong> for documents, <a href="rag.html">RAG</a> context, agent instructions (CLAUDE.md files, <a href="claude-skills.html">skills</a>), READMEs — anything humans will also read</li>
+        <li><strong><a href="xml.html">XML tags</a></strong> for production <a href="prompt.html">prompts</a> with strict structure, multi-section prompts, or when the model must extract a specific section from a long input</li>
+        <li><strong><a href="json.html">JSON</a></strong> when you need structured output or are feeding structured data</li>
+    </ul>
+    <p>
+        Note: Anthropic states that the exact formatting is becoming less important as models become more capable. But for reliability in production, structure still helps.
+    </p>
+
+    <h2>Basic Markdown Syntax</h2>
+    <pre><code># Heading 1
+## Heading 2
+
+**bold text**
+*italic text*
+
+- Bullet point
+- Another point
+
+1. Numbered list
+2. Second item
+
+[Link text](https://example.com)
+
+`inline code`
+
+```
+code block
+```</code></pre>
+
+    <div class="example-box">
+        <h4>Example: Structured Prompt vs. Plain Text</h4>
+        <p><strong>Plain text (worse):</strong> "I want you to analyze this code for bugs and also suggest improvements and format the output nicely"</p>
+        <p><strong>Markdown (better):</strong></p>
+        <pre><code>## Task
+Analyze the following code.
+
+## Requirements
+1. Identify any bugs
+2. Suggest improvements
+3. Rate overall quality (1-10)
+
+## Output Format
+Use headings for each section.</code></pre>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="formats.html">Formats (parent topic)</a></li>
+            <li><a href="xml.html">XML</a></li>
+            <li><a href="json.html">JSON</a></li>
+            <li><a href="html.html">HTML</a></li>
+            <li><a href="prompt.html">Prompt</a></li>
+            <li><a href="claude.html">Claude</a></li>
+            <li><a href="claude-skills.html">Claude Skills</a></li>
+            <li><a href="claude-code.html">Claude Code</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://en.wikipedia.org/wiki/Markdown">Markdown — Wikipedia</a></li>
+            <li><a href="https://www.markdownguide.org/">Markdown Guide — Official Reference</a></li>
+            <li><a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview">Prompt Engineering Overview — Anthropic</a></li>
+            <li><a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/use-xml-tags">Use XML Tags (comparison context) — Anthropic</a></li>
+        </ol>
+    </div>
+</body>
+</html>

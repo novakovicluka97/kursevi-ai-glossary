@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Skills - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; Claude Skills
+    </nav>
+
+    <h1>Claude Skills</h1>
+
+    <p class="definition">
+        Claude Skills are reusable instruction sets that extend <a href="claude-code.html">Claude Code's</a> capabilities — small markdown files that tell Claude how to perform specific tasks, triggered automatically by context or manually via slash commands.
+    </p>
+
+    <h2>What are Claude Skills?</h2>
+    <p>
+        A skill is a small folder containing a <code>SKILL.md</code> file with YAML frontmatter (name, description) and a markdown body with instructions that Claude follows when the skill is triggered. Skills let you teach Claude Code new behaviors without writing traditional code.
+    </p>
+    <p>
+        Skills can be <strong>auto-invoked</strong> (Claude detects when they're relevant and uses them automatically) or <strong>user-invoked</strong> (triggered by typing a slash command like <code>/commit</code> or <code>/security-review</code>).
+    </p>
+
+    <h2>Skills vs. Slash Commands</h2>
+    <p>
+        <strong>Slash commands</strong> are built-in, hardcoded operations (<code>/clear</code>, <code>/help</code>, <code>/model</code>) that do one specific thing without AI reasoning. <strong>Skills</strong> are prompt-based — they give Claude detailed instructions to orchestrate complex work using its tools. Skills are customizable and extensible; slash commands are fixed.
+    </p>
+
+    <h2>How to Create a Skill</h2>
+    <pre><code># .claude/skills/my-skill/SKILL.md
+
+---
+name: security-review
+description: Reviews code for security vulnerabilities
+---
+
+Review the code for OWASP Top 10 vulnerabilities.
+Check for SQL injection, XSS, and auth issues.
+Report findings with severity levels.</code></pre>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>Think of skills like recipe cards for a chef. The chef (Claude) already knows how to cook, but the recipe card gives specific instructions for a particular dish. You can write new recipe cards anytime, and the chef will follow them. Some recipes the chef pulls out automatically when they see the ingredients; others you have to ask for by name.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="claude-code.html">Claude Code</a></li>
+            <li><a href="claude.html">Claude</a></li>
+            <li><a href="prompt.html">Prompt</a></li>
+            <li><a href="workflow.html">Workflow</a></li>
+            <li><a href="ai-agent.html">AI Agent</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://code.claude.com/docs/en/skills">Extend Claude with Skills — Claude Code Docs</a></li>
+            <li><a href="https://batsov.com/articles/2026/03/11/essential-claude-code-skills-and-commands/">Essential Claude Code Skills and Commands</a></li>
+            <li><a href="https://dev.to/muhammad_moeed/claude-code-skills-a-practical-guide-for-2026-3f6p">Claude Code Skills: A Practical Guide for 2026</a></li>
+        </ol>
+    </div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; Token
+    </nav>
+
+    <h1>Token</h1>
+
+    <p class="definition">
+        A token is the basic unit of text that an <a href="llm.html">LLM</a> processes — roughly equivalent to a word or word-piece. It's how AI "reads" and "writes" language.
+    </p>
+
+    <h2>What is a Token?</h2>
+    <p>
+        <a href="llm.html">Large language models</a> don't read individual letters or whole sentences — they break text into tokens. A token is typically about 3-4 characters or roughly ¾ of a word. Common words like "the" are one token; longer or rarer words get split into multiple tokens. For example, "understanding" might be split into "under" + "standing."
+    </p>
+
+    <h2>Why Tokens Matter</h2>
+    <ul>
+        <li><strong>Cost:</strong> AI APIs charge per token processed. More tokens = more expensive.</li>
+        <li><strong><a href="context-window.html">Context window</a>:</strong> Models have a maximum number of tokens they can handle at once (e.g., 200K tokens for Claude).</li>
+        <li><strong>Speed:</strong> Models generate one token at a time. More tokens = slower response.</li>
+    </ul>
+
+    <h2>Token Counts</h2>
+    <p>
+        As a rough guide: 1 token ≈ 4 characters in English. So 100 tokens ≈ 75 words. A full page of text is about 300-400 tokens. A novel is about 100,000 tokens. Claude's context window of 200K tokens means it can process roughly the equivalent of two full novels at once.
+    </p>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>Tokens are like puzzle pieces that make up language. Instead of reading letter by letter (too slow) or sentence by sentence (too big), the AI reads in word-sized chunks. It's like how you read — you don't look at each letter in "cat," you see the whole word as one unit.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="llm.html">Large Language Model</a></li>
+            <li><a href="context-window.html">Context Window</a></li>
+            <li><a href="embedding.html">Embedding</a></li>
+            <li><a href="transformer.html">Transformer</a></li>
+            <li><a href="inference.html">Inference</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching#token-counting">Token Counting — Anthropic Docs</a></li>
+            <li><a href="https://platform.openai.com/tokenizer">Tokenizer Tool — OpenAI</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/Lexical_analysis#Token">Token (Lexical Analysis) — Wikipedia</a></li>
+        </ol>
+    </div>
+</body>
+</html>

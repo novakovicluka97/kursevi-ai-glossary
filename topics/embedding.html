@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embedding - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; Embedding
+    </nav>
+
+    <h1>Embedding</h1>
+
+    <p class="definition">
+        An embedding is a numerical representation of text (or images, audio, etc.) as a list of numbers — a way to convert meaning into math so that AI systems can measure similarity between concepts.
+    </p>
+
+    <h2>What is an Embedding?</h2>
+    <p>
+        Computers can't understand words directly — they work with numbers. An embedding converts a word, sentence, or document into a vector (a list of hundreds or thousands of numbers) that captures its meaning. Words with similar meanings end up as similar vectors.
+    </p>
+    <p>
+        For example, the embeddings for "king" and "queen" would be close together in vector space, while "king" and "banana" would be far apart. This allows AI systems to understand that "happy" and "joyful" mean similar things, even though they're different words.
+    </p>
+
+    <h2>How Embeddings Are Used</h2>
+    <ul>
+        <li><strong><a href="rag.html">RAG</a>:</strong> Finding relevant documents by comparing query embeddings to document embeddings</li>
+        <li><strong>Search:</strong> Semantic search that understands meaning, not just keywords</li>
+        <li><strong>Recommendations:</strong> Finding similar items (movies, products, articles)</li>
+        <li><strong>Clustering:</strong> Grouping similar documents together</li>
+        <li><strong>Inside <a href="transformer.html">Transformers</a>:</strong> The first layer of any LLM converts <a href="token.html">tokens</a> into embeddings</li>
+    </ul>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>Imagine a map where cities are placed not by geography but by culture. Paris and Rome would be close (both European, romantic, historic). Tokyo and Seoul would be close. New York and London would be close. An embedding is like giving every concept a GPS coordinate on a "meaning map" — similar meanings have nearby coordinates.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="rag.html">RAG</a></li>
+            <li><a href="token.html">Token</a></li>
+            <li><a href="transformer.html">Transformer</a></li>
+            <li><a href="neural-network.html">Neural Network</a></li>
+            <li><a href="natural-language-processing.html">Natural Language Processing</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://en.wikipedia.org/wiki/Word_embedding">Word Embedding — Wikipedia</a></li>
+            <li><a href="https://www.cloudflare.com/learning/ai/what-are-embeddings/">What are Embeddings? — Cloudflare</a></li>
+            <li><a href="https://docs.anthropic.com/en/docs/build-with-claude/embeddings">Embeddings — Anthropic Docs</a></li>
+        </ol>
+    </div>
+</body>
+</html>

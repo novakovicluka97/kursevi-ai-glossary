@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Automation - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; AI Automation
+    </nav>
+
+    <h1>AI Automation</h1>
+
+    <p class="definition">
+        AI Automation is the practice of building automated <a href="workflow.html">workflows</a> that use <a href="ai-model.html">AI models</a> to perform tasks without human intervention — connecting apps, processing data, making decisions, and executing actions across systems.
+    </p>
+
+    <h2>What is AI Automation?</h2>
+    <p>
+        Traditional automation follows rigid rules: "When an email arrives, save the attachment." AI automation adds intelligence: "When an email arrives, read it, classify its intent, extract key data, update the CRM, and draft a response." By combining <a href="llm.html">LLMs</a> with workflow tools, you create systems that handle complex, judgment-based tasks autonomously.
+    </p>
+    <p>
+        In 2026, AI automation platforms are the primary way non-developers build <a href="ai-agent.html">AI agents</a> and connect AI to their business tools — without writing code.
+    </p>
+
+    <h2>The Big Three Platforms (2026)</h2>
+
+    <h3>n8n — The Developer's Choice</h3>
+    <p>
+        <strong>n8n</strong> is the consensus leader for AI-native automation in 2026, especially for technical teams and cloud ecosystems. It's a fair-code, self-hostable platform with native AI agent capabilities.
+    </p>
+    <ul>
+        <li><strong>AI-native:</strong> ~70 dedicated AI nodes, built-in LangChain integration, multi-agent orchestration, <a href="rag.html">RAG</a> support</li>
+        <li><strong>Self-hostable:</strong> Run on your own infrastructure (AWS, GCP, Azure) for full data control — or use their cloud</li>
+        <li><strong><a href="mcp.html">MCP</a> support:</strong> Connect AI agents to any MCP-compatible tool</li>
+        <li><strong>Pricing:</strong> Free Community Edition (unlimited executions self-hosted); cloud plans charge per execution, not per step — so a 200-step workflow costs the same as a 2-step one</li>
+        <li><strong>500+ integrations</strong> plus custom HTTP/webhook nodes for anything with an <a href="api.html">API</a></li>
+    </ul>
+    <p>
+        n8n is ideal when you need: full control over your data, complex multi-agent workflows, or you're working within a cloud ecosystem (AWS/GCP/Azure) and want to self-host.
+    </p>
+
+    <h3>Make (formerly Integromat) — Visual Power User</h3>
+    <p>
+        <strong>Make</strong> offers a visual canvas-based workflow builder that sits between n8n's technical flexibility and Zapier's simplicity. Its branching and parallel processing capabilities are excellent for complex workflows.
+    </p>
+    <ul>
+        <li><strong>Visual canvas:</strong> Drag-and-drop workflow design with branching paths</li>
+        <li><strong>Generous free tier:</strong> 1,000 operations/month with two active scenarios</li>
+        <li><strong>Best for:</strong> Teams that want visual workflow design without self-hosting</li>
+        <li><strong>Cloud-only:</strong> No self-hosting option</li>
+    </ul>
+
+    <h3>Zapier — The Easiest Start</h3>
+    <p>
+        <strong>Zapier</strong> is the largest automation platform (8,000+ app integrations) and the easiest to use. In 2026, it repositioned as an "AI orchestration platform" for enterprise teams.
+    </p>
+    <ul>
+        <li><strong>Easiest to learn:</strong> No technical knowledge required</li>
+        <li><strong>Most integrations:</strong> 8,000+ pre-built app connections</li>
+        <li><strong>Best for:</strong> Non-technical teams, quick simple automations</li>
+        <li><strong>Downside:</strong> Most expensive at scale; charges per task (each step counts)</li>
+    </ul>
+
+    <h2>Which to Choose?</h2>
+    <table style="width:100%; border-collapse:collapse; margin:15px 0;">
+        <tr style="border-bottom:2px solid #ddd;">
+            <th style="text-align:left; padding:8px;">Criteria</th>
+            <th style="text-align:left; padding:8px;">n8n</th>
+            <th style="text-align:left; padding:8px;">Make</th>
+            <th style="text-align:left; padding:8px;">Zapier</th>
+        </tr>
+        <tr style="border-bottom:1px solid #eee;">
+            <td style="padding:8px;">AI capabilities</td>
+            <td style="padding:8px;">Best (native agents, RAG, MCP)</td>
+            <td style="padding:8px;">Good</td>
+            <td style="padding:8px;">Good</td>
+        </tr>
+        <tr style="border-bottom:1px solid #eee;">
+            <td style="padding:8px;">Self-hosting</td>
+            <td style="padding:8px;">Yes (free)</td>
+            <td style="padding:8px;">No</td>
+            <td style="padding:8px;">No</td>
+        </tr>
+        <tr style="border-bottom:1px solid #eee;">
+            <td style="padding:8px;">Ease of use</td>
+            <td style="padding:8px;">Technical</td>
+            <td style="padding:8px;">Moderate</td>
+            <td style="padding:8px;">Easiest</td>
+        </tr>
+        <tr style="border-bottom:1px solid #eee;">
+            <td style="padding:8px;">Cost at scale</td>
+            <td style="padding:8px;">Cheapest</td>
+            <td style="padding:8px;">Mid-range</td>
+            <td style="padding:8px;">Most expensive</td>
+        </tr>
+        <tr style="border-bottom:1px solid #eee;">
+            <td style="padding:8px;">Integrations</td>
+            <td style="padding:8px;">500+</td>
+            <td style="padding:8px;">1,500+</td>
+            <td style="padding:8px;">8,000+</td>
+        </tr>
+        <tr>
+            <td style="padding:8px;">Cloud ecosystem fit</td>
+            <td style="padding:8px;">Best (deploy anywhere)</td>
+            <td style="padding:8px;">Good (cloud-only)</td>
+            <td style="padding:8px;">Good (cloud-only)</td>
+        </tr>
+    </table>
+
+    <h2>AI Automation + Agent SDK</h2>
+    <p>
+        For developers, the <a href="agent-sdk.html">Claude Agent SDK</a> provides programmatic agent-building in Python/TypeScript — more power, more control, but requires coding. Automation platforms like n8n let you build similar agents visually. Many teams use both: Agent SDK for custom production agents, n8n for internal workflows and prototyping.
+    </p>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>AI automation is like hiring a team of invisible assistants who work 24/7. You set up the instructions once ("when a customer emails, classify it, route it to the right department, and draft a reply"), and the system handles it forever — learning from context the way a smart employee would, not just following a script.</p>
+    </div>
+
+    <div class="example-box">
+        <h4>Real-World Example (n8n)</h4>
+        <p>A sales team sets up an n8n workflow: when a new lead fills out a form → Claude analyzes the company's website → enriches the CRM record → scores the lead → if high-priority, drafts a personalized outreach email and schedules it → if low-priority, adds to nurture sequence. Zero manual work after setup.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="workflow.html">Workflow</a></li>
+            <li><a href="ai-agent.html">AI Agent</a></li>
+            <li><a href="agent-sdk.html">Agent SDK</a></li>
+            <li><a href="mcp.html">MCP</a></li>
+            <li><a href="api.html">API</a></li>
+            <li><a href="json.html">JSON</a></li>
+            <li><a href="rag.html">RAG</a></li>
+            <li><a href="claude.html">Claude</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://n8n.io/">n8n — Official Website</a></li>
+            <li><a href="https://n8n.io/ai-agents/">n8n AI Agents — Build Custom AI Agents</a></li>
+            <li><a href="https://blog.n8n.io/best-ai-workflow-automation-tools/">Top AI Workflow Automation Tools for 2026 — n8n Blog</a></li>
+            <li><a href="https://www.make.com/">Make — Official Website</a></li>
+            <li><a href="https://zapier.com/">Zapier — Official Website</a></li>
+        </ol>
+    </div>
+</body>
+</html>

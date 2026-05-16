@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; Claude Code
+    </nav>
+
+    <h1>Claude Code</h1>
+
+    <p class="definition">
+        Claude Code is an agentic coding tool by Anthropic that lives in your terminal, understands your codebase, and helps you code faster through natural language commands.
+    </p>
+
+    <h2>What is Claude Code?</h2>
+    <p>
+        Claude Code is a command-line interface (CLI) tool that brings <a href="claude.html">Claude's</a> AI capabilities directly into your development environment. Rather than switching between a chat window and your code editor, Claude Code works where developers already work — in the terminal and inside <a href="ide.html">IDEs</a> like VS Code and JetBrains.
+    </p>
+    <p>
+        It can read and edit files across your entire codebase, run commands, manage git workflows, execute tests, create pull requests, and build new features — all from natural language instructions.
+    </p>
+
+    <h2>How It Works</h2>
+    <p>
+        You install Claude Code via npm (<code>npm install -g @anthropic-ai/claude-code</code>), then run <code>claude</code> in any project directory. It indexes your codebase and lets you give it tasks like "fix the login bug" or "add dark mode to the settings page." Claude Code reads relevant files, makes changes, and can run your test suite to verify its work.
+    </p>
+    <p>
+        Developers control how much autonomy Claude Code has — from approving every file change to letting it work independently on routine tasks.
+    </p>
+
+    <h2>Key Features</h2>
+    <ul>
+        <li>Multi-file editing and refactoring</li>
+        <li>Git operations (commits, PRs, branch management)</li>
+        <li>Running tests and fixing failures</li>
+        <li>Extending with <a href="claude-skills.html">skills</a> and <a href="mcp.html">MCP servers</a></li>
+        <li>Background agents for parallel tasks (Agent View, May 2026)</li>
+    </ul>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>If Claude is like a knowledgeable assistant you chat with, Claude Code is like having that assistant sitting next to you at your desk, able to directly type on your keyboard, open your files, and do the actual work — not just tell you what to do, but do it for you while you supervise.</p>
+    </div>
+
+    <div class="example-box">
+        <h4>Real-World Example</h4>
+        <p>Stripe deployed Claude Code to 1,370 engineers. One team completed a 10,000-line Scala-to-Java migration in four days — work that was estimated to take ten engineer-weeks manually.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="claude.html">Claude</a></li>
+            <li><a href="claude-skills.html">Claude Skills</a></li>
+            <li><a href="ide.html">IDE</a></li>
+            <li><a href="agent-sdk.html">Agent SDK</a></li>
+            <li><a href="ai-agent.html">AI Agent</a></li>
+            <li><a href="mcp.html">MCP</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://www.anthropic.com/product/claude-code">Claude Code — Anthropic Product Page</a></li>
+            <li><a href="https://code.claude.com/docs/en/overview">Claude Code Documentation</a></li>
+            <li><a href="https://github.com/anthropics/claude-code">Claude Code — GitHub Repository</a></li>
+        </ol>
+    </div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hallucination - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; Hallucination
+    </nav>
+
+    <h1>Hallucination</h1>
+
+    <p class="definition">
+        A hallucination is when an <a href="ai-model.html">AI model</a> generates information that sounds confident and plausible but is factually incorrect, fabricated, or nonsensical.
+    </p>
+
+    <h2>What is an AI Hallucination?</h2>
+    <p>
+        <a href="llm.html">LLMs</a> don't "know" things the way humans do — they predict likely <a href="token.html">token</a> sequences based on patterns in their <a href="training-data.html">training data</a>. Sometimes these patterns produce text that reads well but is simply wrong: fake citations, invented facts, non-existent APIs, or historical events that never happened.
+    </p>
+    <p>
+        Hallucinations are a fundamental challenge in AI because the model expresses fabricated information with the same confidence as accurate information — making it hard for users to tell the difference without verification.
+    </p>
+
+    <h2>Common Examples</h2>
+    <ul>
+        <li>Citing academic papers that don't exist</li>
+        <li>Inventing plausible-sounding statistics</li>
+        <li>Describing features of software that were never built</li>
+        <li>Attributing quotes to people who never said them</li>
+    </ul>
+
+    <h2>Mitigation Strategies</h2>
+    <ul>
+        <li><strong><a href="rag.html">RAG</a>:</strong> Ground responses in retrieved sources</li>
+        <li><strong>Citation requirements:</strong> Ask the model to cite sources (makes fabrication more obvious)</li>
+        <li><strong>Low <a href="temperature.html">temperature</a>:</strong> Reduce randomness for factual tasks</li>
+        <li><strong>Human verification:</strong> Always fact-check critical information</li>
+        <li><strong>Safety training:</strong> Models like <a href="claude.html">Claude</a> are trained to say "I don't know" rather than guess</li>
+    </ul>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>A hallucination is like a student who didn't study for the exam but writes confidently anyway — filling in plausible-sounding answers that happen to be completely wrong. The essay reads well, the logic seems sound, but the facts are made up. That's what AI does when it hallucinates.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="llm.html">Large Language Model</a></li>
+            <li><a href="rag.html">RAG</a></li>
+            <li><a href="training-data.html">Training Data</a></li>
+            <li><a href="temperature.html">Temperature</a></li>
+            <li><a href="prompt.html">Prompt</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://en.wikipedia.org/wiki/Hallucination_(artificial_intelligence)">Hallucination (AI) — Wikipedia</a></li>
+            <li><a href="https://www.ibm.com/think/topics/ai-hallucinations">AI Hallucinations — IBM</a></li>
+            <li><a href="https://www.cloudflare.com/learning/ai/what-are-ai-hallucinations/">What are AI Hallucinations? — Cloudflare</a></li>
+        </ol>
+    </div>
+</body>
+</html>

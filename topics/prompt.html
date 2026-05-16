@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; Prompt
+    </nav>
+
+    <h1>Prompt</h1>
+
+    <p class="definition">
+        A prompt is the input you give to an <a href="ai-model.html">AI model</a> — the question, instruction, or context that tells the model what you want it to do.
+    </p>
+
+    <h2>What is a Prompt?</h2>
+    <p>
+        Every interaction with an <a href="llm.html">LLM</a> starts with a prompt. It can be as simple as "What's the capital of France?" or as complex as a multi-page document with instructions, examples, constraints, and context. The quality of your prompt directly determines the quality of the AI's response.
+    </p>
+
+    <h2>Prompt Engineering</h2>
+    <p>
+        "Prompt engineering" is the practice of crafting effective prompts to get the best results from AI models. Key techniques include:
+    </p>
+    <ul>
+        <li><strong>Be specific:</strong> "Write a 200-word product description for a blue wool scarf targeting young professionals" beats "write about a scarf"</li>
+        <li><strong>Give examples:</strong> Show the model what good output looks like (called "few-shot prompting")</li>
+        <li><strong>Assign a role:</strong> "You are an expert nutritionist" helps focus the response</li>
+        <li><strong>Break down complex tasks:</strong> "First analyze, then recommend, then summarize"</li>
+        <li><strong>Use <a href="markdown-format.html">structured formats</a>:</strong> Markdown, XML tags, or numbered lists help organize complex prompts</li>
+    </ul>
+
+    <h2>Types of Prompts</h2>
+    <p>
+        <strong>System prompt:</strong> Background instructions that set the AI's behavior for an entire conversation (invisible to users in products).<br>
+        <strong>User prompt:</strong> The actual message from the human.<br>
+        <strong>Assistant prompt:</strong> The AI's response (which becomes context for the next turn).
+    </p>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>A prompt is like giving directions to a taxi driver. "Take me somewhere nice" might get an okay result. "Take me to the Italian restaurant on 5th Street, avoiding the highway, and park on the left side" will get exactly what you want. The more precise your directions, the better the journey.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="llm.html">Large Language Model</a></li>
+            <li><a href="token.html">Token</a></li>
+            <li><a href="context-window.html">Context Window</a></li>
+            <li><a href="temperature.html">Temperature</a></li>
+            <li><a href="markdown-format.html">Markdown Format</a></li>
+            <li><a href="claude.html">Claude</a></li>
+            <li><a href="hallucination.html">Hallucination</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview">Prompt Engineering — Anthropic Docs</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/Prompt_engineering">Prompt Engineering — Wikipedia</a></li>
+            <li><a href="https://platform.openai.com/docs/guides/prompt-engineering">Prompt Engineering Guide — OpenAI</a></li>
+        </ol>
+    </div>
+</body>
+</html>

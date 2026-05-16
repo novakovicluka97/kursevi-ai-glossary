@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Glossary - Quiz</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .quiz-container { max-width: 700px; margin: 0 auto; }
+        .question-block { margin-bottom: 30px; }
+        .question-number { font-size: 0.85em; color: #666; margin-bottom: 5px; }
+        .question-text { font-size: 1.15em; font-weight: 600; margin-bottom: 15px; }
+        .options { list-style: none; padding: 0; }
+        .options li { margin-bottom: 8px; }
+        .options button {
+            width: 100%;
+            text-align: left;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #fff;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: background 0.15s;
+        }
+        .options button:hover:not(:disabled) { background: #f0f4ff; border-color: #0645ad; }
+        .options button:disabled { cursor: default; }
+        .options button.correct { background: #d4edda; border-color: #28a745; color: #155724; }
+        .options button.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+        .options button.reveal { background: #d4edda; border-color: #28a745; }
+        .feedback { margin-top: 10px; padding: 10px; border-radius: 4px; font-weight: 500; }
+        .feedback.correct { background: #d4edda; color: #155724; }
+        .feedback.wrong { background: #f8d7da; color: #721c24; }
+        .score-card {
+            text-align: center;
+            padding: 40px 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .score-card h2 { margin-bottom: 10px; }
+        .score-card .score { font-size: 3em; font-weight: 700; color: #0645ad; }
+        .score-card .message { margin-top: 10px; font-size: 1.1em; color: #555; }
+        .btn-restart {
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: #0645ad;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        .btn-restart:hover { background: #0b5ed7; }
+        .progress { font-size: 0.9em; color: #666; margin-bottom: 20px; }
+        #quiz-area { display: none; }
+        #start-screen { text-align: center; padding: 40px 0; }
+        .btn-start {
+            padding: 14px 40px;
+            background: #0645ad;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .btn-start:hover { background: #0b5ed7; }
+    </style>
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="index.html">AI Glossary</a> &rsaquo; Quiz
+    </nav>
+
+    <h1>AI Glossary Quiz</h1>
+
+    <div class="quiz-container">
+        <div id="start-screen">
+            <p>Test your knowledge of AI concepts with 10 random questions from the glossary.</p>
+            <p>Each question has 4 options. You'll get instant feedback after each answer.</p>
+            <button class="btn-start" onclick="startQuiz()">Start Quiz</button>
+        </div>
+
+        <div id="quiz-area">
+            <div class="progress" id="progress"></div>
+            <div id="question-container"></div>
+            <div id="score-container"></div>
+        </div>
+    </div>
+
+    <script>
+    const allQuestions = [
+        {
+            question: "What is JSON?",
+            correct: "A lightweight data format using key-value pairs for exchanging information between systems",
+            wrong: ["A programming language used to build websites", "A type of database for storing AI models", "A hardware chip designed for AI processing"]
+        },
+        {
+            question: "What is a Large Language Model (LLM)?",
+            correct: "An AI model trained on massive text data that can understand and generate human language",
+            wrong: ["A database that stores all languages ever spoken", "A translation tool that only works with large documents", "A programming language designed for AI development"]
+        },
+        {
+            question: "What is the Model Context Protocol (MCP)?",
+            correct: "An open standard that enables AI models to securely connect to external data sources and tools",
+            wrong: ["A method for compressing AI model files for faster download", "A license agreement between AI companies", "A testing framework for validating model accuracy"]
+        },
+        {
+            question: "What is a prompt?",
+            correct: "The input you give to an AI model — the question or instruction that tells it what to do",
+            wrong: ["The loading screen shown while AI processes a request", "The software that runs the AI model on servers", "A type of AI model specifically designed for text generation"]
+        },
+        {
+            question: "What is Claude Code?",
+            correct: "An agentic coding tool that lives in your terminal and helps you code through natural language",
+            wrong: ["A programming language created by Anthropic", "An online code editor similar to VS Code", "A code encryption system for securing AI applications"]
+        },
+        {
+            question: "What is a Transformer?",
+            correct: "A neural network architecture that processes sequences in parallel using an attention mechanism",
+            wrong: ["A tool that converts code from one language to another", "A type of GPU specifically designed for AI tasks", "A data pipeline that transforms raw data into training sets"]
+        },
+        {
+            question: "What is RAG (Retrieval-Augmented Generation)?",
+            correct: "A technique that retrieves relevant documents from external sources before the AI generates an answer",
+            wrong: ["A method for generating random data to train AI models", "A type of AI model that only works with structured databases", "A compression algorithm that reduces model size"]
+        },
+        {
+            question: "What is a token in AI?",
+            correct: "The basic unit of text that an LLM processes, roughly equivalent to a word or word-piece",
+            wrong: ["A digital currency used to pay for AI API access", "A security key used to authenticate API requests", "A reward signal used during reinforcement learning"]
+        },
+        {
+            question: "What is an AI Agent?",
+            correct: "An AI system that can autonomously plan and execute multi-step tasks to achieve goals",
+            wrong: ["A human employee who specializes in AI deployment", "An AI model that only answers questions without taking actions", "A chatbot limited to customer service conversations"]
+        },
+        {
+            question: "What is fine-tuning?",
+            correct: "Taking a pre-trained model and further training it on specialized data for specific tasks",
+            wrong: ["Adjusting the volume and speed of AI speech output", "Manually correcting AI outputs after generation", "Removing errors from the training dataset before use"]
+        },
+        {
+            question: "What is a context window?",
+            correct: "The maximum amount of text an LLM can process at once, including input and output",
+            wrong: ["The time limit for how long an AI can maintain a conversation", "A pop-up window that shows relevant context in an IDE", "The visible area of code in a text editor"]
+        },
+        {
+            question: "What is temperature in AI?",
+            correct: "A setting that controls how random or creative an LLM's responses are",
+            wrong: ["The actual heat generated by GPU hardware during inference", "A measure of how quickly a model processes requests", "The energy efficiency rating of an AI data center"]
+        },
+        {
+            question: "What is an embedding?",
+            correct: "A numerical representation of text as a list of numbers that captures its meaning",
+            wrong: ["The process of inserting AI into existing software applications", "A technique for hiding watermarks in AI-generated content", "A method for embedding images directly into HTML code"]
+        },
+        {
+            question: "What is a hallucination in AI?",
+            correct: "When an AI model generates information that sounds plausible but is factually incorrect or fabricated",
+            wrong: ["When an AI model generates visual imagery or art", "When a model takes too long to respond and times out", "When the model repeats the same answer in a loop"]
+        },
+        {
+            question: "What is an IDE?",
+            correct: "An Integrated Development Environment — a comprehensive workspace for writing, testing, and debugging code",
+            wrong: ["An AI model designed specifically for coding tasks", "A cloud service for deploying applications to production", "A database system that integrates with AI tools"]
+        },
+        {
+            question: "What is the Claude Agent SDK?",
+            correct: "A development kit for building custom AI agents with the same tools that power Claude Code",
+            wrong: ["A graphical interface for chatting with Claude", "A hardware device for running Claude locally", "A testing suite for evaluating Claude's responses"]
+        },
+        {
+            question: "What is Markdown?",
+            correct: "A lightweight text formatting language using simple symbols that survives AI preprocessing",
+            wrong: ["A programming language used for web development", "A type of encryption for protecting documents", "A method for marking incorrect AI outputs for review"]
+        },
+        {
+            question: "What is Deep Learning?",
+            correct: "A subset of machine learning using neural networks with many layers to learn complex patterns",
+            wrong: ["An advanced meditation technique used by AI researchers", "A method for storing data deep within database systems", "The process of training AI for extremely long periods"]
+        },
+        {
+            question: "What is training data?",
+            correct: "The collection of examples that an AI model learns from during the machine learning process",
+            wrong: ["The user data collected after an AI model is deployed", "The test results used to grade AI model performance", "The instructions given to AI during a conversation"]
+        },
+        {
+            question: "What is inference in AI?",
+            correct: "When a trained AI model generates output — the phase where it produces responses to prompts",
+            wrong: ["The process of drawing conclusions from AI research papers", "Training the model on new data after deployment", "Measuring how accurate an AI model's predictions are"]
+        },
+        {
+            question: "What is n8n?",
+            correct: "A self-hostable AI workflow automation platform with native agent capabilities",
+            wrong: ["A neural network with exactly 8 layers", "A new programming language designed for AI", "An AI model created by Google for numerical tasks"]
+        },
+        {
+            question: "What is Claude Design?",
+            correct: "A collaborative visual creation tool that generates designs and prototypes from natural-language prompts",
+            wrong: ["The internal architecture of Claude's neural network", "A course that teaches designers how to use AI", "A CSS framework created by Anthropic for web styling"]
+        },
+        {
+            question: "What are Claude Skills?",
+            correct: "Reusable markdown instruction sets that extend Claude Code's capabilities, triggered by context or commands",
+            wrong: ["Programming languages that Claude can write code in", "Certifications earned by developers who pass Anthropic's exams", "Built-in knowledge domains that Claude specializes in"]
+        },
+        {
+            question: "What is Natural Language Processing (NLP)?",
+            correct: "The branch of AI focused on enabling computers to understand, interpret, and generate human language",
+            wrong: ["A protocol for networking AI systems together", "The process of translating code into plain English documentation", "A technique for compressing natural language into fewer tokens"]
+        },
+        {
+            question: "What is a neural network?",
+            correct: "A computing system of interconnected nodes organized in layers that learn patterns from data",
+            wrong: ["A social network exclusively for AI researchers", "The internet infrastructure that connects AI data centers", "A debugging tool that maps relationships between code modules"]
+        },
+        {
+            question: "What is an API?",
+            correct: "A set of rules that allows different software programs to communicate with each other",
+            wrong: ["An AI model that specializes in answering programming questions", "A visual interface for interacting with AI chatbots", "A type of computer memory used for fast AI processing"]
+        },
+        {
+            question: "Why are XML tags recommended for Claude prompts?",
+            correct: "Claude was specifically tuned to pay attention to XML structure, providing clear unambiguous boundaries",
+            wrong: ["XML is the only format Claude can read", "XML tags make prompts run faster by reducing token count", "Anthropic requires XML for all API calls"]
+        },
+        {
+            question: "What is Machine Learning?",
+            correct: "A subset of AI where systems learn patterns from data without being explicitly programmed",
+            wrong: ["Teaching humans how to operate AI systems effectively", "A robotic system that learns physical tasks through repetition", "Software that automatically writes machine code from English"]
+        },
+        {
+            question: "What is the difference between HTML and a full-stack app?",
+            correct: "HTML is a static document; a full-stack app has frontend, backend, and database for dynamic behavior",
+            wrong: ["HTML is for mobile apps while full-stack is for desktops", "There is no difference; they are the same thing", "HTML is newer technology that replaced full-stack development"]
+        },
+        {
+            question: "What is a workflow in AI context?",
+            correct: "A defined sequence of automated steps where AI performs actions to complete a goal",
+            wrong: ["The physical flow of electricity through AI hardware", "A diagram showing how an AI model was trained", "The order in which employees review AI-generated content"]
+        }
+    ];
+
+    let currentQuiz = [];
+    let currentQuestion = 0;
+    let score = 0;
+
+    function shuffle(array) {
+        const arr = [...array];
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    }
+
+    function startQuiz() {
+        currentQuiz = shuffle(allQuestions).slice(0, 10);
+        currentQuestion = 0;
+        score = 0;
+        document.getElementById('start-screen').style.display = 'none';
+        document.getElementById('quiz-area').style.display = 'block';
+        document.getElementById('score-container').innerHTML = '';
+        showQuestion();
+    }
+
+    function showQuestion() {
+        const q = currentQuiz[currentQuestion];
+        const options = shuffle([q.correct, ...q.wrong]);
+
+        document.getElementById('progress').textContent = `Question ${currentQuestion + 1} of 10 | Score: ${score}/${currentQuestion}`;
+
+        document.getElementById('question-container').innerHTML = `
+            <div class="question-block">
+                <div class="question-number">Question ${currentQuestion + 1}</div>
+                <div class="question-text">${q.question}</div>
+                <ul class="options">
+                    ${options.map((opt, i) => `
+                        <li><button onclick="selectAnswer(this, ${opt === q.correct})" data-correct="${opt === q.correct}">${opt}</button></li>
+                    `).join('')}
+                </ul>
+                <div class="feedback" id="feedback" style="display:none;"></div>
+            </div>
+        `;
+    }
+
+    function selectAnswer(btn, isCorrect) {
+        const buttons = document.querySelectorAll('.options button');
+        buttons.forEach(b => {
+            b.disabled = true;
+            if (b.dataset.correct === 'true') {
+                b.classList.add('reveal');
+            }
+        });
+
+        const feedback = document.getElementById('feedback');
+        feedback.style.display = 'block';
+
+        if (isCorrect) {
+            btn.classList.add('correct');
+            feedback.className = 'feedback correct';
+            feedback.textContent = 'Correct!';
+            score++;
+        } else {
+            btn.classList.add('wrong');
+            feedback.className = 'feedback wrong';
+            feedback.textContent = 'Incorrect. The correct answer is highlighted in green.';
+        }
+
+        setTimeout(() => {
+            currentQuestion++;
+            if (currentQuestion < 10) {
+                showQuestion();
+            } else {
+                showScore();
+            }
+        }, 1800);
+    }
+
+    function showScore() {
+        document.getElementById('question-container').innerHTML = '';
+        document.getElementById('progress').textContent = '';
+
+        let message = '';
+        if (score === 10) message = 'Perfect score! You know your AI concepts inside and out.';
+        else if (score >= 8) message = 'Excellent! You have a strong understanding of AI fundamentals.';
+        else if (score >= 6) message = 'Good job! Review the topics you missed to strengthen your knowledge.';
+        else if (score >= 4) message = 'Not bad! Consider reading through more glossary topics.';
+        else message = 'Keep learning! The glossary is here to help you build your knowledge.';
+
+        document.getElementById('score-container').innerHTML = `
+            <div class="score-card">
+                <h2>Quiz Complete!</h2>
+                <div class="score">${score}/10</div>
+                <div class="message">${message}</div>
+                <button class="btn-restart" onclick="startQuiz()">Try Again</button>
+                <br><br>
+                <a href="index.html" style="font-size:0.9em;">Back to Glossary</a>
+            </div>
+        `;
+    }
+    </script>
+</body>
+</html>

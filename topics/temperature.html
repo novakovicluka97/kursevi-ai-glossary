@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; Temperature
+    </nav>
+
+    <h1>Temperature</h1>
+
+    <p class="definition">
+        Temperature is a setting that controls how random or creative an <a href="llm.html">LLM's</a> responses are — low temperature means predictable and focused, high temperature means varied and creative.
+    </p>
+
+    <h2>What is Temperature?</h2>
+    <p>
+        When an LLM generates text, it predicts the probability of each possible next <a href="token.html">token</a>. Temperature controls how those probabilities are used:
+    </p>
+    <ul>
+        <li><strong>Temperature 0:</strong> Always picks the most likely token. Deterministic, consistent, but potentially boring or repetitive.</li>
+        <li><strong>Temperature 0.5-0.7:</strong> Mostly picks likely tokens but allows some variation. Good balance for most tasks.</li>
+        <li><strong>Temperature 1.0+:</strong> More willing to pick less likely tokens. More creative and surprising, but may be less coherent.</li>
+    </ul>
+
+    <h2>When to Adjust Temperature</h2>
+    <p>
+        <strong>Low temperature (0-0.3):</strong> Use for factual questions, code generation, data extraction, math — tasks where there's one correct answer.<br>
+        <strong>Medium temperature (0.5-0.7):</strong> Use for general conversation, writing, summarization.<br>
+        <strong>High temperature (0.8-1.0):</strong> Use for brainstorming, creative writing, poetry — tasks where variety is valued.
+    </p>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>Temperature is like a "creativity dial." At zero, the AI is like a strict accountant — always giving the safest, most expected answer. Turn it up, and it becomes more like a jazz musician — improvising, taking risks, sometimes brilliant, sometimes off-key. You adjust based on whether you need precision or inspiration.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="llm.html">Large Language Model</a></li>
+            <li><a href="token.html">Token</a></li>
+            <li><a href="inference.html">Inference</a></li>
+            <li><a href="prompt.html">Prompt</a></li>
+            <li><a href="hallucination.html">Hallucination</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://docs.anthropic.com/en/api/messages">Messages API (temperature parameter) — Anthropic Docs</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/Softmax_function#Softmax_with_temperature">Temperature in Softmax — Wikipedia</a></li>
+            <li><a href="https://www.promptingguide.ai/introduction/settings">LLM Settings — Prompting Guide</a></li>
+        </ol>
+    </div>
+</body>
+</html>

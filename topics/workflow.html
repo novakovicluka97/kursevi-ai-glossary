@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workflow - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; Workflow
+    </nav>
+
+    <h1>Workflow</h1>
+
+    <p class="definition">
+        A workflow is a defined sequence of steps or processes that accomplish a task — in AI context, it refers to automated multi-step pipelines where <a href="ai-agent.html">AI agents</a> or models perform a series of actions to complete a goal.
+    </p>
+
+    <h2>What is a Workflow?</h2>
+    <p>
+        A workflow is any repeatable process with defined steps. In traditional business: "receive order → process payment → ship product → send confirmation email." In AI: "receive user request → search knowledge base → generate draft → check for accuracy → deliver response."
+    </p>
+    <p>
+        AI workflows connect multiple AI operations together, often combining <a href="llm.html">LLM</a> calls with tool use, data retrieval, and decision logic.
+    </p>
+
+    <h2>AI Workflow Patterns</h2>
+    <ul>
+        <li><strong>Sequential:</strong> Step A → Step B → Step C (like a recipe)</li>
+        <li><strong>Branching:</strong> If condition X, do A; otherwise do B (like a decision tree)</li>
+        <li><strong>Loop:</strong> Repeat until quality threshold met (like editing a draft)</li>
+        <li><strong>Parallel:</strong> Do A and B simultaneously, combine results</li>
+        <li><strong>Human-in-the-loop:</strong> AI does work, human approves, AI continues</li>
+    </ul>
+
+    <h2>Examples</h2>
+    <p>
+        <strong>Code review workflow:</strong> <a href="claude-code.html">Claude Code</a> reads a pull request → analyzes for bugs → checks style → suggests improvements → posts review comments.
+    </p>
+    <p>
+        <strong>Content workflow:</strong> AI researches topic → writes draft → fact-checks against sources via <a href="rag.html">RAG</a> → formats output → human reviews.
+    </p>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>A workflow is like an assembly line in a factory. Each station does one specific job, and the product moves from station to station until it's complete. AI workflows are the same — except the "stations" are AI operations, and the "product" is information being processed and refined at each step.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="ai-agent.html">AI Agent</a></li>
+            <li><a href="agent-sdk.html">Agent SDK</a></li>
+            <li><a href="claude-code.html">Claude Code</a></li>
+            <li><a href="claude-skills.html">Claude Skills</a></li>
+            <li><a href="mcp.html">MCP</a></li>
+            <li><a href="prompt.html">Prompt</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://www.anthropic.com/research/building-effective-agents">Building Effective Agents — Anthropic</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/Workflow">Workflow — Wikipedia</a></li>
+            <li><a href="https://www.ibm.com/think/topics/ai-workflow">AI Workflow — IBM</a></li>
+        </ol>
+    </div>
+</body>
+</html>

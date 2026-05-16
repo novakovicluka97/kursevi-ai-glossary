@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; <a href="formats.html">Formats</a> &rsaquo; XML
+    </nav>
+
+    <h1>XML (in AI Prompting)</h1>
+
+    <p class="definition">
+        In AI context, XML tags are paired delimiters like <code>&lt;instructions&gt;...&lt;/instructions&gt;</code> used to structure <a href="prompt.html">prompts</a> with clear, unambiguous boundaries that the model can reliably identify and follow.
+    </p>
+
+    <h2>Why XML Tags for AI Prompts?</h2>
+    <p>
+        <a href="claude.html">Claude</a> has been specifically fine-tuned to pay attention to XML tag structure in prompts. Anthropic's official guidance: "Mark up your prompts with XML tags. Claude has been specifically tuned to pay special attention to your structure."
+    </p>
+    <p>
+        The technical reason: <a href="token.html">tokenization</a> can cause problems when you rely on whitespace and indentation (the model might not "see" the spaces the same way you do). XML tags provide <strong>multi-line certainty</strong> — they are clear delimiters that unambiguously mark where a section begins and ends, regardless of how the tokenizer splits the text.
+    </p>
+
+    <h2>When to Use XML Tags</h2>
+    <ul>
+        <li><strong>Production prompts</strong> with strict structure requirements</li>
+        <li><strong>Multi-section prompts</strong> where the model must distinguish between instructions, context, examples, and user input</li>
+        <li><strong>Extraction tasks</strong> where you need the model to isolate a specific section from a long input</li>
+        <li><strong>System prompts</strong> for applications built on the Claude <a href="api.html">API</a></li>
+    </ul>
+
+    <h2>Practical Examples</h2>
+    <pre><code>&lt;system&gt;
+You are a customer support agent for Acme Corp.
+Only answer questions about our products.
+&lt;/system&gt;
+
+&lt;context&gt;
+{{retrieved product documentation from RAG}}
+&lt;/context&gt;
+
+&lt;user_message&gt;
+{{the customer's actual question}}
+&lt;/user_message&gt;
+
+&lt;instructions&gt;
+Answer the customer's question using only the context provided.
+If the answer isn't in the context, say "I'll escalate this to a human agent."
+&lt;/instructions&gt;</code></pre>
+
+    <h2>XML vs. Markdown in Prompts</h2>
+    <p>
+        <strong>XML tags</strong> are the stronger structural signal for Claude. Use them to <em>separate sections</em>.<br>
+        <strong><a href="markdown-format.html">Markdown</a></strong> is better for <em>formatting content within sections</em> (headings, lists, bold text).
+    </p>
+    <p>
+        Best practice: use XML to define the architecture of your prompt, and Markdown for the readable content inside. They complement each other.
+    </p>
+    <p>
+        Note: As models become more capable, the exact formatting matters less. But for production systems where reliability is critical, XML structure still gives the most consistent results.
+    </p>
+
+    <h2>Common Tag Conventions</h2>
+    <ul>
+        <li><code>&lt;instructions&gt;</code> — What the model should do</li>
+        <li><code>&lt;context&gt;</code> — Background information or retrieved documents</li>
+        <li><code>&lt;examples&gt;</code> — Few-shot examples</li>
+        <li><code>&lt;input&gt;</code> — The actual data to process</li>
+        <li><code>&lt;output_format&gt;</code> — How to structure the response</li>
+        <li><code>&lt;constraints&gt;</code> — Rules or limitations</li>
+    </ul>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>XML tags are like labeled folders on a desk. If you give someone a stack of loose papers, they have to guess what's what. But if you put instructions in a folder labeled "INSTRUCTIONS," context in a folder labeled "CONTEXT," and the question in a folder labeled "QUESTION" — they know exactly where to look for each piece. XML tags are those folder labels for AI.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="formats.html">Formats (parent topic)</a></li>
+            <li><a href="markdown-format.html">Markdown</a></li>
+            <li><a href="json.html">JSON</a></li>
+            <li><a href="prompt.html">Prompt</a></li>
+            <li><a href="claude.html">Claude</a></li>
+            <li><a href="token.html">Token</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/use-xml-tags">Use XML Tags — Anthropic Prompt Engineering Docs</a></li>
+            <li><a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview">Prompt Engineering Overview — Anthropic</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/XML">XML — Wikipedia</a></li>
+        </ol>
+    </div>
+</body>
+</html>

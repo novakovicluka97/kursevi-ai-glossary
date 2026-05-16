@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formats - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; Formats
+    </nav>
+
+    <h1>Formats</h1>
+
+    <p class="definition">
+        Formats are the structured ways you package text and data when communicating with <a href="ai-model.html">AI models</a>. Choosing the right format directly affects how well the AI understands your input and how usable its output is.
+    </p>
+
+    <h2>Why Formats Matter for AI</h2>
+    <p>
+        <a href="llm.html">LLMs</a> process everything as text. But not all text is equal — structured text gets better results than unstructured walls of words. The format you choose determines:
+    </p>
+    <ul>
+        <li>How clearly the model understands your intent</li>
+        <li>How reliably it follows complex, multi-section instructions</li>
+        <li>Whether its output is usable by other systems (code, databases, <a href="ai-automation.html">automation tools</a>)</li>
+        <li>Whether humans can also read and maintain the content</li>
+    </ul>
+
+    <h2>The Four Key Formats</h2>
+
+    <div class="example-box" style="border-left: 4px solid #0645ad; margin-bottom:20px;">
+        <h4><a href="markdown-format.html">Markdown</a></h4>
+        <p>Plain-text formatting with simple symbols (<code>#</code>, <code>**</code>, <code>-</code>). The default for anything humans will also read: documentation, agent instructions (CLAUDE.md), <a href="rag.html">RAG</a> context, README files. Works well because LLMs saw massive amounts of Markdown in <a href="training-data.html">training data</a>.</p>
+        <p><strong>Use for:</strong> Documents, instructions, context that humans also read.</p>
+    </div>
+
+    <div class="example-box" style="border-left: 4px solid #0645ad; margin-bottom:20px;">
+        <h4><a href="xml.html">XML Tags</a></h4>
+        <p>Paired tags like <code>&lt;instructions&gt;...&lt;/instructions&gt;</code> that mark clear boundaries. The strongest structural signal for <a href="claude.html">Claude</a> specifically — Anthropic has tuned Claude to pay special attention to XML structure in <a href="prompt.html">prompts</a>.</p>
+        <p><strong>Use for:</strong> Production prompts, multi-section inputs, when the model must extract a specific section.</p>
+    </div>
+
+    <div class="example-box" style="border-left: 4px solid #0645ad; margin-bottom:20px;">
+        <h4><a href="json.html">JSON</a></h4>
+        <p>Key-value data format (<code>{"name": "value"}</code>). The universal standard for <a href="api.html">API</a> communication and structured output. When you need AI to return data that code will process, JSON is the answer.</p>
+        <p><strong>Use for:</strong> API calls, structured data output, automation configs, <a href="mcp.html">MCP</a> messages.</p>
+    </div>
+
+    <div class="example-box" style="border-left: 4px solid #0645ad; margin-bottom:20px;">
+        <h4><a href="html.html">HTML</a></h4>
+        <p>The markup language of the web. AI models can both read and generate HTML. Used when the output needs to render in browsers — web pages, emails, reports, <a href="claude-design.html">design exports</a>.</p>
+        <p><strong>Use for:</strong> Web output, rendered content, email templates, visual artifacts.</p>
+    </div>
+
+    <h2>Practical Decision Guide</h2>
+    <table style="width:100%; border-collapse:collapse; margin:15px 0;">
+        <tr style="border-bottom:2px solid #ddd;">
+            <th style="text-align:left; padding:8px;">Situation</th>
+            <th style="text-align:left; padding:8px;">Best Format</th>
+        </tr>
+        <tr style="border-bottom:1px solid #eee;">
+            <td style="padding:8px;">Writing a system prompt for Claude</td>
+            <td style="padding:8px;"><a href="xml.html">XML tags</a> for sections + <a href="markdown-format.html">Markdown</a> for content within</td>
+        </tr>
+        <tr style="border-bottom:1px solid #eee;">
+            <td style="padding:8px;">Agent instructions (CLAUDE.md, skills)</td>
+            <td style="padding:8px;"><a href="markdown-format.html">Markdown</a></td>
+        </tr>
+        <tr style="border-bottom:1px solid #eee;">
+            <td style="padding:8px;">Feeding documents to RAG</td>
+            <td style="padding:8px;"><a href="markdown-format.html">Markdown</a></td>
+        </tr>
+        <tr style="border-bottom:1px solid #eee;">
+            <td style="padding:8px;">Getting data for your app to use</td>
+            <td style="padding:8px;"><a href="json.html">JSON</a> (structured output)</td>
+        </tr>
+        <tr style="border-bottom:1px solid #eee;">
+            <td style="padding:8px;">Calling an AI API</td>
+            <td style="padding:8px;"><a href="json.html">JSON</a></td>
+        </tr>
+        <tr style="border-bottom:1px solid #eee;">
+            <td style="padding:8px;">AI generating a web page or email</td>
+            <td style="padding:8px;"><a href="html.html">HTML</a></td>
+        </tr>
+        <tr>
+            <td style="padding:8px;">Multi-section prompt where the model must isolate parts</td>
+            <td style="padding:8px;"><a href="xml.html">XML tags</a></td>
+        </tr>
+    </table>
+
+    <h2>Combining Formats</h2>
+    <p>
+        In practice, you often combine formats. A Claude system prompt might use XML tags to structure sections, Markdown for readable content within those sections, and instruct the model to output JSON. This is normal and encouraged:
+    </p>
+    <pre><code>&lt;instructions&gt;
+## Your Role
+You are a data extraction assistant.
+
+## Output Format
+Return a JSON object with these fields:
+- name (string)
+- email (string)
+- intent (string: "support", "sales", or "other")
+&lt;/instructions&gt;
+
+&lt;email&gt;
+{{user's email content here}}
+&lt;/email&gt;</code></pre>
+
+    <div class="related-topics">
+        <h3>Subtopics</h3>
+        <ul>
+            <li><a href="markdown-format.html">Markdown</a></li>
+            <li><a href="xml.html">XML</a></li>
+            <li><a href="json.html">JSON</a></li>
+            <li><a href="html.html">HTML</a></li>
+        </ul>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="prompt.html">Prompt</a></li>
+            <li><a href="claude.html">Claude</a></li>
+            <li><a href="token.html">Token</a></li>
+            <li><a href="ai-automation.html">AI Automation</a></li>
+            <li><a href="mcp.html">MCP</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/use-xml-tags">Use XML Tags — Anthropic Prompt Engineering</a></li>
+            <li><a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview">Prompt Engineering Overview — Anthropic</a></li>
+            <li><a href="https://www.markdownguide.org/">Markdown Guide</a></li>
+        </ol>
+    </div>
+</body>
+</html>

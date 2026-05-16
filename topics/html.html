@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; <a href="formats.html">Formats</a> &rsaquo; HTML
+    </nav>
+
+    <h1>HTML (in AI Context)</h1>
+
+    <p class="definition">
+        HTML (HyperText Markup Language) is the standard format for web pages. In AI, it matters in two ways: as an <strong>output format</strong> when AI generates web content, and as a <strong>source format</strong> that gets preprocessed before AI can learn from it.
+    </p>
+
+    <h2>HTML as AI Output</h2>
+    <p>
+        <a href="llm.html">LLMs</a> like <a href="claude.html">Claude</a> are excellent at generating HTML. This is the primary practical use of HTML in AI workflows:
+    </p>
+    <ul>
+        <li><strong>Web artifacts:</strong> Claude can generate complete, interactive web pages with HTML + CSS + JavaScript</li>
+        <li><strong><a href="claude-design.html">Claude Design</a> exports:</strong> Designs export as standalone HTML files</li>
+        <li><strong>Email templates:</strong> AI generates formatted HTML emails</li>
+        <li><strong>Reports and dashboards:</strong> Generating visual, browser-renderable output</li>
+        <li><strong>Prototypes:</strong> Quickly creating functional UI prototypes from descriptions</li>
+    </ul>
+
+    <h2>HTML as AI Input (Preprocessing)</h2>
+    <p>
+        Here's a key nuance: LLMs are <strong>not</strong> trained on raw HTML in the way many people assume. <a href="training-data.html">Training data</a> from web crawls (like Common Crawl) goes through heavy preprocessing — HTML tags get stripped, text gets extracted, the document is cleaned. The model rarely sees raw <code>&lt;h1&gt;</code> or <code>&lt;div class="..."&gt;</code> tags during training.
+    </p>
+    <p>
+        This is precisely why <a href="markdown-format.html">Markdown</a> is more effective for <a href="prompt.html">prompting</a>: Markdown <em>survives</em> preprocessing because it IS plain text with a few special characters. HTML gets stripped away.
+    </p>
+
+    <h2>Practical Use: When to Use HTML with AI</h2>
+    <ul>
+        <li><strong>DO</strong> ask AI to generate HTML when you need web-renderable output</li>
+        <li><strong>DO</strong> use HTML when building <a href="html-vs-full-stack.html">web applications</a> with AI assistance</li>
+        <li><strong>DON'T</strong> use HTML to structure your prompts (use <a href="xml.html">XML tags</a> or <a href="markdown-format.html">Markdown</a> instead)</li>
+        <li><strong>DON'T</strong> feed raw HTML to AI for analysis if you can extract the text first</li>
+    </ul>
+
+    <h2>HTML vs. Markdown for AI</h2>
+    <p>
+        A common question: should I give AI content as HTML or Markdown?
+    </p>
+    <p>
+        <strong>Markdown wins for input</strong> — it's more <a href="token.html">token</a>-efficient (fewer characters to express the same structure), and models understand it natively from training data.<br>
+        <strong>HTML wins for output</strong> — when the result needs to render visually in a browser or email client.
+    </p>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>HTML is like the blueprint of a building — it tells the browser exactly where every wall, window, and door goes. When you view a website, your browser reads the HTML blueprint and constructs what you see. AI is great at drawing these blueprints (generating HTML), but when AI needs to learn from web content, it reads the extracted text, not the raw blueprint markup.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="formats.html">Formats (parent topic)</a></li>
+            <li><a href="markdown-format.html">Markdown</a></li>
+            <li><a href="xml.html">XML</a></li>
+            <li><a href="json.html">JSON</a></li>
+            <li><a href="html-vs-full-stack.html">HTML vs Full Stack App</a></li>
+            <li><a href="claude-design.html">Claude Design</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML">HTML — MDN Web Docs</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/HTML">HTML — Wikipedia</a></li>
+            <li><a href="https://commoncrawl.org/">Common Crawl — Web Archive used for AI Training</a></li>
+        </ol>
+    </div>
+</body>
+</html>

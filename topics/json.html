@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; <a href="formats.html">Formats</a> &rsaquo; JSON
+    </nav>
+
+    <h1>JSON (JavaScript Object Notation)</h1>
+
+    <p class="definition">
+        JSON is a lightweight, human-readable data format used to structure and exchange information between systems. In AI, it's the standard way to send data to and receive structured output from <a href="ai-model.html">AI models</a> and <a href="api.html">APIs</a>.
+    </p>
+
+    <h2>What is JSON?</h2>
+    <p>
+        JSON is a way to represent data as key-value pairs in a text file. It was originally based on JavaScript syntax but is now used universally across all programming languages. When you call the <a href="claude.html">Claude</a> <a href="api.html">API</a>, you send a JSON request and get a JSON response back.
+    </p>
+    <pre><code>{
+  "model": "claude-opus-4-6",
+  "messages": [
+    {
+      "role": "user",
+      "content": "What is the capital of France?"
+    }
+  ],
+  "max_tokens": 100
+}</code></pre>
+
+    <h2>Why JSON Matters for AI</h2>
+    <ul>
+        <li><strong>API communication:</strong> Every AI API (Anthropic, OpenAI, Google) uses JSON for requests and responses</li>
+        <li><strong>Structured outputs:</strong> You can instruct <a href="llm.html">LLMs</a> to return JSON that follows a specific schema — making AI output directly usable by code without parsing free-form text</li>
+        <li><strong><a href="mcp.html">MCP</a> messages:</strong> The Model Context Protocol uses JSON to communicate between AI and tools</li>
+        <li><strong>Configuration:</strong> AI tools, <a href="claude-skills.html">skills</a>, and <a href="ai-automation.html">automation workflows</a> store settings in JSON</li>
+        <li><strong><a href="training-data.html">Training data</a>:</strong> Datasets for <a href="fine-tuning.html">fine-tuning</a> are often formatted as JSON lines (JSONL)</li>
+    </ul>
+
+    <h2>Structured Outputs</h2>
+    <p>
+        One of the most powerful patterns in 2026 AI development is "structured outputs" — asking a model to return JSON that conforms to a specific schema. Instead of getting free-form text you need to parse, you get predictable, typed data that your code can immediately use.
+    </p>
+    <pre><code>// Ask Claude to extract data as structured JSON:
+{
+  "name": "Marie Curie",
+  "birth_year": 1867,
+  "fields": ["physics", "chemistry"],
+  "nobel_prizes": 2
+}</code></pre>
+    <p>
+        This makes AI outputs reliable for <a href="ai-automation.html">automation</a>, database storage, and <a href="workflow.html">workflow</a> pipelines where downstream systems expect specific data shapes.
+    </p>
+
+    <h2>JSON vs. Other Formats</h2>
+    <ul>
+        <li><strong>JSON vs. XML:</strong> JSON is lighter and easier to read. XML is more verbose but supports schemas and namespaces.</li>
+        <li><strong>JSON vs. YAML:</strong> YAML is even more human-readable (no brackets/quotes) and is preferred for configuration files. JSON is preferred for data exchange.</li>
+        <li><strong>JSON vs. <a href="markdown-format.html">Markdown</a>:</strong> Markdown is for formatted text humans will read. JSON is for structured data machines will process.</li>
+    </ul>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>JSON is like a standardized form. When you fill out a tax form, every field has a label ("Name:", "Address:", "Income:") and you put specific data in each field. JSON works the same way for computers — it's a universal "form" format that any system can read. Without it, AI systems would be like people shouting information at each other in different languages.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="api.html">API</a></li>
+            <li><a href="mcp.html">MCP</a></li>
+            <li><a href="markdown-format.html">Markdown Format</a></li>
+            <li><a href="ai-automation.html">AI Automation</a></li>
+            <li><a href="agent-sdk.html">Agent SDK</a></li>
+            <li><a href="workflow.html">Workflow</a></li>
+            <li><a href="claude.html">Claude</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://www.json.org/json-en.html">JSON.org — Official Specification</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/JSON">JSON — Wikipedia</a></li>
+            <li><a href="https://docs.anthropic.com/en/api/messages">Claude Messages API (JSON format) — Anthropic</a></li>
+        </ol>
+    </div>
+</body>
+</html>

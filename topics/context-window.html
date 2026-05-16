@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Context Window - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; Context Window
+    </nav>
+
+    <h1>Context Window</h1>
+
+    <p class="definition">
+        The context window is the maximum amount of text (measured in <a href="token.html">tokens</a>) that an <a href="llm.html">LLM</a> can "see" and consider at one time — including both the input and the output.
+    </p>
+
+    <h2>What is a Context Window?</h2>
+    <p>
+        Think of the context window as the AI's working memory. Everything the model needs to consider — your conversation history, system instructions, documents you've shared, and its own response — must fit within this window. Anything outside the window is invisible to the model.
+    </p>
+    <p>
+        <a href="claude.html">Claude's</a> context window is up to 1 million tokens (roughly 750,000 words or several full-length novels). Earlier models had much smaller windows — GPT-3 had only 4,096 tokens (about 3,000 words).
+    </p>
+
+    <h2>Why It Matters</h2>
+    <ul>
+        <li><strong>Conversation length:</strong> Longer windows mean the AI remembers more of your conversation</li>
+        <li><strong>Document analysis:</strong> Larger windows let you feed entire codebases or books to the model</li>
+        <li><strong>Complex tasks:</strong> Multi-step reasoning needs more context to track all the pieces</li>
+        <li><strong>Cost:</strong> More tokens in the context = higher API cost</li>
+    </ul>
+
+    <h2>Managing Context</h2>
+    <p>
+        When conversations exceed the context window, systems must decide what to keep and what to drop. Techniques include summarizing older messages, using <a href="rag.html">RAG</a> to fetch only relevant information, and <a href="prompt.html">prompt</a> compression.
+    </p>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>The context window is like the size of your desk. A small desk (4K tokens) means you can only have one document open at a time. A huge desk (1M tokens) means you can spread out multiple books, notebooks, and reference materials simultaneously. The bigger the desk, the more information the AI can consider at once.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="token.html">Token</a></li>
+            <li><a href="llm.html">Large Language Model</a></li>
+            <li><a href="rag.html">RAG</a></li>
+            <li><a href="prompt.html">Prompt</a></li>
+            <li><a href="transformer.html">Transformer</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://docs.anthropic.com/en/docs/about-claude/models">Claude Models (context windows) — Anthropic Docs</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/Large_language_model#Context_window">Context Window — Wikipedia</a></li>
+            <li><a href="https://www.cloudflare.com/learning/ai/what-is-context-window/">What is a Context Window? — Cloudflare</a></li>
+        </ol>
+    </div>
+</body>
+</html>

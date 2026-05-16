@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Context Protocol (MCP) - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; Model Context Protocol
+    </nav>
+
+    <h1>Model Context Protocol (MCP)</h1>
+
+    <p class="definition">
+        The Model Context Protocol is an open standard that enables <a href="ai-model.html">AI models</a> to securely connect to external data sources and tools — giving them the ability to read databases, call <a href="api.html">APIs</a>, browse files, and interact with software.
+    </p>
+
+    <h2>What is MCP?</h2>
+    <p>
+        MCP was introduced by Anthropic in late 2024 as an open-source protocol to solve a fundamental problem: AI models are powerful thinkers, but they're isolated — they can't see your files, access your databases, or use your tools without custom integration code for each one.
+    </p>
+    <p>
+        MCP provides a universal standard for connecting AI to the outside world. Instead of building a custom connector for every tool, developers build one MCP server, and any MCP-compatible AI client can use it. Think of it as "USB for AI" — one standard plug that works everywhere.
+    </p>
+
+    <h2>How It Works</h2>
+    <p>
+        The protocol has three parts:
+    </p>
+    <ul>
+        <li><strong>MCP Hosts:</strong> AI applications (like <a href="claude-code.html">Claude Code</a>) that want to access external tools</li>
+        <li><strong>MCP Clients:</strong> The protocol layer inside the host that manages connections</li>
+        <li><strong>MCP Servers:</strong> Lightweight programs that expose specific capabilities (a GitHub server, a database server, a file system server, etc.)</li>
+    </ul>
+
+    <h2>Adoption</h2>
+    <p>
+        By late 2025, MCP had over 97 million monthly SDK downloads, 10,000+ active servers in production, and support from virtually every major AI platform. In December 2025, Anthropic donated MCP governance to the Linux Foundation's Agentic AI Foundation, with backing from OpenAI, Google, Microsoft, and AWS.
+    </p>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>Imagine AI is a brilliant consultant locked in a room with no phone or internet. MCP is like giving them a phone with apps — now they can call your CRM, check your calendar, look up your files, and actually do things in the real world, not just talk about them.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="claude-code.html">Claude Code</a></li>
+            <li><a href="ai-agent.html">AI Agent</a></li>
+            <li><a href="agent-sdk.html">Agent SDK</a></li>
+            <li><a href="api.html">API</a></li>
+            <li><a href="claude.html">Claude</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://www.anthropic.com/news/model-context-protocol">Introducing the Model Context Protocol — Anthropic</a></li>
+            <li><a href="https://modelcontextprotocol.io/specification/2025-11-25">MCP Specification</a></li>
+            <li><a href="https://github.com/modelcontextprotocol">Model Context Protocol — GitHub</a></li>
+        </ol>
+    </div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fine-tuning - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; Fine-tuning
+    </nav>
+
+    <h1>Fine-tuning</h1>
+
+    <p class="definition">
+        Fine-tuning is the process of taking a pre-trained <a href="ai-model.html">AI model</a> and further training it on a smaller, specialized dataset to improve its performance on specific tasks or domains.
+    </p>
+
+    <h2>What is Fine-tuning?</h2>
+    <p>
+        Training an <a href="llm.html">LLM</a> from scratch costs millions of dollars and requires enormous datasets. Fine-tuning is the shortcut: you take an already-trained model (which already knows language) and give it additional training on your specific data — medical records, legal documents, customer support conversations, or your company's coding style.
+    </p>
+    <p>
+        After fine-tuning, the model retains its general capabilities but becomes significantly better at your specific use case.
+    </p>
+
+    <h2>Fine-tuning vs. RAG vs. Prompting</h2>
+    <ul>
+        <li><strong><a href="prompt.html">Prompting</a>:</strong> Cheapest, fastest. Just tell the model what to do. Works for most cases.</li>
+        <li><strong><a href="rag.html">RAG</a>:</strong> Give the model access to your documents at query time. Good for knowledge-heavy tasks.</li>
+        <li><strong>Fine-tuning:</strong> Most expensive, changes the model itself. Use when you need the model to adopt a specific style, format, or behavior that can't be achieved through prompting.</li>
+    </ul>
+
+    <h2>When to Fine-tune</h2>
+    <p>
+        Fine-tuning makes sense when: (1) you have a consistent format or style the model must follow, (2) you need faster responses without long prompts, or (3) prompting alone can't achieve the required quality. It's usually the last resort after trying prompting and RAG.
+    </p>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>Fine-tuning is like taking a general-practice doctor and sending them to specialize in cardiology. They already know medicine (pre-training), but the additional training (fine-tuning) makes them excellent at one specific area. They keep their general knowledge but gain deep expertise in hearts.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="training-data.html">Training Data</a></li>
+            <li><a href="ai-model.html">AI Model</a></li>
+            <li><a href="rag.html">RAG</a></li>
+            <li><a href="llm.html">Large Language Model</a></li>
+            <li><a href="prompt.html">Prompt</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://en.wikipedia.org/wiki/Fine-tuning_(deep_learning)">Fine-tuning — Wikipedia</a></li>
+            <li><a href="https://platform.openai.com/docs/guides/fine-tuning">Fine-tuning Guide — OpenAI</a></li>
+            <li><a href="https://www.ibm.com/think/topics/fine-tuning">What is Fine-tuning? — IBM</a></li>
+        </ol>
+    </div>
+</body>
+</html>
