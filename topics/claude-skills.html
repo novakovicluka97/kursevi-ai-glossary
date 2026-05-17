@@ -30,6 +30,11 @@
         <strong>Slash commands</strong> are built-in, hardcoded operations (<code>/clear</code>, <code>/help</code>, <code>/model</code>) that do one specific thing without AI reasoning. <strong>Skills</strong> are prompt-based — they give Claude detailed instructions to orchestrate complex work using its tools. Skills are customizable and extensible; slash commands are fixed.
     </p>
 
+    <h2>SKILL.md vs. CLAUDE.md</h2>
+    <p>
+        A <code>SKILL.md</code> is easy to confuse with a <a href="claude-code.html">CLAUDE.md</a> file, since both are <a href="markdown-format.html">Markdown</a> instructions. The difference is <strong>timing</strong>: <code>CLAUDE.md</code> is <em>always loaded</em> — standing rules for the whole project — while a skill's <code>SKILL.md</code> loads <em>only when triggered</em>. Put always-relevant guidance in <code>CLAUDE.md</code>; put a procedure for one occasional task in a skill. See <a href="claude-code.html">Claude Code</a> for the full comparison, including the vendor-neutral <code>AGENTS.md</code> standard.
+    </p>
+
     <h2>How to Create a Skill</h2>
     <pre><code># .claude/skills/my-skill/SKILL.md
 

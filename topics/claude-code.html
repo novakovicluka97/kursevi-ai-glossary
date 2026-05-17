@@ -42,6 +42,45 @@
         <li>Background agents for parallel tasks (Agent View, May 2026)</li>
     </ul>
 
+    <h2>Configuration Files: CLAUDE.md, AGENTS.md &amp; SKILL.md</h2>
+    <p>
+        Claude Code is steered by three kinds of <a href="markdown-format.html">Markdown</a> files. They are easy to confuse because they all hold plain-English instructions — but they differ in <strong>when they load</strong> and <strong>which tools read them</strong>.
+    </p>
+
+    <table style="width:100%; border-collapse:collapse; margin:15px 0;">
+        <tr style="border-bottom:2px solid #ddd;">
+            <th style="text-align:left; padding:8px;">File</th>
+            <th style="text-align:left; padding:8px;">What it is</th>
+            <th style="text-align:left; padding:8px;">When it loads</th>
+        </tr>
+        <tr style="border-bottom:1px solid #eee;">
+            <td style="padding:8px; vertical-align:top;"><code>CLAUDE.md</code></td>
+            <td style="padding:8px; vertical-align:top;">Claude Code's project memory — coding conventions, build commands, architecture notes. The "how to work here" file.</td>
+            <td style="padding:8px; vertical-align:top;"><strong>Always</strong> — read into context at the start of every session.</td>
+        </tr>
+        <tr style="border-bottom:1px solid #eee;">
+            <td style="padding:8px; vertical-align:top;"><code>AGENTS.md</code></td>
+            <td style="padding:8px; vertical-align:top;">A vendor-neutral, open standard for the <em>same</em> kind of project instructions — read by 60+ AI coding tools, not just Claude.</td>
+            <td style="padding:8px; vertical-align:top;"><strong>Natively</strong> in tools that adopt the standard (Cursor, OpenAI Codex, GitHub Copilot, Windsurf…). Claude Code reads it only when imported via <code>@AGENTS.md</code>.</td>
+        </tr>
+        <tr>
+            <td style="padding:8px; vertical-align:top;"><code>SKILL.md</code></td>
+            <td style="padding:8px; vertical-align:top;">The defining file of a single <a href="claude-skills.html">skill</a> — a reusable capability for one specific task, with YAML frontmatter plus instructions.</td>
+            <td style="padding:8px; vertical-align:top;"><strong>On demand</strong> — only its name and description load at startup; the full file loads when the skill is triggered.</td>
+        </tr>
+    </table>
+
+    <p>
+        The core distinction is <strong>always-on context vs. on-demand capability</strong>. <code>CLAUDE.md</code> and <code>AGENTS.md</code> are <em>standing instructions</em> — rules that apply to everything Claude does in the project, so they sit in context the whole session. <code>SKILL.md</code> is a <em>capability</em> — a procedure for one kind of task, kept out of context until it is actually needed (a token-saving design called <em>progressive disclosure</em>).
+    </p>
+    <p>
+        <code>CLAUDE.md</code> vs. <code>AGENTS.md</code> is a question of <strong>ownership</strong>, not behavior. <code>CLAUDE.md</code> is Claude-specific. <code>AGENTS.md</code> is an open standard — now stewarded by the Agentic AI Foundation under the Linux Foundation — that more than 60 tools (Cursor, OpenAI Codex, GitHub Copilot, Windsurf, Gemini CLI, Zed and others) read <strong>natively as their default instructions file</strong>. Open a project in Cursor, or run Codex against a repo, and an <code>AGENTS.md</code> in the root is picked up automatically with no setup. Claude Code is the outlier: its native file is <code>CLAUDE.md</code>, and it honors <code>AGENTS.md</code> only when you import it with <code>@AGENTS.md</code>. That is why teams using several AI tools keep the shared rules in <code>AGENTS.md</code> and import that one file into <code>CLAUDE.md</code> — one source of truth, every tool.
+    </p>
+
+    <div class="ai-hint">
+        Rule of thumb — if the guidance should apply to <em>every</em> task, it belongs in <code>CLAUDE.md</code> (or <code>AGENTS.md</code>). If it is a step-by-step procedure for <em>one</em> task you repeat occasionally, make it a skill with a <code>SKILL.md</code>.
+    </div>
+
     <div class="example-box">
         <h4>Layman's Analogy</h4>
         <p>If Claude is like a knowledgeable assistant you chat with, Claude Code is like having that assistant sitting next to you at your desk, able to directly type on your keyboard, open your files, and do the actual work — not just tell you what to do, but do it for you while you supervise.</p>
@@ -69,6 +108,8 @@
         <ol>
             <li><a href="https://www.anthropic.com/product/claude-code">Claude Code — Anthropic Product Page</a></li>
             <li><a href="https://code.claude.com/docs/en/overview">Claude Code Documentation</a></li>
+            <li><a href="https://code.claude.com/docs/en/memory">Manage Claude's Memory (CLAUDE.md &amp; AGENTS.md) — Claude Code Docs</a></li>
+            <li><a href="https://agents.md/">AGENTS.md — The Open Standard for AI Coding Agents</a></li>
             <li><a href="https://github.com/anthropics/claude-code">Claude Code — GitHub Repository</a></li>
         </ol>
     </div>
