@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkpoints &amp; Rewind - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; <a href="claude-code.html">Claude Code</a> &rsaquo; Checkpoints &amp; Rewind
+    </nav>
+
+    <h1>Checkpoints &amp; Rewind</h1>
+
+    <p class="definition">
+        A checkpoint is an automatic snapshot of a <a href="claude-code.html">Claude Code</a> session — its messages, file changes, and context — that you can <em>rewind</em> to, letting you undo work or explore a different approach safely.
+    </p>
+
+    <h2>What are Checkpoints?</h2>
+    <p>
+        Every time you submit a prompt, Claude Code quietly saves a checkpoint. If a change goes wrong or you simply want to try something else, you can return to any earlier checkpoint instead of manually unpicking the work. Checkpoints persist across sessions and are kept for 30 days by default.
+    </p>
+
+    <h2>Rewinding</h2>
+    <p>
+        Press <code>Esc</code> twice, or use the <code>/rewind</code> <a href="slash-commands.html">slash command</a>, to open the checkpoint browser. Picking a checkpoint offers five choices:
+    </p>
+    <table class="topic-table">
+        <tr><th>Option</th><th>Effect</th></tr>
+        <tr><td><strong>Restore code and conversation</strong></td><td>Revert both files and messages to that point</td></tr>
+        <tr><td><strong>Restore conversation</strong></td><td>Rewind messages only; keep current code</td></tr>
+        <tr><td><strong>Restore code</strong></td><td>Revert file changes only; keep the conversation</td></tr>
+        <tr><td><strong>Summarize from here</strong></td><td>Compress the conversation forward to free context space</td></tr>
+        <tr><td><strong>Never mind</strong></td><td>Cancel and stay where you are</td></tr>
+    </table>
+
+    <h2>Checkpoints vs. Git</h2>
+    <p>
+        Checkpoints are not a replacement for <a href="github-pages.html">version control</a>. They are instant and capture the conversation as well as files, but they are session-based and don't track changes made outside Claude Code (or by shell commands like <code>rm</code> and <code>mv</code>). The healthy pattern: use checkpoints for rapid experimentation, and commit finished work to git for a permanent, auditable history.
+    </p>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>Checkpoints are like the quick-save feature in a video game. Before a tricky section you save, attempt it, and if it goes badly you reload and try a different tactic — no progress permanently lost. Git, by contrast, is like writing your achievements into the official record book: slower, deliberate, and permanent.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="claude-code.html">Claude Code</a></li>
+            <li><a href="slash-commands.html">Slash Commands</a></li>
+            <li><a href="context-window.html">Context Window</a></li>
+            <li><a href="cli.html">Claude Code CLI</a></li>
+            <li><a href="workflow.html">Workflow</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://code.claude.com/docs/en/checkpointing">Checkpointing — Claude Code Docs</a></li>
+            <li><a href="https://code.claude.com/docs/en/settings">Settings — Claude Code Docs</a></li>
+        </ol>
+    </div>
+    <script src="../js/search-index.js"></script>
+    <script src="../js/search.js"></script>
+</body>
+</html>

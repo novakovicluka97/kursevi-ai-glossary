@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slash Commands - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; <a href="claude-code.html">Claude Code</a> &rsaquo; Slash Commands
+    </nav>
+
+    <h1>Slash Commands</h1>
+
+    <p class="definition">
+        Slash commands are typed shortcuts — starting with <code>/</code> — that control <a href="claude-code.html">Claude Code's</a> behavior during an interactive session, from built-in actions like <code>/clear</code> to custom workflows you define yourself.
+    </p>
+
+    <h2>What are Slash Commands?</h2>
+    <p>
+        Inside a Claude Code session, typing <code>/</code> opens a menu of commands. They are the quickest way to steer a session — switching models, clearing context, reviewing changes, or kicking off a multi-step workflow — without writing a full <a href="prompt.html">prompt</a>. There are <strong>60+ built-in commands</strong>; type <code>/</code> followed by any letters to filter the list.
+    </p>
+
+    <h2>The Four Types</h2>
+    <p>
+        Not every slash command is the same kind of thing. They come from four sources:
+    </p>
+    <table class="topic-table">
+        <tr><th>Type</th><th>Examples</th><th>Where it comes from</th></tr>
+        <tr><td><strong>Built-in</strong></td><td><code>/help</code>, <code>/clear</code>, <code>/model</code>, <code>/init</code>, <code>/rewind</code></td><td>Ship with Claude Code</td></tr>
+        <tr><td><strong>Skills</strong></td><td><code>/commit</code>, <code>/optimize</code>, <code>/pr</code></td><td>User-defined <a href="claude-skills.html">SKILL.md</a> files</td></tr>
+        <tr><td><strong>Plugin commands</strong></td><td><code>/review-pr</code>, <code>/deploy</code></td><td>Installed <a href="plugins.html">plugins</a></td></tr>
+        <tr><td><strong>MCP prompts</strong></td><td><code>/mcp__github__list_prs</code></td><td><a href="mcp.html">MCP servers</a></td></tr>
+    </table>
+
+    <h2>Custom Commands Are Now Skills</h2>
+    <p>
+        Custom slash commands have been <strong>merged into <a href="claude-skills.html">skills</a></strong>. Older files in <code>.claude/commands/</code> still work, but the recommended way to create a new command is a skill: a folder with a <code>SKILL.md</code> file whose <code>name</code> becomes the <code>/command-name</code>. Skills can do more than legacy commands — bundle scripts and templates, accept arguments, and even be auto-invoked by Claude when relevant.
+    </p>
+
+    <h2>Example: the /pr Command</h2>
+    <p>
+        A custom <code>/pr</code> command can walk through an entire pull-request checklist — formatting code, running tests, reviewing the diff, and writing a conventional commit message — all from two keystrokes:
+    </p>
+    <img class="screenshot" src="../assets/pr-slash-command.png" alt="The /pr slash command running in Claude Code, showing a todo list of PR preparation steps">
+    <p class="screenshot-caption">The <code>/pr</code> command running: Claude builds a todo list and works through the PR preparation steps.</p>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>Slash commands are like the speed-dial buttons on a phone. Instead of typing out a full request every time, you press one shortcut and a whole routine happens. Some buttons are pre-set by the manufacturer (built-in), and some you program yourself for the calls you make often (skills).</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="claude-code.html">Claude Code</a></li>
+            <li><a href="claude-skills.html">Claude Skills</a></li>
+            <li><a href="plugins.html">Plugins</a></li>
+            <li><a href="mcp.html">MCP</a></li>
+            <li><a href="prompt.html">Prompt</a></li>
+            <li><a href="workflow.html">Workflow</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://code.claude.com/docs/en/slash-commands">Slash Commands — Claude Code Docs</a></li>
+            <li><a href="https://code.claude.com/docs/en/interactive-mode">Interactive Mode — Claude Code Docs</a></li>
+            <li><a href="https://code.claude.com/docs/en/skills">Extend Claude with Skills — Claude Code Docs</a></li>
+        </ol>
+    </div>
+    <script src="../js/search-index.js"></script>
+    <script src="../js/search.js"></script>
+</body>
+</html>

@@ -12,12 +12,18 @@
         <p class="subtitle">A comprehensive dictionary for understanding Artificial Intelligence — from fundamentals to modern tools.</p>
     </header>
 
+    <div id="glossary-search"></div>
+
     <p>
         This glossary is a Wikipedia-style reference covering the essential concepts, tools, and terminology needed to understand modern AI. Each topic links to related concepts, creating an interconnected knowledge base. Start anywhere — follow the links to build your understanding.
     </p>
 
     <p style="background:#f0f4ff; padding:12px 16px; border-radius:4px; border:1px solid #cde;">
         <strong><a href="quiz.html">Take the Quiz</a></strong> — Test your knowledge with 10 random questions from the glossary.
+    </p>
+
+    <p style="background:#f0f4ff; padding:12px 16px; border-radius:4px; border:1px solid #cde;">
+        <strong><a href="resources.html">Resources</a></strong> — Useful links and reusable prompts to help you work with AI.
     </p>
 
     <h2>All Topics (A-Z)</h2>
@@ -63,17 +69,24 @@
                 <a href="topics/claude.html">Claude</a>
                 <span class="topic-description">— Anthropic's AI assistant and language model family</span>
             </li>
-            <li>
+            <li class="major-topic">
                 <a href="topics/claude-code.html">Claude Code</a>
                 <span class="topic-description">— Agentic coding tool that lives in your terminal</span>
+                <span class="subtopics">
+                    <a href="topics/claude-skills.html">Skills</a>
+                    <a href="topics/slash-commands.html">Slash Commands</a>
+                    <a href="topics/claude-md.html">CLAUDE.md &amp; Memory</a>
+                    <a href="topics/subagents.html">Subagents</a>
+                    <a href="topics/mcp.html">MCP</a>
+                    <a href="topics/hooks.html">Hooks</a>
+                    <a href="topics/plugins.html">Plugins</a>
+                    <a href="topics/checkpoints.html">Checkpoints</a>
+                    <a href="topics/cli.html">CLI</a>
+                </span>
             </li>
             <li>
                 <a href="topics/claude-design.html">Claude Design</a>
                 <span class="topic-description">— AI-powered visual creation and prototyping tool</span>
-            </li>
-            <li>
-                <a href="topics/claude-skills.html">Claude Skills</a>
-                <span class="topic-description">— Reusable instruction sets that extend Claude Code</span>
             </li>
             <li>
                 <a href="topics/context-window.html">Context Window</a>
@@ -138,10 +151,6 @@
             <li>
                 <a href="topics/multi-agent.html">Multi-Agent Systems</a>
                 <span class="topic-description">— Multiple specialized AI agents coordinating on tasks</span>
-            </li>
-            <li>
-                <a href="topics/mcp.html">Model Context Protocol (MCP)</a>
-                <span class="topic-description">— Open standard connecting AI to external tools and data</span>
             </li>
             <li>
                 <a href="topics/natural-language-processing.html">Natural Language Processing</a>
@@ -242,8 +251,11 @@
     </p>
 
     <footer style="margin-top:40px; padding-top:15px; border-top:1px solid #ddd; font-size:0.85em; color:#666;">
-        <p>AI Glossary — 54 topics covering the foundations of artificial intelligence. Last updated: May 2026.</p>
+        <p>AI Glossary — 61 topics covering the foundations of artificial intelligence. Last updated: May 2026.</p>
         <p>Live at: <a href="https://novakovicluka97.github.io/kursevi-ai-glossary/">https://novakovicluka97.github.io/kursevi-ai-glossary/</a></p>
     </footer>
+
+    <script src="js/search-index.js"></script>
+    <script src="js/search.js"></script>
 </body>
 </html>

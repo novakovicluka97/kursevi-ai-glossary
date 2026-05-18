@@ -25,9 +25,9 @@
         Skills can be <strong>auto-invoked</strong> (Claude detects when they're relevant and uses them automatically) or <strong>user-invoked</strong> (triggered by typing a slash command like <code>/commit</code> or <code>/security-review</code>).
     </p>
 
-    <h2>Skills vs. Slash Commands</h2>
+    <h2>Skills and Slash Commands</h2>
     <p>
-        <strong>Slash commands</strong> are built-in, hardcoded operations (<code>/clear</code>, <code>/help</code>, <code>/model</code>) that do one specific thing without AI reasoning. <strong>Skills</strong> are prompt-based — they give Claude detailed instructions to orchestrate complex work using its tools. Skills are customizable and extensible; slash commands are fixed.
+        A <a href="slash-commands.html">slash command</a> is anything you invoke by typing <code>/</code> — and a skill is one kind of slash command. The <strong>built-in commands</strong> (<code>/clear</code>, <code>/help</code>, <code>/model</code>) are fixed operations that ship with Claude Code. <strong>Skills</strong> are the customizable kind: prompt-based instructions you write yourself, invoked with <code>/your-skill-name</code>. Custom slash commands have in fact been merged into skills — creating a new <code>/command</code> now means writing a <code>SKILL.md</code>. And unlike a fixed built-in, a skill can also be auto-invoked by Claude when it detects the skill is relevant.
     </p>
 
     <h2>SKILL.md vs. CLAUDE.md</h2>
@@ -57,6 +57,8 @@ Report findings with severity levels.</code></pre>
         <ul>
             <li><a href="claude-code.html">Claude Code</a></li>
             <li><a href="claude.html">Claude</a></li>
+            <li><a href="slash-commands.html">Slash Commands</a></li>
+            <li><a href="plugins.html">Plugins</a></li>
             <li><a href="prompt.html">Prompt</a></li>
             <li><a href="workflow.html">Workflow</a></li>
             <li><a href="ai-agent.html">AI Agent</a></li>
@@ -71,5 +73,7 @@ Report findings with severity levels.</code></pre>
             <li><a href="https://dev.to/muhammad_moeed/claude-code-skills-a-practical-guide-for-2026-3f6p">Claude Code Skills: A Practical Guide for 2026</a></li>
         </ol>
     </div>
+    <script src="../js/search-index.js"></script>
+    <script src="../js/search.js"></script>
 </body>
 </html>

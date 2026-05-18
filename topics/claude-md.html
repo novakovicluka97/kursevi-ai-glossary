@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLAUDE.md &amp; Memory - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; <a href="claude-code.html">Claude Code</a> &rsaquo; CLAUDE.md &amp; Memory
+    </nav>
+
+    <h1>CLAUDE.md &amp; Memory</h1>
+
+    <p class="definition">
+        <code>CLAUDE.md</code> is <a href="claude-code.html">Claude Code's</a> memory file — a <a href="markdown-format.html">Markdown</a> document of project standards, conventions, and preferences that is loaded automatically at the start of every session.
+    </p>
+
+    <h2>Why Memory Matters</h2>
+    <p>
+        An <a href="llm.html">LLM</a> forgets everything between conversations — each session starts with an empty <a href="context-window.html">context window</a>. Memory files solve this. By writing your build commands, coding conventions, and architecture notes into a <code>CLAUDE.md</code>, you give Claude Code persistent context it reads every time, so you never have to re-explain how your project works.
+    </p>
+
+    <h2>The Memory Hierarchy</h2>
+    <p>
+        Memory exists at several scopes, loaded together with higher levels taking precedence:
+    </p>
+    <table class="topic-table">
+        <tr><th>Scope</th><th>Location</th><th>Best for</th></tr>
+        <tr><td><strong>Managed policy</strong></td><td>System directory</td><td>Organization-wide rules</td></tr>
+        <tr><td><strong>Project memory</strong></td><td><code>./CLAUDE.md</code></td><td>Team standards (committed to git)</td></tr>
+        <tr><td><strong>User memory</strong></td><td><code>~/.claude/CLAUDE.md</code></td><td>Personal preferences (all projects)</td></tr>
+        <tr><td><strong>Local memory</strong></td><td><code>./CLAUDE.local.md</code></td><td>Personal project notes (git-ignored)</td></tr>
+        <tr><td><strong>Auto memory</strong></td><td><code>~/.claude/projects/&hellip;/memory/</code></td><td>Notes Claude writes itself</td></tr>
+    </table>
+
+    <h2>Creating and Editing Memory</h2>
+    <p>
+        The <code>/init</code> <a href="slash-commands.html">slash command</a> generates a starter <code>CLAUDE.md</code> by analyzing your codebase. The <code>/memory</code> command opens memory files in your editor. You can also just ask Claude conversationally — "remember that we always use TypeScript strict mode" — and it will offer to save the rule to the file you choose.
+    </p>
+    <img class="screenshot" src="../assets/memory-saved.png" alt="Claude Code confirming a new rule has been saved to a personal CLAUDE.md memory file">
+    <p class="screenshot-caption">Claude saving a new rule to a personal <code>~/.claude/CLAUDE.md</code> after confirming the location with the user.</p>
+
+    <h2>Auto Memory</h2>
+    <p>
+        Beyond the files you write, Claude Code keeps an <strong>auto memory</strong> directory where it records patterns and learnings on its own as it works — an entrypoint <code>MEMORY.md</code> plus optional topic files. Unlike <code>CLAUDE.md</code>, which you maintain by hand, auto memory is written by Claude itself and reloaded in future sessions.
+    </p>
+
+    <div class="ai-hint">
+        <code>CLAUDE.md</code> holds <em>always-on</em> standing instructions for the whole project. A skill's <a href="claude-skills.html"><code>SKILL.md</code></a> is an <em>on-demand</em> procedure for one task. If guidance applies to every task, it belongs in <code>CLAUDE.md</code>; if it is a recipe for one occasional job, make it a skill.
+    </p>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>A <code>CLAUDE.md</code> is like the employee handbook you hand a new contractor on day one. It explains "how we do things here" — the dress code, the tools, who to ask — so they don't have to relearn it each morning. Without it, you would brief the same contractor from scratch every single day.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="claude-code.html">Claude Code</a></li>
+            <li><a href="context-window.html">Context Window</a></li>
+            <li><a href="markdown-format.html">Markdown Format</a></li>
+            <li><a href="claude-skills.html">Claude Skills</a></li>
+            <li><a href="slash-commands.html">Slash Commands</a></li>
+            <li><a href="prompt.html">Prompt</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://code.claude.com/docs/en/memory">Manage Claude's Memory — Claude Code Docs</a></li>
+            <li><a href="https://code.claude.com/docs/en/settings">Settings — Claude Code Docs</a></li>
+            <li><a href="https://agents.md/">AGENTS.md — The Open Standard for AI Coding Agents</a></li>
+        </ol>
+    </div>
+    <script src="../js/search-index.js"></script>
+    <script src="../js/search.js"></script>
+</body>
+</html>

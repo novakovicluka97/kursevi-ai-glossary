@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plugins - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; <a href="claude-code.html">Claude Code</a> &rsaquo; Plugins
+    </nav>
+
+    <h1>Plugins</h1>
+
+    <p class="definition">
+        A plugin is a bundled, installable package that combines multiple <a href="claude-code.html">Claude Code</a> features — <a href="slash-commands.html">slash commands</a>, <a href="subagents.html">subagents</a>, <a href="mcp.html">MCP servers</a>, and <a href="hooks.html">hooks</a> — into one cohesive extension installed with a single command.
+    </p>
+
+    <h2>What is a Plugin?</h2>
+    <p>
+        Plugins are the highest-level way to extend Claude Code. Rather than copying a slash command here, configuring a subagent there, and wiring up hooks separately, a plugin packages all of it together. A user runs <code>/plugin install pr-review</code> and instantly gets every command, agent, and hook the plugin author bundled — fully configured.
+    </p>
+
+    <h2>How a Plugin Is Built</h2>
+    <p>
+        At its core a plugin is a folder with a <code>.claude-plugin/plugin.json</code> manifest declaring its name, version, and author. Around that manifest sit optional directories: <code>commands/</code>, <code>agents/</code>, <code>skills/</code>, <code>hooks/</code>, and MCP configuration. Claude Code reads the manifest, extracts the components, and registers them.
+    </p>
+
+    <h2>The Marketplace</h2>
+    <p>
+        Plugins are distributed through <strong>marketplaces</strong> — catalogs of available plugins. There is an official Anthropic-managed marketplace, community marketplaces, and private ones that companies run internally for their own tools and standards. Marketplaces can be added from a GitHub repository, a git URL, or a local path.
+    </p>
+
+    <h2>When to Use a Plugin</h2>
+    <p>
+        A single slash command or skill is fine for a personal, one-off workflow. Reach for a plugin when you need to <strong>bundle several features</strong>, <strong>share a setup with a team</strong>, or <strong>publish for distribution</strong>. Onboarding a new teammate becomes one install command instead of an afternoon of manual configuration.
+    </p>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>If a slash command is a single app, a plugin is an app bundle — and the marketplace is the app store. Instead of hunting down and configuring five separate tools, you install one package and everything works together out of the box, just like buying a productivity suite instead of assembling it piece by piece.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="claude-code.html">Claude Code</a></li>
+            <li><a href="slash-commands.html">Slash Commands</a></li>
+            <li><a href="subagents.html">Subagents</a></li>
+            <li><a href="hooks.html">Hooks</a></li>
+            <li><a href="mcp.html">MCP</a></li>
+            <li><a href="claude-skills.html">Claude Skills</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://code.claude.com/docs/en/plugins">Plugins — Claude Code Docs</a></li>
+            <li><a href="https://code.claude.com/docs/en/plugin-marketplaces">Plugin Marketplaces — Claude Code Docs</a></li>
+            <li><a href="https://code.claude.com/docs/en/discover-plugins">Discover Plugins — Claude Code Docs</a></li>
+        </ol>
+    </div>
+    <script src="../js/search-index.js"></script>
+    <script src="../js/search.js"></script>
+</body>
+</html>

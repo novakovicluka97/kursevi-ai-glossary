@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subagents - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; <a href="claude-code.html">Claude Code</a> &rsaquo; Subagents
+    </nav>
+
+    <h1>Subagents</h1>
+
+    <p class="definition">
+        A subagent is a specialized <a href="ai-agent.html">AI assistant</a> that <a href="claude-code.html">Claude Code</a> delegates a task to — running in its own <a href="context-window.html">context window</a>, with its own instructions and its own restricted set of tools.
+    </p>
+
+    <h2>What is a Subagent?</h2>
+    <p>
+        When the main Claude Code session hits a focused job — reviewing code, hunting a bug, writing tests — it can hand that job to a subagent instead of doing it inline. The subagent starts with a <strong>clean slate</strong>, receives only the context it needs, does the work, and returns a distilled result. The main conversation never sees the subagent's intermediate steps.
+    </p>
+
+    <h2>Why Delegate?</h2>
+    <table class="topic-table">
+        <tr><th>Benefit</th><th>What it means</th></tr>
+        <tr><td><strong>Context preservation</strong></td><td>The subagent's exploration doesn't clutter the main conversation's context window</td></tr>
+        <tr><td><strong>Specialized expertise</strong></td><td>A custom system prompt tunes it for one domain — security, testing, debugging</td></tr>
+        <tr><td><strong>Tool control</strong></td><td>A read-only reviewer can be denied write access entirely</td></tr>
+        <tr><td><strong>Parallelism</strong></td><td>Several subagents can work on different parts of a task at once</td></tr>
+    </table>
+
+    <h2>Built-in and Custom Subagents</h2>
+    <p>
+        Claude Code ships with built-in subagents like <strong>Explore</strong> (fast, read-only codebase search), <strong>Plan</strong> (research for plan mode), and <strong>general-purpose</strong> (complex multi-step work). You can also define your own as Markdown files in <code>.claude/agents/</code>, each with YAML frontmatter setting its name, description, allowed tools, and model. The <code>/agents</code> <a href="slash-commands.html">slash command</a> creates and manages them interactively.
+    </p>
+
+    <h2>Subagents vs. Multi-Agent Systems</h2>
+    <p>
+        Subagents are one form of a <a href="multi-agent.html">multi-agent system</a>. The defining trait is the <strong>parent–child relationship</strong>: a subagent is a delegated subtask that returns a result to its parent. This differs from "agent teams," where independent agents work side by side and message each other directly. Subagents also cannot spawn their own subagents — delegation is one level deep.
+    </p>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>A subagent is like a specialist a general contractor calls in. The contractor doesn't rewire the house personally — they bring in an electrician, hand over just the relevant blueprints, and get back a finished job. The electrician's mess of tools and trips to the truck never crowds the contractor's own workspace.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="claude-code.html">Claude Code</a></li>
+            <li><a href="multi-agent.html">Multi-Agent Systems</a></li>
+            <li><a href="ai-agent.html">AI Agent</a></li>
+            <li><a href="context-window.html">Context Window</a></li>
+            <li><a href="tool-use.html">Tool Use</a></li>
+            <li><a href="agent-sdk.html">Agent SDK</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://code.claude.com/docs/en/sub-agents">Subagents — Claude Code Docs</a></li>
+            <li><a href="https://code.claude.com/docs/en/agent-teams">Agent Teams — Claude Code Docs</a></li>
+        </ol>
+    </div>
+    <script src="../js/search-index.js"></script>
+    <script src="../js/search.js"></script>
+</body>
+</html>

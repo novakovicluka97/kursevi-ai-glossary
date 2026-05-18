@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code CLI - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; <a href="claude-code.html">Claude Code</a> &rsaquo; CLI
+    </nav>
+
+    <h1>Claude Code CLI</h1>
+
+    <p class="definition">
+        The CLI (Command-Line Interface) is how you launch and control <a href="claude-code.html">Claude Code</a> from your terminal — the <code>claude</code> command, its flags, and its modes for interactive use and scripted automation.
+    </p>
+
+    <h2>Interactive Mode vs. Print Mode</h2>
+    <p>
+        Running <code>claude</code> with no arguments starts an <strong>interactive REPL</strong> — a back-and-forth session with conversation history, tab completion, and <a href="slash-commands.html">slash commands</a>. Adding the <code>-p</code> (print) flag switches to <strong>headless mode</strong>: Claude answers a single query and exits, with no interface. Print mode is what makes Claude scriptable.
+    </p>
+    <table class="topic-table">
+        <tr><th>Command</th><th>What it does</th></tr>
+        <tr><td><code>claude</code></td><td>Start an interactive session</td></tr>
+        <tr><td><code>claude -p "query"</code></td><td>Answer one query, then exit (headless)</td></tr>
+        <tr><td><code>claude -c</code></td><td>Continue the most recent conversation</td></tr>
+        <tr><td><code>cat log.txt | claude -p "explain"</code></td><td>Pipe content in for analysis</td></tr>
+    </table>
+
+    <h2>Headless Mode for Automation</h2>
+    <p>
+        Because print mode reads from standard input and can emit JSON (<code>--output-format json</code>), Claude Code drops into pipelines and CI/CD jobs like any other command-line tool. A GitHub Actions workflow can run <code>claude -p</code> to review every pull request automatically — the same way it might run a linter or test suite.
+    </p>
+
+    <h2>Permission Modes</h2>
+    <p>
+        The <code>--permission-mode</code> flag controls how much autonomy Claude Code has, balancing speed against oversight:
+    </p>
+    <table class="topic-table">
+        <tr><th>Mode</th><th>Behavior</th></tr>
+        <tr><td><code>default</code></td><td>Ask for approval on risky actions</td></tr>
+        <tr><td><code>plan</code></td><td>Read-only — analyze and plan, change nothing</td></tr>
+        <tr><td><code>acceptEdits</code></td><td>Auto-accept file edits, ask for the rest</td></tr>
+        <tr><td><code>auto</code></td><td>Approve safe actions, prompt on risky ones</td></tr>
+    </table>
+    <p>
+        Flags like <code>--model</code> (choose Opus, Sonnet, or Haiku), <code>--allowedTools</code>, and <code>--max-turns</code> give finer control still — useful when you want a fast, cheap, tightly-scoped run.
+    </p>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>Interactive mode is like having a conversation with a colleague at your desk. Print mode is like leaving them a sticky note with one task — you come back later and the answer is done. The same person, two ways of working: one for thinking together, one for handing off a job to run on its own.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="claude-code.html">Claude Code</a></li>
+            <li><a href="slash-commands.html">Slash Commands</a></li>
+            <li><a href="ide.html">IDE</a></li>
+            <li><a href="api.html">API</a></li>
+            <li><a href="ai-automation.html">AI Automation</a></li>
+            <li><a href="ai-model.html">AI Model</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://code.claude.com/docs/en/cli-reference">CLI Reference — Claude Code Docs</a></li>
+            <li><a href="https://code.claude.com/docs/en/headless">Headless Mode — Claude Code Docs</a></li>
+        </ol>
+    </div>
+    <script src="../js/search-index.js"></script>
+    <script src="../js/search.js"></script>
+</body>
+</html>

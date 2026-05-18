@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources - AI Glossary</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .resource-section { margin-bottom: 35px; }
+
+        /* Useful link cards */
+        a.link-card {
+            display: block;
+            border: 1px solid #eaecf0;
+            border-left: 3px solid #0645ad;
+            background: #f8f9fa;
+            padding: 12px 16px;
+            margin: 10px 0;
+            border-radius: 3px;
+            color: inherit;
+        }
+        a.link-card:hover { background: #f0f4ff; text-decoration: none; }
+        .link-card .lc-title { color: #0645ad; font-weight: 600; font-size: 1.02em; }
+        .link-card .lc-domain { color: #888; font-size: 0.8em; margin-left: 8px; }
+        .link-card .lc-desc { display: block; color: #555; font-size: 0.9em; margin-top: 3px; }
+
+        /* Prompt cards */
+        .prompt-card {
+            border: 1px solid #eaecf0;
+            background: #fff;
+            border-radius: 4px;
+            padding: 14px 16px;
+            margin: 14px 0;
+        }
+        .prompt-tag {
+            display: inline-block;
+            background: #e1f5ee;
+            color: #085041;
+            font-size: 0.72em;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+        .prompt-card .pc-purpose { color: #555; font-size: 0.9em; margin: 8px 0 0; }
+        .prompt-text {
+            background: #f4f4f4;
+            border: 1px solid #e3e3e3;
+            border-radius: 3px;
+            padding: 10px 12px;
+            margin-top: 10px;
+            font-size: 0.92em;
+            color: #2a2a2a;
+            line-height: 1.5;
+        }
+        .btn-copy {
+            margin-top: 8px;
+            padding: 5px 12px;
+            font-size: 0.8em;
+            font-family: inherit;
+            border: 1px solid #a2a9b1;
+            background: #fff;
+            border-radius: 3px;
+            cursor: pointer;
+            color: #333;
+        }
+        .btn-copy:hover { background: #f0f4ff; border-color: #0645ad; }
+        .btn-copy.copied { background: #d4edda; border-color: #28a745; color: #155724; }
+    </style>
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="index.html">AI Glossary</a> &rsaquo; Resources
+    </nav>
+
+    <h1>Resources</h1>
+
+    <p class="definition">
+        A growing collection of useful links and reusable prompts to help you work with AI more effectively.
+    </p>
+
+    <div class="resource-section">
+        <h2>Useful Links</h2>
+        <p>Handpicked external sites worth bookmarking.</p>
+
+        <a class="link-card" href="https://claudemarketplaces.com/skills" target="_blank" rel="noopener">
+            <span class="lc-title">Claude Marketplaces — Skills</span>
+            <span class="lc-domain">claudemarketplaces.com</span>
+            <span class="lc-desc">A marketplace for discovering and installing <a href="topics/claude-skills.html">Claude Skills</a> — reusable instruction sets that extend Claude Code.</span>
+        </a>
+
+        <a class="link-card" href="https://swipefile.com/category/sales-pages" target="_blank" rel="noopener">
+            <span class="lc-title">Swipefile — Sales Pages</span>
+            <span class="lc-domain">swipefile.com</span>
+            <span class="lc-desc">A library of real-world sales page examples — useful inspiration when designing landing pages or marketing copy.</span>
+        </a>
+
+        <a class="link-card" href="https://bbycroft.net/llm" target="_blank" rel="noopener">
+            <span class="lc-title">LLM Visualizer</span>
+            <span class="lc-domain">bbycroft.net</span>
+            <span class="lc-desc">An interactive 3D walkthrough of how a <a href="topics/llm.html">large language model</a> actually works, layer by layer.</span>
+        </a>
+    </div>
+
+    <div class="resource-section">
+        <h2>Good Prompts</h2>
+        <p>Tested prompt snippets you can copy and drop into your own <a href="topics/prompt.html">prompts</a>.</p>
+
+        <div class="prompt-card">
+            <span class="prompt-tag">Video &amp; Lighting</span>
+            <p class="pc-purpose">Add to an image or video generation prompt to get cinematic, flattering portrait lighting.</p>
+            <div class="prompt-text">dramatic, natural side lighting from a window creates deep shadows and high contrast on the face. Warm color grading</div>
+            <button class="btn-copy" type="button">Copy</button>
+        </div>
+    </div>
+
+    <footer style="margin-top:40px; padding-top:15px; border-top:1px solid #ddd; font-size:0.85em; color:#666;">
+        <p>More links and prompts will be added over time. &mdash; <a href="index.html">Back to AI Glossary</a></p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.btn-copy').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var text = btn.parentElement.querySelector('.prompt-text').innerText;
+                navigator.clipboard.writeText(text).then(function () {
+                    btn.textContent = 'Copied!';
+                    btn.classList.add('copied');
+                    setTimeout(function () {
+                        btn.textContent = 'Copy';
+                        btn.classList.remove('copied');
+                    }, 1500);
+                });
+            });
+        });
+    </script>
+    <script src="js/search-index.js"></script>
+    <script src="js/search.js"></script>
+</body>
+</html>

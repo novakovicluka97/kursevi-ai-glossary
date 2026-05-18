@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hooks - AI Glossary</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb">
+        <a href="../index.html">AI Glossary</a> &rsaquo; <a href="claude-code.html">Claude Code</a> &rsaquo; Hooks
+    </nav>
+
+    <h1>Hooks</h1>
+
+    <p class="definition">
+        Hooks are automated actions that <a href="claude-code.html">Claude Code</a> runs in response to specific events during a session — such as before a file is written or after a command completes — enabling validation, formatting, and custom automation.
+    </p>
+
+    <h2>What are Hooks?</h2>
+    <p>
+        A hook ties an <strong>event</strong> to an <strong>action</strong>. You configure hooks in a settings file (<code>settings.json</code>), and Claude Code fires them automatically when the matching event occurs. Because they run deterministically — every time, no AI judgment involved — hooks turn "please remember to&hellip;" instructions into guarantees.
+    </p>
+
+    <h2>Hook Events</h2>
+    <p>
+        Claude Code supports roughly 29 events. The most commonly used:
+    </p>
+    <table class="topic-table">
+        <tr><th>Event</th><th>Fires when&hellip;</th><th>Typical use</th></tr>
+        <tr><td><code>PreToolUse</code></td><td>Before a tool runs</td><td>Validate or block a risky action</td></tr>
+        <tr><td><code>PostToolUse</code></td><td>After a tool succeeds</td><td>Auto-format code, scan for secrets</td></tr>
+        <tr><td><code>UserPromptSubmit</code></td><td>A prompt is submitted</td><td>Validate input before processing</td></tr>
+        <tr><td><code>SessionStart</code></td><td>A session begins</td><td>Set up environment variables</td></tr>
+        <tr><td><code>Stop</code></td><td>Claude finishes responding</td><td>Check that all tasks are complete</td></tr>
+    </table>
+
+    <h2>Hook Types</h2>
+    <p>
+        A hook's action can be a shell <strong>command</strong> (the default), an <strong>HTTP</strong> webhook, an LLM-evaluated <strong>prompt</strong>, an <strong>MCP tool</strong> call, or a subagent (<strong>agent</strong>). Command hooks receive event data as JSON on standard input and communicate back through exit codes — exit <code>0</code> to continue, exit <code>2</code> to block the operation.
+    </p>
+
+    <h2>What Hooks Are Good For</h2>
+    <p>
+        Common patterns include auto-formatting every file Claude edits, scanning new code for hardcoded secrets, blocking dangerous shell commands like <code>rm -rf /</code>, running tests before a commit, and sending the team a notification when a long task finishes. Hooks are how a team encodes its non-negotiable rules into the workflow itself.
+    </p>
+
+    <div class="ai-hint">
+        Hooks execute arbitrary shell commands on your machine — use them at your own risk. Validate inputs, quote variables, skip sensitive files, and test a hook in isolation before relying on it.
+    </div>
+
+    <div class="example-box">
+        <h4>Layman's Analogy</h4>
+        <p>Hooks are like the automatic sensors in a modern car. You don't have to remember to turn on the headlights at dusk or lock the doors when you drive off — the car detects the event and does it for you, every time. Hooks do the same for your coding workflow: the trigger happens, the action follows, no one has to remember.</p>
+    </div>
+
+    <div class="related-topics">
+        <h3>Related Topics</h3>
+        <ul>
+            <li><a href="claude-code.html">Claude Code</a></li>
+            <li><a href="workflow.html">Workflow</a></li>
+            <li><a href="ai-automation.html">AI Automation</a></li>
+            <li><a href="slash-commands.html">Slash Commands</a></li>
+            <li><a href="plugins.html">Plugins</a></li>
+            <li><a href="tool-use.html">Tool Use</a></li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://code.claude.com/docs/en/hooks">Hooks — Claude Code Docs</a></li>
+            <li><a href="https://code.claude.com/docs/en/settings">Settings — Claude Code Docs</a></li>
+        </ol>
+    </div>
+    <script src="../js/search-index.js"></script>
+    <script src="../js/search.js"></script>
+</body>
+</html>

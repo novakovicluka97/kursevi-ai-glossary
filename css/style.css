@@ -330,3 +330,123 @@ pre code {
     content: "→ ";
     color: #999;
 }
+
+/* ── Search ─────────────────────────────────────────────── */
+.search-box {
+    position: relative;
+    margin: 0 0 25px;
+}
+
+#search-input {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 1em;
+    font-family: inherit;
+    color: #333;
+    border: 1px solid #a2a9b1;
+    border-radius: 4px;
+    background: #fff;
+}
+
+#search-input:focus {
+    outline: none;
+    border-color: #0645ad;
+    box-shadow: 0 0 0 2px rgba(6, 69, 173, 0.15);
+}
+
+.search-results {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% + 4px);
+    z-index: 50;
+    max-height: 380px;
+    overflow-y: auto;
+    background: #fff;
+    border: 1px solid #a2a9b1;
+    border-radius: 4px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+a.search-result {
+    display: block;
+    padding: 9px 14px;
+    border-bottom: 1px solid #f0f0f0;
+    color: #333;
+    text-decoration: none;
+}
+
+a.search-result:last-child {
+    border-bottom: none;
+}
+
+a.search-result:hover,
+a.search-result.active {
+    background: #f0f4ff;
+    text-decoration: none;
+}
+
+.search-result .sr-title {
+    display: block;
+    color: #0645ad;
+    font-weight: 600;
+    font-size: 0.97em;
+}
+
+.search-result .sr-snippet {
+    display: block;
+    color: #666;
+    font-size: 0.85em;
+    line-height: 1.45;
+    margin-top: 2px;
+}
+
+.search-result mark {
+    background: #fff1a8;
+    color: inherit;
+    padding: 0 1px;
+    border-radius: 2px;
+}
+
+.search-empty {
+    padding: 12px 14px;
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* Screenshot images (used on topic pages) */
+.screenshot {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 15px 0 4px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.screenshot-caption {
+    font-size: 0.85em;
+    color: #666;
+    margin: 0 0 18px;
+    font-style: italic;
+}
+
+/* Comparison / reference tables on topic pages */
+table.topic-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 0.92em;
+}
+
+table.topic-table th {
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 2px solid #ddd;
+}
+
+table.topic-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+}
