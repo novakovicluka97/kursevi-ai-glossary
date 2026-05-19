@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>01 // The Three Things, Side by Side</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500;700&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0908; --bg-2: #15120e; --bg-3: #1f1a13;
+    --ink: #f0e6d2; --ink-dim: #9c8f7a; --ink-faint: #574f42;
+    --rule: #2a241c; --amber: #f0a93b; --rust: #c4421a;
+    --moss: #8aa83a; --teal: #4ba39e; --violet: #a17fc9;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg); color: var(--ink);
+    font-family: 'Sora', sans-serif; font-weight: 300; line-height: 1.55;
+    min-height: 100vh;
+  }
+  body::before {
+    content: ""; position: fixed; inset: 0;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(240, 169, 59, 0.05), transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(196, 66, 26, 0.04), transparent 40%);
+    pointer-events: none; z-index: 0;
+  }
+  /* Nav */
+  .site-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10, 9, 8, 0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule); padding: 14px 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 32px;
+    flex-wrap: wrap;
+  }
+  .site-title {
+    font-family: 'Fraunces', serif; font-size: 17px; font-weight: 500;
+    color: var(--ink); text-decoration: none; letter-spacing: -0.01em;
+  }
+  .site-title em { color: var(--amber); font-style: italic; }
+  .chapter-links { display: flex; gap: 4px; flex-wrap: wrap; }
+  .ch-link {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-faint); text-decoration: none;
+    padding: 6px 10px; border-radius: 3px; transition: all 0.18s;
+  }
+  .ch-link:hover { color: var(--ink); background: var(--bg-3); }
+  .ch-link.current { color: var(--amber); background: var(--bg-2); }
+  .ch-link .num { color: var(--amber); margin-right: 6px; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 48px 32px 80px; position: relative; z-index: 1; }
+  /* Header */
+  header.top { border-bottom: 1px solid var(--rule); padding-bottom: 24px; margin-bottom: 32px;
+    display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--amber); margin-bottom: 12px;
+  }
+  h1 {
+    font-family: 'Fraunces', serif; font-weight: 400;
+    font-size: clamp(38px, 5vw, 64px); line-height: 1.02; letter-spacing: -0.02em;
+  }
+  h1 em { font-style: italic; color: var(--amber); font-weight: 500; }
+  .subtitle { color: var(--ink-dim); max-width: 460px; font-size: 14px; text-align: right; }
+  /* Tabs */
+  .tabs { display: flex; gap: 0; margin-bottom: 32px; border-bottom: 1px solid var(--rule); flex-wrap: wrap; }
+  .tab {
+    background: none; border: none; color: var(--ink-dim);
+    font-family: 'Fraunces', serif; font-size: 22px; font-weight: 400;
+    padding: 14px 28px 14px 0; margin-right: 28px; cursor: pointer;
+    position: relative; transition: color 0.2s; letter-spacing: -0.01em;
+  }
+  .tab:hover { color: var(--ink); }
+  .tab.active { color: var(--ink); font-weight: 500; }
+  .tab.active::after { content: ""; position: absolute; bottom: -1px; left: 0; right: 28px; height: 2px; background: var(--amber); }
+  .tab .num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--amber); margin-right: 8px; vertical-align: top; }
+  /* Panels */
+  .panel { display: none; animation: fade 0.35s ease; }
+  .panel.active { display: block; }
+  @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  /* Intro */
+  .intro { display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; margin-bottom: 32px;
+    padding: 28px; background: var(--bg-2); border: 1px solid var(--rule); border-radius: 4px; }
+  .intro h2 { font-family: 'Fraunces', serif; font-size: 32px; font-weight: 500;
+    margin-bottom: 14px; letter-spacing: -0.01em; }
+  .intro p { color: var(--ink-dim); font-size: 15px; }
+  .intro p + p { margin-top: 12px; }
+  .intro .meta {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    border-left: 2px solid var(--amber); padding-left: 16px;
+  }
+  .meta .row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dotted var(--rule); }
+  .meta .row:last-child { border-bottom: none; }
+  .meta .row .k { color: var(--ink-faint); }
+  .meta .row .v { color: var(--ink); }
+  /* Sim */
+  .sim { background: var(--bg-2); border: 1px solid var(--rule); border-radius: 4px; padding: 28px; margin-bottom: 24px; }
+  .sim-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amber); margin-bottom: 6px; }
+  .sim h3 { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 400; letter-spacing: -0.01em; margin-bottom: 20px; }
+  /* Skills sim */
+  .skills-grid { display: grid; grid-template-columns: 280px 1fr 320px; gap: 18px; align-items: stretch; }
+  .filetree, .prompt-area, .context-window {
+    background: var(--bg); border: 1px solid var(--rule); padding: 16px; border-radius: 3px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; min-height: 380px;
+  }
+  .filetree .label, .prompt-area .label, .context-window .label {
+    color: var(--ink-faint); font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px dotted var(--rule);
+  }
+  .skill-item {
+    padding: 6px 8px; margin: 3px 0; border-left: 2px solid transparent;
+    color: var(--ink-dim); cursor: pointer; transition: all 0.18s; border-radius: 2px;
+  }
+  .skill-item:hover { background: var(--bg-3); color: var(--ink); }
+  .skill-item.scanning { color: var(--amber); border-left-color: var(--amber); }
+  .skill-item.matched { background: rgba(240, 169, 59, 0.12); color: var(--amber); border-left-color: var(--amber); }
+  .skill-item .name { display: block; font-weight: 500; }
+  .skill-item .desc { display: block; font-size: 10px; color: var(--ink-faint); margin-top: 2px; line-height: 1.4; }
+  .skill-item.matched .desc { color: var(--ink); }
+  .prompt-input {
+    width: 100%; background: var(--bg-3); border: 1px solid var(--rule);
+    color: var(--ink); padding: 10px 12px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; border-radius: 3px; outline: none;
+  }
+  .prompt-input:focus { border-color: var(--amber); }
+  .examples { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .example-chip {
+    background: var(--bg-3); border: 1px solid var(--rule); color: var(--ink-dim);
+    padding: 4px 10px; font-size: 10px; border-radius: 999px; cursor: pointer;
+    font-family: 'JetBrains Mono', monospace; transition: all 0.18s;
+  }
+  .example-chip:hover { color: var(--amber); border-color: var(--amber); }
+  .run-btn {
+    margin-top: 14px; background: var(--amber); color: #1a1408; border: none;
+    padding: 10px 18px; font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; cursor: pointer;
+    border-radius: 3px; transition: transform 0.12s;
+  }
+  .run-btn:hover { transform: translateY(-1px); background: #ffba47; }
+  .log {
+    margin-top: 16px; padding: 10px; background: var(--bg-3);
+    border-left: 2px solid var(--rust); border-radius: 2px;
+    font-size: 11px; color: var(--ink-dim); line-height: 1.6; min-height: 80px;
+  }
+  .log .step { display: block; padding: 2px 0; }
+  .log .step.active { color: var(--amber); }
+  .log .step.done { color: var(--moss); }
+  .ctx-bar { height: 14px; background: var(--bg-3); border: 1px solid var(--rule);
+    position: relative; margin-bottom: 14px; border-radius: 2px; overflow: hidden; }
+  .ctx-fill { height: 100%; background: linear-gradient(90deg, var(--moss), var(--amber)); width: 0%; transition: width 0.5s ease; }
+  .ctx-label { font-size: 10px; color: var(--ink-faint); display: flex; justify-content: space-between; margin-bottom: 4px; }
+  .loaded-pill {
+    display: inline-block; padding: 4px 10px; margin: 3px 3px 3px 0;
+    background: var(--bg-3); border: 1px solid var(--rule);
+    font-size: 10px; border-radius: 999px;
+  }
+  .loaded-pill.head { color: var(--ink-faint); border-style: dotted; }
+  .loaded-pill.body { color: var(--amber); border-color: var(--amber); background: rgba(240, 169, 59, 0.08); }
+  /* MCP arch */
+  .arch { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .arch-node { background: var(--bg); border: 1px solid var(--rule); padding: 18px;
+    border-radius: 3px; text-align: center; position: relative; }
+  .arch-node .nlabel {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 8px;
+  }
+  .arch-node .ntitle { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; margin-bottom: 6px; }
+  .arch-node .ndesc { font-size: 11px; color: var(--ink-dim); }
+  .arch-node.host { border-color: var(--amber); }
+  .arch-node.proto { border-color: var(--rust); }
+  .arch-node.server { border-color: var(--moss); }
+  .arch-arrow {
+    position: absolute; right: -16px; top: 50%; transform: translateY(-50%);
+    color: var(--amber); font-family: 'JetBrains Mono', monospace; font-size: 14px; z-index: 2;
+  }
+  .mcp-flow { background: var(--bg); border: 1px solid var(--rule); padding: 18px;
+    border-radius: 3px; font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+  .flow-line {
+    padding: 8px 12px; margin: 4px 0; border-left: 2px solid var(--rule);
+    color: var(--ink-dim); opacity: 0.35; transition: all 0.4s;
+  }
+  .flow-line.active { opacity: 1; border-left-color: var(--amber); background: rgba(240, 169, 59, 0.06); color: var(--ink); }
+  .flow-line .dir { display: inline-block; width: 60px; color: var(--amber); font-weight: 700; }
+  .flow-line.recv .dir { color: var(--moss); }
+  /* Code */
+  .code {
+    background: var(--bg); border: 1px solid var(--rule); border-radius: 3px;
+    padding: 16px; font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    color: var(--ink-dim); overflow-x: auto; line-height: 1.65; position: relative;
+    white-space: pre;
+  }
+  .code .filename {
+    position: absolute; top: 0; right: 0; background: var(--amber); color: #1a1408;
+    padding: 3px 10px; font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+    border-radius: 0 3px 0 3px;
+  }
+  .code .kw { color: var(--amber); }
+  .code .str { color: #c4e17f; }
+  .code .com { color: var(--ink-faint); font-style: italic; }
+  .code .key { color: #f0a93b; }
+  .code .punct { color: var(--ink-faint); }
+  /* Plugins */
+  .plugin-stage { background: var(--bg); border: 1px solid var(--rule); padding: 24px; border-radius: 3px; position: relative; }
+  .plugin-box {
+    border: 2px dashed var(--amber); padding: 20px; border-radius: 4px;
+    background: rgba(240, 169, 59, 0.04); position: relative;
+  }
+  .plugin-box::before {
+    content: "PLUGIN: legal-counsel"; position: absolute; top: -12px; left: 20px;
+    background: var(--bg); padding: 0 10px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.14em; color: var(--amber);
+  }
+  .plugin-contents { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin-top: 8px; }
+  .plugin-piece {
+    background: var(--bg-2); border: 1px solid var(--rule); padding: 14px;
+    border-radius: 3px; transition: all 0.2s; cursor: pointer;
+  }
+  .plugin-piece:hover { border-color: var(--amber); transform: translateY(-2px); }
+  .plugin-piece .pname { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--amber); margin-bottom: 4px; }
+  .plugin-piece .ptype { font-size: 10px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+  .plugin-piece .pdesc { font-size: 11px; color: var(--ink-dim); }
+  /* Compare table */
+  .compare {
+    width: 100%; border-collapse: collapse; margin-top: 32px;
+    background: var(--bg-2); border: 1px solid var(--rule);
+    border-radius: 4px; overflow: hidden; font-size: 13px;
+  }
+  .compare th, .compare td {
+    padding: 14px 18px; text-align: left; border-bottom: 1px solid var(--rule); vertical-align: top;
+  }
+  .compare th {
+    background: var(--bg-3); font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); font-weight: 500;
+  }
+  .compare td:first-child {
+    font-family: 'JetBrains Mono', monospace; color: var(--ink-faint); font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.08em; width: 140px;
+  }
+  /* Resources */
+  .resources { margin-top: 24px; padding-top: 20px; border-top: 1px dotted var(--rule); }
+  .resources .label {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--amber); margin-bottom: 12px;
+  }
+  .resources a {
+    display: inline-block; color: var(--ink); text-decoration: none;
+    padding: 6px 12px; margin: 4px 6px 4px 0; background: var(--bg-3);
+    border: 1px solid var(--rule); border-radius: 3px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; transition: all 0.18s;
+  }
+  .resources a:hover { border-color: var(--amber); color: var(--amber); }
+  .resources a::before { content: "↗ "; color: var(--amber); }
+  /* Notes */
+  .note {
+    margin: 16px 0; padding: 14px 18px;
+    border-left: 3px solid var(--amber); background: rgba(240, 169, 59, 0.05);
+    font-size: 13px; color: var(--ink-dim); border-radius: 0 3px 3px 0;
+  }
+  .note strong { color: var(--ink); font-weight: 500; }
+  /* Page nav */
+  .page-nav {
+    margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--rule);
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  }
+  .page-nav a {
+    color: var(--ink); text-decoration: none; padding: 16px 20px;
+    border: 1px solid var(--rule); border-radius: 3px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    background: var(--bg-2); transition: all 0.2s; flex: 1; max-width: 360px;
+  }
+  .page-nav a:hover { border-color: var(--amber); transform: translateY(-2px); }
+  .page-nav a.next { text-align: right; }
+  .page-nav .pn-label {
+    display: block; font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 4px;
+  }
+  .page-nav .pn-title { color: var(--ink); font-size: 14px; font-weight: 500; }
+  .page-nav a.next .pn-label::after { content: " →"; color: var(--amber); }
+  .page-nav a.prev .pn-label::before { content: "← "; color: var(--amber); }
+  @media (max-width: 900px) {
+    .skills-grid { grid-template-columns: 1fr; }
+    .arch { grid-template-columns: 1fr; }
+    .arch-arrow { display: none; }
+    .intro { grid-template-columns: 1fr; }
+    header.top { flex-direction: column; align-items: flex-start; }
+    .subtitle { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <a href="../index.html" class="site-title">AI <em>Glossary</em></a>
+  <nav class="chapter-links">
+    <a href="../index.html" class="ch-link">Glossary</a>
+    <a href="../guides.html" class="ch-link current">Guides</a>
+    <a href="../resources.html" class="ch-link">Resources</a>
+    <span style="width:1px;background:#2a241c;align-self:stretch;margin:5px 8px"></span>
+    <a href="guide-01-overview.html" class="ch-link current"><span class="num">01</span>Overview</a>
+    <a href="guide-02-mcp-from-zero.html" class="ch-link"><span class="num">02</span>MCP From Zero</a>
+    <a href="guide-03-what-claude-sees.html" class="ch-link"><span class="num">03</span>What Claude Sees</a>
+    <a href="guide-04-convergence.html" class="ch-link"><span class="num">04</span>Convergence</a>
+    <a href="guide-05-starter-pack.html" class="ch-link"><span class="num">05</span>Starter Pack</a>
+  </nav>
+</header>
+
+<div class="wrap">
+
+  <header class="top">
+    <div>
+      <div class="eyebrow">// chapter 01 // the three things, side by side</div>
+      <h1>Skills <em>vs</em> MCP <em>vs</em> Plugins</h1>
+    </div>
+    <div class="subtitle">Four tabs. Each one walks through one concept with a working simulation. Start with skills, work through to the compare table.</div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="skills"><span class="num">01</span>Skills</button>
+    <button class="tab" data-tab="mcp"><span class="num">02</span>MCP</button>
+    <button class="tab" data-tab="plugins"><span class="num">03</span>Plugins</button>
+    <button class="tab" data-tab="compare"><span class="num">04</span>Compare</button>
+  </nav>
+
+  <!-- SKILLS -->
+  <section class="panel active" id="panel-skills">
+    <div class="intro">
+      <div>
+        <h2>A Skill is a folder with a markdown file.</h2>
+        <p>A Skill is literally a folder named after the skill, containing one required file called <code style="color:var(--amber);font-family:'JetBrains Mono',monospace">SKILL.md</code>. The folder can also contain helper scripts, reference docs, templates, whatever the skill needs.</p>
+        <p>On Windows 11, personal skills live in <code style="color:var(--amber);font-family:'JetBrains Mono',monospace">C:\Users\you\.claude\skills\</code>. Project skills go in <code style="color:var(--amber);font-family:'JetBrains Mono',monospace">.claude\skills\</code> inside your repo so the whole team gets them.</p>
+      </div>
+      <div class="meta">
+        <div class="row"><span class="k">file</span><span class="v">SKILL.md (required)</span></div>
+        <div class="row"><span class="k">format</span><span class="v">YAML + Markdown</span></div>
+        <div class="row"><span class="k">trigger</span><span class="v">description match</span></div>
+        <div class="row"><span class="k">cost at idle</span><span class="v">~30 to 50 tokens</span></div>
+        <div class="row"><span class="k">cost when fired</span><span class="v">full body loads</span></div>
+        <div class="row"><span class="k">where</span><span class="v">~/.claude/skills/</span></div>
+      </div>
+    </div>
+
+    <div class="sim">
+      <div class="sim-title">// simulation 01</div>
+      <h3>Watch conditional loading actually happen</h3>
+      <p style="color:var(--ink-dim);margin-bottom:20px;font-size:14px;max-width:780px">
+        At startup, Claude does NOT load the full body of every skill. It only reads the small description from each SKILL.md frontmatter. That is 30 to 50 tokens per skill. So you can have 100 skills installed and pay almost nothing. When you send a prompt, Claude matches it against those descriptions. Only the matching skill's full body gets pulled into context.
+      </p>
+      <div class="skills-grid">
+        <div class="filetree">
+          <div class="label">~/.claude/skills/</div>
+          <div class="skill-item" data-skill="git-commit-writer">
+            <span class="name">git-commit-writer/</span>
+            <span class="desc">Writes conventional commit messages from staged diffs.</span>
+          </div>
+          <div class="skill-item" data-skill="code-reviewer">
+            <span class="name">code-reviewer/</span>
+            <span class="desc">Reviews code changes for bugs, smells, missing tests.</span>
+          </div>
+          <div class="skill-item" data-skill="pdf-generator">
+            <span class="name">pdf-generator/</span>
+            <span class="desc">Generates PDF invoices, reports, contracts from templates.</span>
+          </div>
+          <div class="skill-item" data-skill="meeting-summarizer">
+            <span class="name">meeting-summarizer/</span>
+            <span class="desc">Summarizes meeting transcripts into action items and decisions.</span>
+          </div>
+          <div class="skill-item" data-skill="sql-explainer">
+            <span class="name">sql-explainer/</span>
+            <span class="desc">Explains SQL queries in plain English, flags performance issues.</span>
+          </div>
+        </div>
+        <div class="prompt-area">
+          <div class="label">your prompt</div>
+          <input type="text" class="prompt-input" id="prompt" placeholder="type a request..." value="write me a commit message for this diff">
+          <div class="examples">
+            <span class="example-chip" data-fill="write me a commit message for this diff">commit</span>
+            <span class="example-chip" data-fill="review my pull request for issues">review</span>
+            <span class="example-chip" data-fill="generate a PDF invoice for client ACME">pdf invoice</span>
+            <span class="example-chip" data-fill="summarize this meeting transcript">meeting</span>
+            <span class="example-chip" data-fill="why is this SQL query so slow">sql</span>
+            <span class="example-chip" data-fill="what is the weather today">unmatched</span>
+          </div>
+          <button class="run-btn" id="run">Send prompt &rarr;</button>
+          <div class="log" id="log"><span class="step" style="color:var(--ink-faint)">// awaiting prompt</span></div>
+        </div>
+        <div class="context-window">
+          <div class="label">Claude's context window</div>
+          <div class="ctx-label"><span id="ctx-pct">0%</span><span id="ctx-tokens">0 / 1,000,000 tok</span></div>
+          <div class="ctx-bar"><div class="ctx-fill" id="ctx-fill"></div></div>
+          <div style="font-size:10px;color:var(--ink-faint);margin-bottom:10px">LOADED:</div>
+          <div id="loaded"></div>
+        </div>
+      </div>
+      <div class="note">
+        <strong>Why "conditional" makes sense:</strong> the SKILL.md sits on disk the whole time. The headers (name + description) are scanned once and stay in context as tiny breadcrumbs. The body is read from disk only when a match happens, then dropped from context when the session ends. Anthropic calls this <em>progressive disclosure</em>.
+      </div>
+    </div>
+
+    <div class="sim">
+      <div class="sim-title">// anatomy</div>
+      <h3>What an actual SKILL.md looks like</h3>
+      <div class="code"><span class="filename">SKILL.md</span>
+<span class="punct">---</span>
+<span class="key">name</span><span class="punct">:</span> git-commit-writer
+<span class="key">description</span><span class="punct">:</span> <span class="str">Writes conventional commit messages from staged git diffs.</span>
+  <span class="str">Use when the user asks for a commit message, wants to summarize</span>
+  <span class="str">staged changes, or asks "what should I commit this as".</span>
+<span class="key">allowed-tools</span><span class="punct">:</span> Bash Read
+<span class="punct">---</span>
+
+<span class="com"># Git Commit Writer</span>
+
+<span class="com">## Workflow</span>
+
+1. Run <span class="str">`git diff --staged`</span> to see what's staged.
+2. If nothing is staged, ask the user to stage their changes.
+3. Pick a conventional commit type (feat, fix, chore, docs, refactor).
+4. Write a subject line under 50 characters.
+5. Add a body if the change is non-trivial.
+</div>
+    </div>
+
+    <div class="resources">
+      <div class="label">// download real skills to inspect</div>
+      <a href="https://github.com/anthropics/skills" target="_blank">anthropics/skills (official examples)</a>
+      <a href="https://www.skills.sh/" target="_blank">skills.sh directory</a>
+      <a href="https://claudemarketplaces.com/" target="_blank">claudemarketplaces.com (4,200+ skills)</a>
+      <a href="https://code.claude.com/docs/en/skills" target="_blank">Official skills documentation</a>
+    </div>
+  </section>
+
+  <!-- MCP -->
+  <section class="panel" id="panel-mcp">
+    <div class="intro">
+      <div>
+        <h2>MCP is plumbing, not a file.</h2>
+        <p>MCP is not a file. It is not a folder. It is not a description in markdown. It is a <strong style="color:var(--ink)">running program</strong> that exposes tools over a documented protocol, plus a tiny <strong style="color:var(--ink)">JSON config</strong> that tells Claude how to launch or reach that program.</p>
+        <p>USB-C is the right analogy: build one server for Postgres and it works with Claude, ChatGPT, Cursor, anything that speaks MCP. OpenAI adopted MCP in March 2025. Google DeepMind in April. Anthropic donated it to the Linux Foundation at the end of 2025.</p>
+      </div>
+      <div class="meta">
+        <div class="row"><span class="k">what it is</span><span class="v">a running process</span></div>
+        <div class="row"><span class="k">protocol</span><span class="v">JSON-RPC 2.0</span></div>
+        <div class="row"><span class="k">transports</span><span class="v">stdio, HTTP, SSE</span></div>
+        <div class="row"><span class="k">config file</span><span class="v">claude_desktop_config.json</span></div>
+        <div class="row"><span class="k">on Windows 11</span><span class="v">%APPDATA%\Claude\</span></div>
+        <div class="row"><span class="k">exposes</span><span class="v">tools, resources, prompts</span></div>
+      </div>
+    </div>
+
+    <div class="sim">
+      <div class="sim-title">// architecture</div>
+      <h3>The three pieces in motion</h3>
+      <div class="arch">
+        <div class="arch-node host">
+          <div class="nlabel">Step 01</div>
+          <div class="ntitle">Host</div>
+          <div class="ndesc">Claude Desktop, Claude Code, Cursor, etc. The thing you actually talk to. It runs an MCP client inside.</div>
+          <div class="arch-arrow">&rarr;</div>
+        </div>
+        <div class="arch-node proto">
+          <div class="nlabel">Step 02</div>
+          <div class="ntitle">Protocol</div>
+          <div class="ndesc">JSON-RPC messages flow over stdio (local) or HTTP (remote). Client asks "what tools?", server lists them. Client calls a tool, server runs it.</div>
+          <div class="arch-arrow">&rarr;</div>
+        </div>
+        <div class="arch-node server">
+          <div class="nlabel">Step 03</div>
+          <div class="ntitle">Server</div>
+          <div class="ndesc">A separate program. The one that actually talks to GitHub, Postgres, your filesystem, an API.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sim">
+      <div class="sim-title">// simulation 02</div>
+      <h3>Watch an MCP session unfold</h3>
+      <p style="color:var(--ink-dim);font-size:14px;max-width:780px;margin-bottom:18px">
+        The exact JSON-RPC messages exchanged when Claude reads an issue from a GitHub repo.
+      </p>
+      <button class="run-btn" id="play-mcp">Play handshake &rarr;</button>
+      <div class="mcp-flow" id="mcp-flow" style="margin-top:16px">
+        <div class="flow-line" data-step="1"><span class="dir">CLIENT</span> initialize { protocolVersion: "2024-11-05", capabilities: {...} }</div>
+        <div class="flow-line recv" data-step="2"><span class="dir">SERVER</span> serverInfo { name: "github-mcp", version: "1.0.0" }</div>
+        <div class="flow-line" data-step="3"><span class="dir">CLIENT</span> tools/list</div>
+        <div class="flow-line recv" data-step="4"><span class="dir">SERVER</span> tools: [ get_issue, create_pr, list_repos, search_code, ... ]</div>
+        <div class="flow-line" data-step="5" style="background:rgba(196,66,26,0.06);border-left-color:var(--rust)!important"><span class="dir" style="color:var(--rust)!important">USER</span> "read issue #42 in anthropics/claude-code"</div>
+        <div class="flow-line" data-step="6"><span class="dir">CLIENT</span> tools/call { name: "get_issue", args: { repo: "anthropics/claude-code", number: 42 } }</div>
+        <div class="flow-line recv" data-step="7"><span class="dir">SERVER</span> result: { title: "Plugin marketplace pagination bug", body: "...", state: "open" }</div>
+        <div class="flow-line" data-step="8" style="background:rgba(107,142,35,0.06);border-left-color:var(--moss)!important"><span class="dir" style="color:var(--moss)!important">CLAUDE</span> "Issue #42 is open: a pagination bug in the marketplace browser."</div>
+      </div>
+    </div>
+
+    <div class="sim">
+      <div class="sim-title">// config</div>
+      <h3>The actual config file on Windows 11</h3>
+      <p style="color:var(--ink-dim);font-size:14px;margin-bottom:16px">
+        Edit <code style="color:var(--amber);font-family:'JetBrains Mono',monospace">%APPDATA%\Claude\claude_desktop_config.json</code>, paste in your snippet, save, fully quit and restart Claude Desktop. The server appears as a hammer icon.
+      </p>
+      <div class="code"><span class="filename">claude_desktop_config.json</span>
+<span class="punct">{</span>
+  <span class="key">"mcpServers"</span><span class="punct">:</span> <span class="punct">{</span>
+    <span class="key">"filesystem"</span><span class="punct">:</span> <span class="punct">{</span>
+      <span class="key">"command"</span><span class="punct">:</span> <span class="str">"npx"</span><span class="punct">,</span>
+      <span class="key">"args"</span><span class="punct">:</span> <span class="punct">[</span><span class="str">"-y"</span><span class="punct">,</span> <span class="str">"@modelcontextprotocol/server-filesystem"</span><span class="punct">,</span> <span class="str">"C:\\Users\\you\\Documents"</span><span class="punct">]</span>
+    <span class="punct">},</span>
+    <span class="key">"github"</span><span class="punct">:</span> <span class="punct">{</span>
+      <span class="key">"command"</span><span class="punct">:</span> <span class="str">"docker"</span><span class="punct">,</span>
+      <span class="key">"args"</span><span class="punct">:</span> <span class="punct">[</span><span class="str">"run"</span><span class="punct">,</span> <span class="str">"-i"</span><span class="punct">,</span> <span class="str">"--rm"</span><span class="punct">,</span> <span class="str">"ghcr.io/github/github-mcp-server"</span><span class="punct">],</span>
+      <span class="key">"env"</span><span class="punct">:</span> <span class="punct">{</span> <span class="key">"GITHUB_PERSONAL_ACCESS_TOKEN"</span><span class="punct">:</span> <span class="str">"ghp_xxx..."</span> <span class="punct">}</span>
+    <span class="punct">}</span>
+  <span class="punct">}</span>
+<span class="punct">}</span></div>
+      <div class="note">
+        <strong>Skills are static instructions. MCP is a live network connection to running code.</strong> That is the deepest difference between them.
+      </div>
+    </div>
+
+    <div class="resources">
+      <div class="label">// download real MCP servers</div>
+      <a href="https://github.com/modelcontextprotocol/servers" target="_blank">modelcontextprotocol/servers</a>
+      <a href="https://github.com/github/github-mcp-server" target="_blank">github-mcp-server</a>
+      <a href="https://modelcontextprotocol.io/" target="_blank">MCP specification</a>
+      <a href="https://claudemarketplaces.com/mcp" target="_blank">770+ MCP servers directory</a>
+    </div>
+  </section>
+
+  <!-- PLUGINS -->
+  <section class="panel" id="panel-plugins">
+    <div class="intro">
+      <div>
+        <h2>A Plugin is the shipping container.</h2>
+        <p>If a Skill is a recipe card and an MCP server is the kitchen plumbing, a Plugin is the whole kitchen, fully stocked and ready to cook. A Plugin is a folder that bundles Skills, MCP server configs, slash commands, hooks, and subagents into one installable package.</p>
+        <p>Plugins shipped with Claude Cowork on January 30, 2026. As of May 16, 2026 there are 1,163 plugins across 69 marketplaces. Anthropic just released 12 legal practice-area plugins plus 20+ new connectors on May 13, 2026.</p>
+      </div>
+      <div class="meta">
+        <div class="row"><span class="k">what it is</span><span class="v">a folder bundle</span></div>
+        <div class="row"><span class="k">manifest</span><span class="v">.claude-plugin/plugin.json</span></div>
+        <div class="row"><span class="k">can contain</span><span class="v">skills + MCP + cmds</span></div>
+        <div class="row"><span class="k">install</span><span class="v">/plugin install &lt;repo&gt;</span></div>
+        <div class="row"><span class="k">distribution</span><span class="v">marketplace = git repo</span></div>
+        <div class="row"><span class="k">May 2026 count</span><span class="v">1,163+ plugins</span></div>
+      </div>
+    </div>
+
+    <div class="sim">
+      <div class="sim-title">// simulation 03</div>
+      <h3>What is inside an actual plugin</h3>
+      <p style="color:var(--ink-dim);font-size:14px;max-width:780px;margin-bottom:20px">
+        Hover any piece to see what it does. This shows why a plugin is fundamentally different from a Skill or an MCP server: it is the bundle that ships them all together.
+      </p>
+      <div class="plugin-stage">
+        <div class="plugin-box">
+          <div class="plugin-contents">
+            <div class="plugin-piece" data-info="The manifest. Declares the plugin's name, version, what marketplace it belongs to, and which components it ships.">
+              <div class="pname">.claude-plugin/<br>plugin.json</div>
+              <div class="ptype">manifest</div>
+              <div class="pdesc">required metadata</div>
+            </div>
+            <div class="plugin-piece" data-info="Standard SKILL.md folder. Same format as personal skills. The plugin namespaces them so /my-plugin:review doesn't clash.">
+              <div class="pname">skills/<br>nda-review/</div>
+              <div class="ptype">skill</div>
+              <div class="pdesc">NDA playbook</div>
+            </div>
+            <div class="plugin-piece" data-info="Another skill. Plugins can include any number of skills.">
+              <div class="pname">skills/<br>contract-redline/</div>
+              <div class="ptype">skill</div>
+              <div class="pdesc">redlining workflow</div>
+            </div>
+            <div class="plugin-piece" data-info="Same JSON format as claude_desktop_config.json, scoped to this plugin. MCP servers spin up automatically when installed.">
+              <div class="pname">.mcp.json</div>
+              <div class="ptype">mcp config</div>
+              <div class="pdesc">DocuSign + iManage</div>
+            </div>
+            <div class="plugin-piece" data-info="Slash commands. Markdown files in commands/ become /review-contract style shortcuts.">
+              <div class="pname">commands/<br>review-contract.md</div>
+              <div class="ptype">slash cmd</div>
+              <div class="pdesc">/review-contract</div>
+            </div>
+            <div class="plugin-piece" data-info="Hooks fire on events: tool execution, session start, prompt submission. A legal plugin might hook 'before export' to flag PII.">
+              <div class="pname">hooks/<br>pre-export.sh</div>
+              <div class="ptype">hook</div>
+              <div class="pdesc">PII scanner</div>
+            </div>
+            <div class="plugin-piece" data-info="Specialized subagents that run in isolated contexts. Useful for reviewing five contracts in parallel without context pollution.">
+              <div class="pname">agents/<br>diligence-agent.md</div>
+              <div class="ptype">subagent</div>
+              <div class="pdesc">M&amp;A diligence</div>
+            </div>
+            <div class="plugin-piece" data-info="The readme. Documentation for humans on what the plugin does.">
+              <div class="pname">README.md</div>
+              <div class="ptype">docs</div>
+              <div class="pdesc">human-readable</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="log" id="plugin-info" style="margin-top:18px;min-height:60px">
+        <span class="step" style="color:var(--ink-faint)">// hover any piece above to see what it does</span>
+      </div>
+    </div>
+
+    <div class="sim">
+      <div class="sim-title">// install</div>
+      <h3>How a plugin lands on your machine</h3>
+      <div class="code"><span class="filename">terminal</span>
+<span class="com"># Method 1: marketplace browser (the normal way)</span>
+<span class="kw">$</span> /plugin
+<span class="com">  → opens browser, type to filter, hit enter to install</span>
+
+<span class="com"># Method 2: install directly from a GitHub repo</span>
+<span class="kw">$</span> /plugin install anthropics/legal-counsel
+
+<span class="com"># Method 3: load a zip archive (new in v2.1.124, May 2026)</span>
+<span class="kw">$</span> claude --plugin-dir ./my-plugin.zip
+
+<span class="com"># Method 4: try a plugin from a URL without installing</span>
+<span class="kw">$</span> claude --plugin-url https://example.com/plugin.zip
+
+<span class="com"># See what is installed</span>
+<span class="kw">$</span> /plugin list
+</div>
+      <div class="note">
+        <strong>What May 2026 shipped:</strong> on May 13, Anthropic released 12 legal practice-area plugins plus 20+ MCP connectors to DocuSign, Ironclad, iManage, NetDocuments, LexisNexis, Thomson Reuters. The legal marketplace is the first vertical-specific marketplace and dropped Thomson Reuters and RELX stock the day of launch.
+      </div>
+    </div>
+
+    <div class="resources">
+      <div class="label">// download and inspect real plugins</div>
+      <a href="https://github.com/anthropics/claude-plugins-official" target="_blank">anthropics/claude-plugins-official</a>
+      <a href="https://github.com/Chat2AnyLLM/awesome-claude-plugins" target="_blank">awesome-claude-plugins</a>
+      <a href="https://claudemarketplaces.com/" target="_blank">claudemarketplaces.com</a>
+      <a href="https://code.claude.com/docs/en/plugins" target="_blank">Official plugins documentation</a>
+    </div>
+  </section>
+
+  <!-- COMPARE -->
+  <section class="panel" id="panel-compare">
+    <div class="sim">
+      <div class="sim-title">// side by side</div>
+      <h3>The honest comparison</h3>
+      <table class="compare">
+        <thead><tr><th>question</th><th>Skill</th><th>MCP server</th><th>Plugin</th></tr></thead>
+        <tbody>
+          <tr><td>what is it?</td><td>A folder with SKILL.md. Pure markdown instructions.</td><td>A running program speaking JSON-RPC. Live process.</td><td>A folder bundling skills + MCP + commands + hooks.</td></tr>
+          <tr><td>has code?</td><td>Optional. Mostly markdown, can include helper scripts.</td><td>Yes, always. The server IS code.</td><td>Can include both, plus configs that wire it all together.</td></tr>
+          <tr><td>where on disk?</td><td>~/.claude/skills/&lt;name&gt;/SKILL.md</td><td>Wherever it runs. Config in claude_desktop_config.json.</td><td>Installed plugin folder, registered by manifest.</td></tr>
+          <tr><td>can call APIs?</td><td>No. Static instructions only.</td><td>Yes. Whole point is connecting to APIs, DBs, services.</td><td>Yes, IF it includes an MCP server in the bundle.</td></tr>
+          <tr><td>cost at idle</td><td>~30 to 50 tokens per skill.</td><td>~hundreds to thousands of tokens.</td><td>Sum of all included pieces.</td></tr>
+          <tr><td>shared with team?</td><td>Commit .claude/skills/ to repo.</td><td>Commit .mcp.json. Each dev configures auth locally.</td><td>Yes, that is the main reason plugins exist.</td></tr>
+          <tr><td>portable to ChatGPT?</td><td>Sort of. Format is open.</td><td>Yes. MCP is an open standard.</td><td>Not really. Plugin format is Anthropic-specific for now.</td></tr>
+          <tr><td>use when...</td><td>Teach Claude a procedure: style guide, workflow, checklist.</td><td>Make Claude actually DO something external: DB, API, filesystem.</td><td>Package a complete job-specific kit for distribution.</td></tr>
+          <tr><td>real example</td><td>git-commit-writer that follows your conventional commits.</td><td>github-mcp-server so Claude reads real PRs.</td><td>legal-counsel bundling NDA skills + DocuSign MCP + commands.</td></tr>
+        </tbody>
+      </table>
+      <div class="note" style="margin-top:24px">
+        <strong>The one-line mental model:</strong> Skills teach Claude <em>how</em>. MCP gives Claude <em>access</em>. Plugins ship <em>both</em>.
+      </div>
+    </div>
+  </section>
+
+  <footer class="page-nav">
+    <a href="../guides.html" class="prev">
+      <span class="pn-label">Back to guides</span>
+      <span class="pn-title">All learning tracks</span>
+    </a>
+    <a href="guide-02-mcp-from-zero.html" class="next">
+      <span class="pn-label">Next chapter</span>
+      <span class="pn-title">02 MCP From Zero</span>
+    </a>
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+    });
+  });
+
+  const SKILLS = {
+    'git-commit-writer': { keywords: ['commit', 'staged', 'git diff', 'changelog'], headTokens: 38, bodyTokens: 420 },
+    'code-reviewer': { keywords: ['review', 'pull request', 'pr', 'bugs', 'feedback'], headTokens: 41, bodyTokens: 680 },
+    'pdf-generator': { keywords: ['pdf', 'invoice', 'report', 'contract'], headTokens: 36, bodyTokens: 510 },
+    'meeting-summarizer': { keywords: ['meeting', 'transcript', 'summarize', 'action items', 'minutes'], headTokens: 44, bodyTokens: 380 },
+    'sql-explainer': { keywords: ['sql', 'query', 'database', 'slow', 'explain'], headTokens: 39, bodyTokens: 590 }
+  };
+  const MAX_CTX = 1000000;
+  const HEAD_BASELINE = Object.values(SKILLS).reduce((s, x) => s + x.headTokens, 0);
+
+  document.querySelectorAll('.example-chip').forEach(c => {
+    c.addEventListener('click', () => { document.getElementById('prompt').value = c.dataset.fill; });
+  });
+
+  function matchSkill(prompt) {
+    const p = prompt.toLowerCase();
+    let best = null, bestScore = 0;
+    for (const [name, skill] of Object.entries(SKILLS)) {
+      let score = 0;
+      skill.keywords.forEach(k => { if (p.includes(k)) score += k.length; });
+      if (score > bestScore) { bestScore = score; best = name; }
+    }
+    return bestScore > 0 ? best : null;
+  }
+
+  function updateContext(matchedName) {
+    const loaded = document.getElementById('loaded');
+    loaded.innerHTML = '';
+    Object.keys(SKILLS).forEach(n => {
+      const pill = document.createElement('span');
+      pill.className = 'loaded-pill head';
+      pill.textContent = n + ' (head)';
+      loaded.appendChild(pill);
+    });
+    let total = HEAD_BASELINE;
+    if (matchedName) {
+      const pill = document.createElement('span');
+      pill.className = 'loaded-pill body';
+      pill.textContent = matchedName + ' (BODY +' + SKILLS[matchedName].bodyTokens + ')';
+      loaded.appendChild(pill);
+      total += SKILLS[matchedName].bodyTokens;
+    }
+    const pct = (total / MAX_CTX * 100).toFixed(3);
+    document.getElementById('ctx-fill').style.width = Math.min(100, pct * 50) + '%';
+    document.getElementById('ctx-pct').textContent = pct + '%';
+    document.getElementById('ctx-tokens').textContent = total.toLocaleString() + ' / 1,000,000 tok';
+  }
+  function log(msg, cls = '') {
+    const el = document.getElementById('log');
+    const s = document.createElement('span');
+    s.className = 'step ' + cls; s.textContent = msg; el.appendChild(s);
+    el.scrollTop = el.scrollHeight;
+  }
+  function clearLog() { document.getElementById('log').innerHTML = ''; }
+  function clearScan() { document.querySelectorAll('.skill-item').forEach(i => i.classList.remove('scanning', 'matched')); }
+
+  async function runPrompt() {
+    const prompt = document.getElementById('prompt').value.trim();
+    if (!prompt) return;
+    clearLog(); clearScan();
+    log('// session start');
+    log('// scanned ' + Object.keys(SKILLS).length + ' skill descriptions (' + HEAD_BASELINE + ' tok)', 'done');
+    updateContext(null);
+    await sleep(400);
+    log('> user: "' + prompt + '"', 'active');
+    await sleep(400);
+    log('// matching prompt against descriptions...', 'active');
+    const items = document.querySelectorAll('.skill-item');
+    for (const item of items) {
+      item.classList.add('scanning');
+      await sleep(200);
+      item.classList.remove('scanning');
+    }
+    const match = matchSkill(prompt);
+    await sleep(200);
+    if (match) {
+      document.querySelector(`[data-skill="${match}"]`).classList.add('matched');
+      log('// MATCH: ' + match, 'done');
+      log('// loading body from disk (+' + SKILLS[match].bodyTokens + ' tok)', 'active');
+      await sleep(500);
+      updateContext(match);
+      log('// skill active. Claude responds using its instructions.', 'done');
+    } else {
+      log('// no match. Claude responds from base knowledge.', 'done');
+      updateContext(null);
+    }
+  }
+  function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+  document.getElementById('run').addEventListener('click', runPrompt);
+  document.getElementById('prompt').addEventListener('keydown', e => { if (e.key === 'Enter') runPrompt(); });
+  updateContext(null);
+
+  document.getElementById('play-mcp').addEventListener('click', async () => {
+    const lines = document.querySelectorAll('#mcp-flow .flow-line');
+    lines.forEach(l => l.classList.remove('active'));
+    for (const line of lines) { line.classList.add('active'); await sleep(700); }
+  });
+
+  document.querySelectorAll('.plugin-piece').forEach(p => {
+    p.addEventListener('mouseenter', () => {
+      const info = document.getElementById('plugin-info');
+      info.innerHTML = '<span class="step done">// ' + p.querySelector('.pname').textContent.replace(/\n/g, '') + '</span><span class="step">' + p.dataset.info + '</span>';
+    });
+  });
+</script>
+</body>
+</html>

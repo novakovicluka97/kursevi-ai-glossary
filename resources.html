@@ -1,140 +1,271 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resources - AI Glossary</title>
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-        .resource-section { margin-bottom: 35px; }
-
-        /* Useful link cards */
-        a.link-card {
-            display: block;
-            border: 1px solid #eaecf0;
-            border-left: 3px solid #0645ad;
-            background: #f8f9fa;
-            padding: 12px 16px;
-            margin: 10px 0;
-            border-radius: 3px;
-            color: inherit;
-        }
-        a.link-card:hover { background: #f0f4ff; text-decoration: none; }
-        .link-card .lc-title { color: #0645ad; font-weight: 600; font-size: 1.02em; }
-        .link-card .lc-domain { color: #888; font-size: 0.8em; margin-left: 8px; }
-        .link-card .lc-desc { display: block; color: #555; font-size: 0.9em; margin-top: 3px; }
-
-        /* Prompt cards */
-        .prompt-card {
-            border: 1px solid #eaecf0;
-            background: #fff;
-            border-radius: 4px;
-            padding: 14px 16px;
-            margin: 14px 0;
-        }
-        .prompt-tag {
-            display: inline-block;
-            background: #e1f5ee;
-            color: #085041;
-            font-size: 0.72em;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            font-weight: 600;
-            padding: 2px 8px;
-            border-radius: 10px;
-        }
-        .prompt-card .pc-purpose { color: #555; font-size: 0.9em; margin: 8px 0 0; }
-        .prompt-text {
-            background: #f4f4f4;
-            border: 1px solid #e3e3e3;
-            border-radius: 3px;
-            padding: 10px 12px;
-            margin-top: 10px;
-            font-size: 0.92em;
-            color: #2a2a2a;
-            line-height: 1.5;
-        }
-        .btn-copy {
-            margin-top: 8px;
-            padding: 5px 12px;
-            font-size: 0.8em;
-            font-family: inherit;
-            border: 1px solid #a2a9b1;
-            background: #fff;
-            border-radius: 3px;
-            cursor: pointer;
-            color: #333;
-        }
-        .btn-copy:hover { background: #f0f4ff; border-color: #0645ad; }
-        .btn-copy.copied { background: #d4edda; border-color: #28a745; color: #155724; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resources — Prompts, Plugins &amp; Links | AI Glossary</title>
+<meta name="description" content="Curated material for working with AI: where to find plugins and skills, the consensus starter-pack picks, reusable prompts, slash commands worth building, and links worth keeping.">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <nav class="breadcrumb">
-        <a href="index.html">AI Glossary</a> &rsaquo; Resources
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">AI <em>Glossary</em></a>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Glossary</a>
+      <a href="guides.html" class="nav-link">Guides</a>
+      <a href="resources.html" class="nav-link current">Resources</a>
     </nav>
+  </div>
+</header>
 
-    <h1>Resources</h1>
+<div class="wrap">
 
-    <p class="definition">
-        A growing collection of useful links and reusable prompts to help you work with AI more effectively.
+  <section class="hero">
+    <div class="eyebrow">// useful material</div>
+    <h1>Prompts, plugins, and <em>links worth keeping</em>.</h1>
+    <p class="lede">
+      The practical shelf. Where to find plugins and skills, the picks worth installing on day one, prompts you can copy as-is, slash commands worth building, and a short list of genuinely useful links. Accurate as of May 2026.
     </p>
+  </section>
 
-    <div class="resource-section">
-        <h2>Useful Links</h2>
-        <p>Handpicked external sites worth bookmarking.</p>
+  <!-- ── 01 · Where to find plugins ──────────────────────── -->
+  <div class="section-label"><span class="num">01</span> Where to find plugins &amp; skills</div>
+  <p class="lede" style="font-size:14px;margin-bottom:22px">
+    Four directories, ranked by how much to trust them. Inside Claude Code, run <code>/plugin</code> to browse the official one without leaving the terminal.
+  </p>
+  <div class="res-grid">
+    <a class="link-card" href="https://github.com/anthropics/claude-plugins-official" target="_blank" rel="noopener">
+      <span class="lc-badge">Verified</span>
+      <span class="lc-title">claude-plugins-official</span>
+      <span class="lc-domain">github.com/anthropics</span>
+      <span class="lc-desc">The official, Anthropic-managed directory — auto-installed when you launch Claude Code. The safe default for anything that touches credentials.</span>
+    </a>
+    <a class="link-card" href="https://claudemarketplaces.com/" target="_blank" rel="noopener">
+      <span class="lc-badge curated">Curated</span>
+      <span class="lc-title">claudemarketplaces.com</span>
+      <span class="lc-domain">claudemarketplaces.com</span>
+      <span class="lc-desc">The largest third-party aggregator. Indexes <a href="topics/claude-skills.html">skills</a>, <a href="topics/mcp.html">MCP</a> servers, and full marketplaces with security-audit badges.</span>
+    </a>
+    <a class="link-card" href="https://github.com/Chat2AnyLLM/awesome-claude-plugins" target="_blank" rel="noopener">
+      <span class="lc-badge curated">Curated</span>
+      <span class="lc-title">awesome-claude-plugins</span>
+      <span class="lc-domain">github.com/Chat2AnyLLM</span>
+      <span class="lc-desc">A traditional "awesome list", updated daily and sorted by use case — DevOps, code quality, documentation, git workflow, security.</span>
+    </a>
+    <a class="link-card" href="https://www.aitmpl.com/plugins/" target="_blank" rel="noopener">
+      <span class="lc-badge aggregator">Aggregator</span>
+      <span class="lc-title">aitmpl.com / plugins</span>
+      <span class="lc-domain">aitmpl.com</span>
+      <span class="lc-desc">Hubs skills, agents, commands, <a href="topics/hooks.html">hooks</a>, and plugins across Claude Code, Claude Desktop, and the Agent SDK. Good for cross-tool discovery.</span>
+    </a>
+  </div>
 
-        <a class="link-card" href="https://claudemarketplaces.com/skills" target="_blank" rel="noopener">
-            <span class="lc-title">Claude Marketplaces — Skills</span>
-            <span class="lc-domain">claudemarketplaces.com</span>
-            <span class="lc-desc">A marketplace for discovering and installing <a href="topics/claude-skills.html">Claude Skills</a> — reusable instruction sets that extend Claude Code.</span>
-        </a>
-
-        <a class="link-card" href="https://swipefile.com/category/sales-pages" target="_blank" rel="noopener">
-            <span class="lc-title">Swipefile — Sales Pages</span>
-            <span class="lc-domain">swipefile.com</span>
-            <span class="lc-desc">A library of real-world sales page examples — useful inspiration when designing landing pages or marketing copy.</span>
-        </a>
-
-        <a class="link-card" href="https://bbycroft.net/llm" target="_blank" rel="noopener">
-            <span class="lc-title">LLM Visualizer</span>
-            <span class="lc-domain">bbycroft.net</span>
-            <span class="lc-desc">An interactive 3D walkthrough of how a <a href="topics/llm.html">large language model</a> actually works, layer by layer.</span>
-        </a>
+  <!-- ── 02 · The starter pack ───────────────────────────── -->
+  <div class="section-label"><span class="num">02</span> The plugin starter pack</div>
+  <p class="lede" style="font-size:14px;margin-bottom:22px">
+    The consensus picks — plugins that show up across independent reviews. Hover the copy button to grab any install command. For the full deep dive, see
+    <a href="guides/guide-05-starter-pack.html">Guide 05 — The Starter Pack</a>.
+  </p>
+  <div class="res-grid">
+    <div class="plugin-card">
+      <div class="pc-head"><h4>feature-dev</h4><span class="pc-author official">Anthropic</span></div>
+      <p class="pc-desc">The most popular plugin in the marketplace. Runs a structured seven-phase workflow with three specialized sub-agents.</p>
+      <div class="code-block"><span class="copy-src">/plugin install feature-dev@claude-plugins-official</span><button class="copy-btn" type="button">COPY</button></div>
+      <p class="pc-meta">89,000+ installs · use it for any feature bigger than a quick fix</p>
     </div>
-
-    <div class="resource-section">
-        <h2>Good Prompts</h2>
-        <p>Tested prompt snippets you can copy and drop into your own <a href="topics/prompt.html">prompts</a>.</p>
-
-        <div class="prompt-card">
-            <span class="prompt-tag">Video &amp; Lighting</span>
-            <p class="pc-purpose">Add to an image or video generation prompt to get cinematic, flattering portrait lighting.</p>
-            <div class="prompt-text">dramatic, natural side lighting from a window creates deep shadows and high contrast on the face. Warm color grading</div>
-            <button class="btn-copy" type="button">Copy</button>
-        </div>
+    <div class="plugin-card">
+      <div class="pc-head"><h4>code-review</h4><span class="pc-author official">Anthropic</span></div>
+      <p class="pc-desc">Four agents in parallel — two audit CLAUDE.md compliance, one scans for bugs, one reads git blame. Confidence-scored findings.</p>
+      <div class="code-block"><span class="copy-src">/plugin install code-review@claude-plugins-official</span><button class="copy-btn" type="button">COPY</button></div>
+      <p class="pc-meta">free · your final gate before a merge</p>
     </div>
+    <div class="plugin-card">
+      <div class="pc-head"><h4>frontend-design</h4><span class="pc-author official">Anthropic</span></div>
+      <p class="pc-desc">Pins down purpose, tone, and constraints before writing any CSS. Pushes for unexpected type pairings and real layout ideas.</p>
+      <div class="code-block"><span class="copy-src">/plugin install frontend-design@claude-plugins-official</span><button class="copy-btn" type="button">COPY</button></div>
+      <p class="pc-meta">pairs naturally with feature-dev for full-stack work</p>
+    </div>
+    <div class="plugin-card">
+      <div class="pc-head"><h4>commit-commands</h4><span class="pc-author official">Anthropic</span></div>
+      <p class="pc-desc">Lightweight git workflow skills — conventional commits, PR descriptions, branch naming. Opinionated and uncontroversial.</p>
+      <div class="code-block"><span class="copy-src">/plugin install commit-commands@claude-plugins-official</span><button class="copy-btn" type="button">COPY</button></div>
+      <p class="pc-meta">a drop-in for teams without commit conventions</p>
+    </div>
+    <div class="plugin-card">
+      <div class="pc-head"><h4>GitHub</h4><span class="pc-author official">Anthropic</span></div>
+      <p class="pc-desc">Real PR access, issue triage, and repo browsing. The reference partner integration — non-negotiable if you live in GitHub.</p>
+      <div class="code-block"><span class="copy-src">/plugin install github@claude-plugins-official</span><button class="copy-btn" type="button">COPY</button></div>
+      <p class="pc-meta">requires a GITHUB_PERSONAL_ACCESS_TOKEN</p>
+    </div>
+    <div class="plugin-card">
+      <div class="pc-head"><h4>Context7</h4><span class="pc-author">Upstash</span></div>
+      <p class="pc-desc">Live, version-specific documentation lookup for any library — fixes the "Claude used an outdated API" problem on demand.</p>
+      <div class="code-block"><span class="copy-src">/plugin marketplace add upstash/context7</span><button class="copy-btn" type="button">COPY</button></div>
+      <p class="pc-meta">essential against libraries with versioned breaking changes</p>
+    </div>
+    <div class="plugin-card">
+      <div class="pc-head"><h4>Playwright</h4><span class="pc-author">Microsoft</span></div>
+      <p class="pc-desc">Official partner plugin for model-invoked browser automation — Claude writes and runs its own cross-browser test scripts.</p>
+      <div class="code-block"><span class="copy-src">/plugin install playwright@claude-plugins-official</span><button class="copy-btn" type="button">COPY</button></div>
+      <p class="pc-meta">best for cross-browser automated testing</p>
+    </div>
+    <div class="plugin-card">
+      <div class="pc-head"><h4>Claude-Mem</h4><span class="pc-author">Community</span></div>
+      <p class="pc-desc">Long-term memory across sessions. Captures and compresses Claude's actions, then injects relevant context into future sessions.</p>
+      <div class="code-block"><span class="copy-src">/plugin install claude-mem@superpowers-marketplace</span><button class="copy-btn" type="button">COPY</button></div>
+      <p class="pc-meta">best for long-running projects with team turnover</p>
+    </div>
+  </div>
 
-    <footer style="margin-top:40px; padding-top:15px; border-top:1px solid #ddd; font-size:0.85em; color:#666;">
-        <p>More links and prompts will be added over time. &mdash; <a href="index.html">Back to AI Glossary</a></p>
-    </footer>
+  <div class="cta-banner" style="margin-top:22px;display:block">
+    <h3 style="font-family:var(--serif);font-size:20px;font-weight:500;color:var(--ink);margin-bottom:4px">The minimum viable kit</h3>
+    <p style="font-size:13px;color:var(--ink-dim);margin-bottom:12px">If you do nothing else, run these. Roughly 80% of the value of the whole ecosystem in six lines.</p>
+<div class="code-block"><span class="copy-src"># the four-command starter kit
+/plugin install feature-dev@claude-plugins-official
+/plugin install code-review@claude-plugins-official
+/plugin install frontend-design@claude-plugins-official
+/plugin install commit-commands@claude-plugins-official
 
-    <script>
-        document.querySelectorAll('.btn-copy').forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                var text = btn.parentElement.querySelector('.prompt-text').innerText;
-                navigator.clipboard.writeText(text).then(function () {
-                    btn.textContent = 'Copied!';
-                    btn.classList.add('copied');
-                    setTimeout(function () {
-                        btn.textContent = 'Copy';
-                        btn.classList.remove('copied');
-                    }, 1500);
-                });
-            });
-        });
-    </script>
-    <script src="js/search-index.js"></script>
-    <script src="js/search.js"></script>
+# then add one or two tools for your stack
+/plugin install github@claude-plugins-official
+/plugin marketplace add upstash/context7</span><button class="copy-btn" type="button">COPY</button></div>
+  </div>
+
+  <!-- ── 03 · Reusable prompts ───────────────────────────── -->
+  <div class="section-label"><span class="num">03</span> Reusable prompts</div>
+  <p class="lede" style="font-size:14px;margin-bottom:22px">
+    Tested snippets you can copy and drop straight into your own <a href="topics/prompt.html">prompts</a>.
+  </p>
+  <div class="res-grid">
+    <div class="prompt-card">
+      <span class="prompt-tag">Explainer</span>
+      <p class="pc-purpose">Put in front of any question when the topic is new to you.</p>
+      <div class="prompt-text"><span class="copy-src">Explain this to me as if I'm smart but completely new to the field. Use one concrete analogy, define every term the first time you use it, and end with what I should learn next.</span><button class="copy-btn" type="button">COPY</button></div>
+    </div>
+    <div class="prompt-card">
+      <span class="prompt-tag">Coding</span>
+      <p class="pc-purpose">Get a plan before Claude writes a single line.</p>
+      <div class="prompt-text"><span class="copy-src">Before writing any code, outline your approach: the files you'll change, the order you'll do them in, and any trade-offs. Wait for my OK before you implement anything.</span><button class="copy-btn" type="button">COPY</button></div>
+    </div>
+    <div class="prompt-card">
+      <span class="prompt-tag">Code Review</span>
+      <p class="pc-purpose">Paste alongside a file or diff for a focused review.</p>
+      <div class="prompt-text"><span class="copy-src">Review this code for correctness, edge cases, and readability. Give findings as a short numbered list, most serious first. Don't rewrite it yet — just tell me what you'd change and why.</span><button class="copy-btn" type="button">COPY</button></div>
+    </div>
+    <div class="prompt-card">
+      <span class="prompt-tag">Debugging</span>
+      <p class="pc-purpose">When you're stuck and the obvious fixes failed.</p>
+      <div class="prompt-text"><span class="copy-src">Here's a bug I can't crack. Don't guess at fixes. First list the three most likely root causes, ranked by probability, then tell me exactly what to check or log to confirm which one it is.</span><button class="copy-btn" type="button">COPY</button></div>
+    </div>
+    <div class="prompt-card">
+      <span class="prompt-tag">Writing</span>
+      <p class="pc-purpose">Tighten any draft without losing the substance.</p>
+      <div class="prompt-text"><span class="copy-src">Cut this text by 30% without losing meaning. Remove hedging, filler, and repetition; keep the structure and every concrete detail. Show only the revised version.</span><button class="copy-btn" type="button">COPY</button></div>
+    </div>
+    <div class="prompt-card">
+      <span class="prompt-tag">Video &amp; Lighting</span>
+      <p class="pc-purpose">Add to an image or video prompt for cinematic portrait lighting.</p>
+      <div class="prompt-text"><span class="copy-src">dramatic, natural side lighting from a window creates deep shadows and high contrast on the face. Warm color grading.</span><button class="copy-btn" type="button">COPY</button></div>
+    </div>
+  </div>
+
+  <!-- ── 04 · Slash commands ─────────────────────────────── -->
+  <div class="section-label"><span class="num">04</span> Slash commands worth building</div>
+  <p class="lede" style="font-size:14px;margin-bottom:22px">
+    A <a href="topics/slash-commands.html">slash command</a> is just a Markdown file in <code>.claude/commands/</code>. These five pay for themselves fast.
+  </p>
+  <div class="res-grid">
+    <div class="plugin-card">
+      <div class="pc-head"><h4>/commit</h4><span class="pc-author">command</span></div>
+      <p class="pc-desc">Reads your staged changes and writes a clean, conventional commit message — type, scope, and a tight summary.</p>
+      <p class="pc-meta">→ .claude/commands/commit.md</p>
+    </div>
+    <div class="plugin-card">
+      <div class="pc-head"><h4>/pr</h4><span class="pc-author">command</span></div>
+      <p class="pc-desc">Drafts a pull-request title and description from the branch diff, including a testing checklist.</p>
+      <p class="pc-meta">→ .claude/commands/pr.md</p>
+    </div>
+    <div class="plugin-card">
+      <div class="pc-head"><h4>/optimize</h4><span class="pc-author">command</span></div>
+      <p class="pc-desc">Profiles the file in focus and proposes concrete performance improvements, ranked by impact.</p>
+      <p class="pc-meta">→ .claude/commands/optimize.md</p>
+    </div>
+    <div class="plugin-card">
+      <div class="pc-head"><h4>/unit-test</h4><span class="pc-author">command</span></div>
+      <p class="pc-desc">Expands test coverage for the current file — happy paths plus the edge cases that usually get skipped.</p>
+      <p class="pc-meta">→ .claude/commands/unit-test.md</p>
+    </div>
+    <div class="plugin-card">
+      <div class="pc-head"><h4>/doc-refactor</h4><span class="pc-author">command</span></div>
+      <p class="pc-desc">Rewrites stale comments and docs so they match what the code actually does now.</p>
+      <p class="pc-meta">→ .claude/commands/doc-refactor.md</p>
+    </div>
+  </div>
+
+  <!-- ── 05 · Links worth keeping ────────────────────────── -->
+  <div class="section-label"><span class="num">05</span> Links worth keeping</div>
+  <div class="res-grid">
+    <a class="link-card" href="https://docs.claude.com/" target="_blank" rel="noopener">
+      <span class="lc-title">Claude Documentation</span>
+      <span class="lc-domain">docs.claude.com</span>
+      <span class="lc-desc">Official documentation for the Claude API, <a href="topics/claude-code.html">Claude Code</a>, and the <a href="topics/agent-sdk.html">Agent SDK</a>.</span>
+    </a>
+    <a class="link-card" href="https://modelcontextprotocol.io/" target="_blank" rel="noopener">
+      <span class="lc-title">Model Context Protocol</span>
+      <span class="lc-domain">modelcontextprotocol.io</span>
+      <span class="lc-desc">The home of the <a href="topics/mcp.html">MCP</a> standard — specification, SDKs, and a registry of servers.</span>
+    </a>
+    <a class="link-card" href="https://bbycroft.net/llm" target="_blank" rel="noopener">
+      <span class="lc-title">LLM Visualizer</span>
+      <span class="lc-domain">bbycroft.net</span>
+      <span class="lc-desc">An interactive 3D walkthrough of how a <a href="topics/llm.html">large language model</a> works, layer by layer.</span>
+    </a>
+    <a class="link-card" href="https://claudemarketplaces.com/skills" target="_blank" rel="noopener">
+      <span class="lc-title">Claude Marketplaces — Skills</span>
+      <span class="lc-domain">claudemarketplaces.com</span>
+      <span class="lc-desc">Browse and install <a href="topics/claude-skills.html">Claude Skills</a> — reusable instruction sets that extend Claude Code.</span>
+    </a>
+    <a class="link-card" href="https://swipefile.com/category/sales-pages" target="_blank" rel="noopener">
+      <span class="lc-title">Swipefile — Sales Pages</span>
+      <span class="lc-domain">swipefile.com</span>
+      <span class="lc-desc">A library of real sales-page examples — useful inspiration when designing landing pages or marketing copy.</span>
+    </a>
+  </div>
+
+  <!-- ── 06 · The one warning ────────────────────────────── -->
+  <div class="section-label"><span class="num">06</span> Before you install community plugins</div>
+  <div class="warning">
+    <div class="wlabel">// read this first</div>
+    <h3>Plugins can run arbitrary code on your machine.</h3>
+    <p>From Anthropic's own documentation: <strong>plugins and marketplaces are highly trusted components that can execute arbitrary code on your machine.</strong> A community plugin is, functionally, someone else's program running with your permissions and Claude's access.</p>
+    <p><strong>Practical defense:</strong> default to <code>claude-plugins-official</code> and the Anthropic-verified badge. On community marketplaces, prefer entries with security-audit badges. For anything touching credentials — Gmail, GitHub, payment APIs — only install it if you'd trust the maintainer with the production key it asks for.</p>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <p>AI Glossary <span class="sep">//</span> resources updated May 2026</p>
+  <p>Live at <a href="https://novakovicluka97.github.io/kursevi-ai-glossary/">novakovicluka97.github.io/kursevi-ai-glossary</a></p>
+</footer>
+
+<script>
+  // Copy buttons: each one copies the .copy-src element right before it.
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var src = btn.previousElementSibling;
+      if (!src) return;
+      navigator.clipboard.writeText(src.innerText.trim()).then(function () {
+        btn.textContent = 'COPIED';
+        btn.classList.add('copied');
+        setTimeout(function () {
+          btn.textContent = 'COPY';
+          btn.classList.remove('copied');
+        }, 1500);
+      });
+    });
+  });
+</script>
 </body>
 </html>

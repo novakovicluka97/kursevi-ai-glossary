@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>05 // The Starter Pack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500;700&family=Sora:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0908; --bg-2: #15120e; --bg-3: #1f1a13;
+    --ink: #f0e6d2; --ink-dim: #9c8f7a; --ink-faint: #574f42;
+    --rule: #2a241c; --amber: #f0a93b; --rust: #c4421a;
+    --moss: #8aa83a; --teal: #4ba39e; --violet: #a17fc9; --rose: #d96b6b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg); color: var(--ink);
+    font-family: 'Sora', sans-serif; font-weight: 300; line-height: 1.55;
+    min-height: 100vh;
+  }
+  body::before {
+    content: ""; position: fixed; inset: 0;
+    background:
+      radial-gradient(circle at 90% 15%, rgba(138, 168, 58, 0.04), transparent 50%),
+      radial-gradient(circle at 10% 85%, rgba(240, 169, 59, 0.05), transparent 50%);
+    pointer-events: none; z-index: 0;
+  }
+  .site-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10, 9, 8, 0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule); padding: 14px 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+  }
+  .site-title {
+    font-family: 'Fraunces', serif; font-size: 17px; font-weight: 500;
+    color: var(--ink); text-decoration: none; letter-spacing: -0.01em;
+  }
+  .site-title em { color: var(--amber); font-style: italic; }
+  .chapter-links { display: flex; gap: 4px; flex-wrap: wrap; }
+  .ch-link {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-faint); text-decoration: none;
+    padding: 6px 10px; border-radius: 3px; transition: all 0.18s;
+  }
+  .ch-link:hover { color: var(--ink); background: var(--bg-3); }
+  .ch-link.current { color: var(--amber); background: var(--bg-2); }
+  .ch-link .num { color: var(--amber); margin-right: 6px; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 48px 32px 80px; position: relative; z-index: 1; }
+  header.top { border-bottom: 1px solid var(--rule); padding-bottom: 28px; margin-bottom: 40px; }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); margin-bottom: 14px;
+  }
+  h1 {
+    font-family: 'Fraunces', serif; font-weight: 400;
+    font-size: clamp(34px, 4.5vw, 54px); line-height: 1.05;
+    letter-spacing: -0.02em; margin-bottom: 14px;
+  }
+  h1 em { font-style: italic; color: var(--amber); font-weight: 500; }
+  .lede { color: var(--ink-dim); max-width: 720px; font-size: 16px; }
+
+  /* Section */
+  .section-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber);
+    margin: 48px 0 20px; padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-label .num {
+    color: var(--ink-faint); margin-right: 14px;
+  }
+
+  /* Directory cards */
+  .dirs {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  .dir-card {
+    background: var(--bg-2); border: 1px solid var(--rule);
+    border-radius: 4px; padding: 22px;
+    text-decoration: none; color: inherit;
+    transition: all 0.2s; display: block;
+  }
+  .dir-card:hover { border-color: var(--amber); transform: translateY(-2px); }
+  .dir-card .dh {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 8px; gap: 12px;
+  }
+  .dir-card .rank {
+    font-family: 'Fraunces', serif; font-size: 36px; font-weight: 400;
+    color: var(--amber); font-style: italic; line-height: 1;
+  }
+  .dir-card .badge {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 999px;
+    border: 1px solid var(--moss); color: var(--moss);
+  }
+  .dir-card .badge.partial { border-color: var(--amber); color: var(--amber); }
+  .dir-card .badge.unverified { border-color: var(--ink-faint); color: var(--ink-faint); }
+  .dir-card h3 {
+    font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500;
+    letter-spacing: -0.01em; margin-bottom: 6px;
+  }
+  .dir-card .domain {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--ink-faint); margin-bottom: 12px;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .dir-card p { font-size: 13px; color: var(--ink-dim); }
+  .dir-card .stats {
+    display: flex; gap: 14px; flex-wrap: wrap;
+    margin-top: 12px; padding-top: 12px; border-top: 1px dotted var(--rule);
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    color: var(--ink-faint); letter-spacing: 0.06em;
+  }
+  .dir-card .stats span strong { color: var(--amber); }
+
+  /* Category */
+  .cat-block { margin-bottom: 36px; }
+  .cat-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 16px; gap: 12px; flex-wrap: wrap;
+  }
+  .cat-head h2 {
+    font-family: 'Fraunces', serif; font-size: 28px; font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .cat-head h2 em { color: var(--amber); font-style: italic; }
+  .cat-head .cat-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .picks { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .pick {
+    background: var(--bg-2); border: 1px solid var(--rule);
+    border-radius: 4px; padding: 18px 20px;
+    border-left: 3px solid var(--rule);
+    transition: border-color 0.2s;
+  }
+  .pick:hover { border-left-color: var(--amber); }
+  .pick.flag { border-left-color: var(--moss); }
+  .pick .ph {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 8px;
+    margin-bottom: 8px;
+  }
+  .pick h4 {
+    font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700;
+    color: var(--ink); letter-spacing: -0.005em;
+  }
+  .pick .author {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 2px 7px; border-radius: 999px;
+    background: var(--bg-3); color: var(--ink-faint);
+    flex-shrink: 0;
+  }
+  .pick .author.official {
+    color: var(--moss); border: 1px solid var(--moss);
+    background: rgba(138, 168, 58, 0.06);
+  }
+  .pick .author.partner {
+    color: var(--teal); border: 1px solid var(--teal);
+    background: rgba(74, 163, 158, 0.06);
+  }
+  .pick p { font-size: 12.5px; color: var(--ink-dim); margin-bottom: 10px; }
+  .pick .install {
+    font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+    color: var(--amber); padding: 6px 10px;
+    background: var(--bg); border: 1px solid var(--rule);
+    border-radius: 2px; overflow-x: auto; white-space: nowrap;
+  }
+  .pick .install::before { content: "$ "; color: var(--ink-faint); }
+  .pick .meta-row {
+    margin-top: 8px; font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px; color: var(--ink-faint); letter-spacing: 0.06em;
+  }
+  .pick .meta-row strong { color: var(--amber); }
+
+  /* MVP block */
+  .mvp {
+    background: var(--bg-2); border: 1px solid var(--amber);
+    border-radius: 4px; padding: 32px; margin: 24px 0;
+    position: relative;
+  }
+  .mvp::before {
+    content: "// minimum viable kit"; position: absolute; top: -10px; left: 24px;
+    background: var(--bg); padding: 0 12px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.14em; color: var(--amber);
+  }
+  .mvp h3 {
+    font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500;
+    margin-bottom: 8px; letter-spacing: -0.01em;
+  }
+  .mvp p {
+    color: var(--ink-dim); font-size: 14px; margin-bottom: 18px; max-width: 720px;
+  }
+  .mvp-code {
+    background: var(--bg); border: 1px solid var(--rule); border-radius: 3px;
+    padding: 18px 20px; font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px; line-height: 1.9; color: var(--ink);
+    overflow-x: auto; position: relative;
+  }
+  .mvp-code .cmt { color: var(--ink-faint); font-style: italic; }
+  .mvp-code .kw { color: var(--amber); }
+  .mvp-code .arg { color: #c4e17f; }
+  .copy-btn {
+    position: absolute; top: 12px; right: 12px;
+    background: var(--bg-3); border: 1px solid var(--rule); color: var(--ink-dim);
+    padding: 6px 10px; font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.1em; cursor: pointer; border-radius: 3px;
+    text-transform: uppercase; transition: all 0.18s;
+  }
+  .copy-btn:hover { color: var(--amber); border-color: var(--amber); }
+  .copy-btn.copied { color: var(--moss); border-color: var(--moss); }
+
+  /* Warning block */
+  .warning {
+    background: rgba(217, 107, 107, 0.05);
+    border: 1px solid var(--rose);
+    border-left-width: 4px;
+    border-radius: 4px;
+    padding: 28px 32px; margin: 36px 0;
+    position: relative;
+  }
+  .warning::before {
+    content: "⚠"; position: absolute;
+    top: 24px; right: 24px;
+    color: var(--rose); font-size: 32px;
+    line-height: 1;
+  }
+  .warning .wlabel {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--rose); margin-bottom: 10px;
+  }
+  .warning h3 {
+    font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500;
+    margin-bottom: 12px; letter-spacing: -0.01em; max-width: 90%;
+  }
+  .warning p {
+    color: var(--ink-dim); font-size: 14px; max-width: 760px;
+  }
+  .warning p + p { margin-top: 12px; }
+  .warning strong { color: var(--ink); font-weight: 500; }
+  .warning code {
+    font-family: 'JetBrains Mono', monospace; color: var(--rose);
+    background: rgba(217, 107, 107, 0.08); padding: 1px 6px; border-radius: 2px; font-size: 12px;
+  }
+
+  /* Closing */
+  .closing {
+    background: var(--bg-2); border: 1px solid var(--amber);
+    border-radius: 4px; padding: 32px; margin-top: 48px;
+    position: relative; text-align: center;
+  }
+  .closing::before {
+    content: "// you made it"; position: absolute; top: -10px;
+    left: 50%; transform: translateX(-50%);
+    background: var(--bg); padding: 0 14px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.14em; color: var(--amber);
+  }
+  .closing h2 {
+    font-family: 'Fraunces', serif; font-size: 36px; font-weight: 500;
+    letter-spacing: -0.02em; margin-bottom: 14px;
+  }
+  .closing h2 em { color: var(--amber); font-style: italic; }
+  .closing p {
+    color: var(--ink-dim); font-size: 15px; max-width: 560px;
+    margin: 0 auto 18px;
+  }
+  .closing-links {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 20px;
+  }
+  .closing-links a {
+    color: var(--ink); text-decoration: none;
+    padding: 10px 18px; border: 1px solid var(--rule);
+    border-radius: 3px; font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.08em;
+    background: var(--bg); transition: all 0.18s;
+  }
+  .closing-links a:hover { border-color: var(--amber); color: var(--amber); }
+
+  /* Page nav */
+  .page-nav {
+    margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--rule);
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  }
+  .page-nav a {
+    color: var(--ink); text-decoration: none; padding: 16px 20px;
+    border: 1px solid var(--rule); border-radius: 3px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    background: var(--bg-2); transition: all 0.2s; flex: 1; max-width: 360px;
+  }
+  .page-nav a:hover { border-color: var(--amber); transform: translateY(-2px); }
+  .page-nav a.next { text-align: right; }
+  .pn-label {
+    display: block; font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 4px;
+  }
+  .pn-title { color: var(--ink); font-size: 14px; font-weight: 500; }
+  .page-nav a.next .pn-label::after { content: " ↑"; color: var(--amber); }
+  .page-nav a.prev .pn-label::before { content: "← "; color: var(--amber); }
+
+  @media (max-width: 800px) {
+    .dirs, .picks { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <a href="../index.html" class="site-title">AI <em>Glossary</em></a>
+  <nav class="chapter-links">
+    <a href="../index.html" class="ch-link">Glossary</a>
+    <a href="../guides.html" class="ch-link current">Guides</a>
+    <a href="../resources.html" class="ch-link">Resources</a>
+    <span style="width:1px;background:#2a241c;align-self:stretch;margin:5px 8px"></span>
+    <a href="guide-01-overview.html" class="ch-link"><span class="num">01</span>Overview</a>
+    <a href="guide-02-mcp-from-zero.html" class="ch-link"><span class="num">02</span>MCP From Zero</a>
+    <a href="guide-03-what-claude-sees.html" class="ch-link"><span class="num">03</span>What Claude Sees</a>
+    <a href="guide-04-convergence.html" class="ch-link"><span class="num">04</span>Convergence</a>
+    <a href="guide-05-starter-pack.html" class="ch-link current"><span class="num">05</span>Starter Pack</a>
+  </nav>
+</header>
+
+<div class="wrap">
+
+  <header class="top">
+    <div class="eyebrow">// chapter 05 // what to install, where to find it, what not to break</div>
+    <h1>The <em>starter pack</em></h1>
+    <p class="lede">
+      Four trusted directories, ten consensus picks across five categories, copy-paste install commands, one security caveat. As of May 2026. If you only read one chapter, this is the one that gets things on your machine.
+    </p>
+  </header>
+
+  <div class="section-label"><span class="num">01</span>Where to actually browse</div>
+
+  <div class="dirs">
+    <a href="https://github.com/anthropics/claude-plugins-official" target="_blank" class="dir-card">
+      <div class="dh">
+        <span class="rank">i.</span>
+        <span class="badge">VERIFIED</span>
+      </div>
+      <h3>anthropics/claude-plugins-official</h3>
+      <div class="domain">github.com/anthropics/claude-plugins-official</div>
+      <p>The official, Anthropic-managed directory. Auto-installed when you launch Claude Code. Run <code style="font-family:'JetBrains Mono',monospace;color:var(--amber);font-size:11px">/plugin</code> inside Claude Code to browse, or visit claude.com/plugins.</p>
+      <div class="stats">
+        <span><strong>101</strong> plugins</span>
+        <span><strong>33</strong> Anthropic-built</span>
+        <span><strong>68</strong> partner-built</span>
+      </div>
+    </a>
+
+    <a href="https://claudemarketplaces.com/" target="_blank" class="dir-card">
+      <div class="dh">
+        <span class="rank">ii.</span>
+        <span class="badge partial">CURATED</span>
+      </div>
+      <h3>claudemarketplaces.com</h3>
+      <div class="domain">claudemarketplaces.com</div>
+      <p>The largest third-party aggregator. Indexes skills, MCP servers, and full marketplaces with audit badges. Solid categorization and weekly digests.</p>
+      <div class="stats">
+        <span><strong>4,200+</strong> skills</span>
+        <span><strong>770+</strong> MCP servers</span>
+        <span><strong>160K</strong> monthly visits</span>
+      </div>
+    </a>
+
+    <a href="https://github.com/Chat2AnyLLM/awesome-claude-plugins" target="_blank" class="dir-card">
+      <div class="dh">
+        <span class="rank">iii.</span>
+        <span class="badge partial">CURATED</span>
+      </div>
+      <h3>awesome-claude-plugins</h3>
+      <div class="domain">github.com/Chat2AnyLLM/awesome-claude-plugins</div>
+      <p>Traditional "awesome list" format. Updated daily. Categorized by use case: DevOps, Code Quality, Documentation, Git Workflow, Security/Compliance/Legal, etc.</p>
+      <div class="stats">
+        <span><strong>1,163</strong> plugins</span>
+        <span><strong>69</strong> marketplaces</span>
+        <span>updated <strong>May 16</strong></span>
+      </div>
+    </a>
+
+    <a href="https://www.aitmpl.com/plugins/" target="_blank" class="dir-card">
+      <div class="dh">
+        <span class="rank">iv.</span>
+        <span class="badge unverified">AGGREGATOR</span>
+      </div>
+      <h3>aitmpl.com / plugins</h3>
+      <div class="domain">aitmpl.com/plugins</div>
+      <p>Hubs skills, agents, commands, hooks, plugins, and marketplace collections across Claude Code, Claude Desktop, Agent SDK, and OpenClaw. Good for cross-tool discovery.</p>
+      <div class="stats">
+        <span>multi-platform</span>
+        <span>search-first</span>
+        <span>community</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="section-label"><span class="num">02</span>The consensus picks, by category</div>
+
+  <!-- Coding -->
+  <div class="cat-block">
+    <div class="cat-head">
+      <h2>For <em>coding</em></h2>
+      <div class="cat-tag">// the everyday workhorses</div>
+    </div>
+    <div class="picks">
+      <div class="pick flag">
+        <div class="ph">
+          <h4>feature-dev</h4>
+          <span class="author official">ANTHROPIC</span>
+        </div>
+        <p>Most popular plugin in the marketplace. Runs a structured seven-phase workflow with three specialized sub-agents (code-explorer, code-architect, code-reviewer).</p>
+        <div class="install">/plugin install feature-dev@claude-plugins-official</div>
+        <div class="meta-row"><strong>89,000+</strong> installs · use for any feature larger than a quick fix</div>
+      </div>
+      <div class="pick flag">
+        <div class="ph">
+          <h4>code-review</h4>
+          <span class="author official">ANTHROPIC</span>
+        </div>
+        <p>Four independent agents in parallel: two audit CLAUDE.md compliance, one scans for bugs, one analyzes git blame. Confidence-scored findings (default threshold 80) filter out noise.</p>
+        <div class="install">/plugin install code-review@claude-plugins-official</div>
+        <div class="meta-row"><strong>FREE</strong> · final gate before merge</div>
+      </div>
+      <div class="pick flag">
+        <div class="ph">
+          <h4>frontend-design</h4>
+          <span class="author official">ANTHROPIC</span>
+        </div>
+        <p>Guides Claude through purpose, tone, constraints, differentiation before writing CSS. Pushes for unexpected font pairings, asymmetric layouts, scroll-triggered animations.</p>
+        <div class="install">/plugin install frontend-design@claude-plugins-official</div>
+        <div class="meta-row">pairs naturally with <strong>feature-dev</strong> for full-stack</div>
+      </div>
+      <div class="pick flag">
+        <div class="ph">
+          <h4>commit-commands</h4>
+          <span class="author official">ANTHROPIC</span>
+        </div>
+        <p>Git workflow skills: conventional commits, PR descriptions, branch naming. Lightweight, opinionated, and uncontroversial.</p>
+        <div class="install">/plugin install commit-commands@claude-plugins-official</div>
+        <div class="meta-row">drop-in for teams without commit conventions</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Knowledge -->
+  <div class="cat-block">
+    <div class="cat-head">
+      <h2>For <em>knowledge &amp; context</em></h2>
+      <div class="cat-tag">// stop re-explaining yourself</div>
+    </div>
+    <div class="picks">
+      <div class="pick">
+        <div class="ph">
+          <h4>Context7</h4>
+          <span class="author partner">UPSTASH</span>
+        </div>
+        <p>Live, version-specific documentation lookup for any library. Fixes the "Claude hallucinates outdated APIs" problem by pulling current docs into context on demand.</p>
+        <div class="install">/plugin marketplace add upstash/context7</div>
+        <div class="meta-row">essential when working with anything that has versioned breaking changes</div>
+      </div>
+      <div class="pick">
+        <div class="ph">
+          <h4>Claude-Mem</h4>
+          <span class="author">COMMUNITY</span>
+        </div>
+        <p>Long-term memory across sessions. Captures and compresses Claude's actions, injects relevant context into future sessions. Uses SQLite + Chroma for hybrid vector search. Privacy controls to exclude sensitive paths.</p>
+        <div class="install">/plugin install claude-mem@superpowers-marketplace</div>
+        <div class="meta-row">best for <strong>long-running</strong> projects with team turnover</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Browsing -->
+  <div class="cat-block">
+    <div class="cat-head">
+      <h2>For <em>browsing &amp; web</em></h2>
+      <div class="cat-tag">// give Claude eyes and hands on the open web</div>
+    </div>
+    <div class="picks">
+      <div class="pick">
+        <div class="ph">
+          <h4>Chrome DevTools MCP</h4>
+          <span class="author partner">CHROME TEAM</span>
+        </div>
+        <p>Inspect network requests, console errors, debug live pages using your existing logged-in Chrome session. Heavy on resources, but unmatched for "why did this request fail?" debugging.</p>
+        <div class="install">/plugin install chrome-devtools-mcp@chrome-devtools-plugins</div>
+        <div class="meta-row">setup: run <code style="color:var(--amber);font-family:'JetBrains Mono',monospace">/chrome</code> after install</div>
+      </div>
+      <div class="pick">
+        <div class="ph">
+          <h4>Playwright</h4>
+          <span class="author partner">MICROSOFT</span>
+        </div>
+        <p>Official partner plugin. Model-invoked browser automation. Claude autonomously writes and executes custom automation for testing and validation across browsers.</p>
+        <div class="install">/plugin install playwright@claude-plugins-official</div>
+        <div class="meta-row">best for <strong>cross-browser</strong> automated testing</div>
+      </div>
+      <div class="pick">
+        <div class="ph">
+          <h4>Firecrawl</h4>
+          <span class="author partner">FIRECRAWL</span>
+        </div>
+        <p>Web scraping with JS rendering, anti-bot detection, proxy rotation. Returns clean markdown or structured JSON. Requires API credits; cost scales with scope.</p>
+        <div class="install">/plugin install firecrawl@firecrawl-marketplace</div>
+        <div class="meta-row">for <strong>real research</strong> tasks that need clean data</div>
+      </div>
+      <div class="pick">
+        <div class="ph">
+          <h4>GitHub</h4>
+          <span class="author partner">GITHUB</span>
+        </div>
+        <p>Real PR access, issue triage, repo browsing. The reference partner integration. If you live in GitHub, this is non-negotiable.</p>
+        <div class="install">/plugin install github@claude-plugins-official</div>
+        <div class="meta-row">requires <strong>GITHUB_PERSONAL_ACCESS_TOKEN</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Orchestration -->
+  <div class="cat-block">
+    <div class="cat-head">
+      <h2>For <em>orchestration</em></h2>
+      <div class="cat-tag">// when one Claude isn't enough</div>
+    </div>
+    <div class="picks">
+      <div class="pick">
+        <div class="ph">
+          <h4>Superpowers</h4>
+          <span class="author">COMMUNITY</span>
+        </div>
+        <p>Structured lifecycle planning plus skills framework: brainstorming, TDD, debugging, code review. The closest thing to a "complete methodology" plugin.</p>
+        <div class="install">/plugin install superpowers@superpowers-marketplace</div>
+        <div class="meta-row">opinionated, but the opinions are <strong>good</strong></div>
+      </div>
+      <div class="pick">
+        <div class="ph">
+          <h4>Awesome Claude Plugins</h4>
+          <span class="author partner">COMPOSIO</span>
+        </div>
+        <p>Curated plugin registry plus tool router. Turns Claude into a workflow orchestrator across 500+ external services (Gmail, Notion, Slack, Linear, etc.) via Composio's tool router.</p>
+        <div class="install">/plugin marketplace add composiohq/awesome-claude-plugins</div>
+        <div class="meta-row">requires Composio API key (free tier available)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Knowledge work -->
+  <div class="cat-block">
+    <div class="cat-head">
+      <h2>For <em>non-coders</em></h2>
+      <div class="cat-tag">// knowledge work, marketing, legal</div>
+    </div>
+    <div class="picks">
+      <div class="pick">
+        <div class="ph">
+          <h4>knowledge-work-plugins</h4>
+          <span class="author official">ANTHROPIC</span>
+        </div>
+        <p>Role-based bundles: Brand Voice, Marketing, Sales, Productivity, Finance, HR. Ships with Claude Cowork. Each plugin is a complete kit for that function.</p>
+        <div class="install">/plugin marketplace add anthropics/knowledge-work-plugins</div>
+        <div class="meta-row"><strong>14</strong> role-based plugins · works in Claude Code too</div>
+      </div>
+      <div class="pick">
+        <div class="ph">
+          <h4>legal-marketplace</h4>
+          <span class="author official">ANTHROPIC</span>
+        </div>
+        <p>Launched May 13, 2026. Twelve practice-area plugins (Commercial, Corporate, Litigation, IP, Privacy) plus 20+ connectors to DocuSign, Ironclad, iManage, LexisNexis, Thomson Reuters.</p>
+        <div class="install">/plugin marketplace add anthropics/legal-plugins</div>
+        <div class="meta-row">first <strong>vertical-specific</strong> marketplace from Anthropic</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label"><span class="num">03</span>The minimum viable kit</div>
+
+  <div class="mvp">
+    <h3>If you do nothing else, run these four commands</h3>
+    <p>This is what most reviewers actually have installed on day one. Covers feature work, code review, design, and clean commits. Roughly 80% of the value of the entire ecosystem in four lines.</p>
+    <div class="mvp-code" id="mvp-block">
+      <button class="copy-btn" onclick="copyMvp(this)">COPY</button>
+<span class="cmt"># the four-command starter kit</span>
+<span class="kw">/plugin install</span> <span class="arg">feature-dev@claude-plugins-official</span>
+<span class="kw">/plugin install</span> <span class="arg">code-review@claude-plugins-official</span>
+<span class="kw">/plugin install</span> <span class="arg">frontend-design@claude-plugins-official</span>
+<span class="kw">/plugin install</span> <span class="arg">commit-commands@claude-plugins-official</span>
+
+<span class="cmt"># then add one or two MCP servers for your stack</span>
+<span class="kw">/plugin install</span> <span class="arg">github@claude-plugins-official</span>
+<span class="kw">/plugin marketplace add</span> <span class="arg">upstash/context7</span>
+</div>
+  </div>
+
+  <div class="section-label"><span class="num">04</span>The one warning that matters</div>
+
+  <div class="warning">
+    <div class="wlabel">// READ THIS BEFORE INSTALLING COMMUNITY PLUGINS</div>
+    <h3>Plugins can execute arbitrary code on your machine.</h3>
+    <p>From Anthropic's own documentation: <strong>"Plugins and marketplaces are highly trusted components that can execute arbitrary code on your machine."</strong> A community plugin is, functionally, someone else's program running with your user permissions, with access to whatever Claude has access to.</p>
+    <p>Snyk's <code>ToxicSkills</code> research from February 2026 found <strong>13.4% of publicly available skills had critical vulnerabilities</strong>, ranging from prompt injection vectors to outright credential exfiltration. The same risks apply to plugins, only larger because plugins can ship MCP servers and hooks too.</p>
+    <p><strong>Practical defense:</strong> default to <code>claude-plugins-official</code> and the Anthropic-verified badge when possible. If you go to community marketplaces, prefer entries with security audit badges on claudemarketplaces.com or skills.sh. For anything that touches credentials (Gmail, GitHub, payment APIs), only install if you would trust the maintainer with the production API key it requires.</p>
+  </div>
+
+  <div class="closing">
+    <h2>That's the <em>whole guide</em>.</h2>
+    <p>Five chapters covering what skills, MCP servers, and plugins actually are, what enters Claude's context window when you flip each one on, why the architecture is converging, and what to actually install. Built around the questions that came up in conversation.</p>
+    <div class="closing-links">
+      <a href="../guides.html">← back to all learning tracks</a>
+      <a href="guide-01-overview.html">re-read chapter 01</a>
+      <a href="https://code.claude.com/docs/" target="_blank">official docs ↗</a>
+    </div>
+  </div>
+
+  <footer class="page-nav">
+    <a href="guide-04-convergence.html" class="prev">
+      <span class="pn-label">Previous chapter</span>
+      <span class="pn-title">04 Convergence</span>
+    </a>
+    <a href="../guides.html" class="next">
+      <span class="pn-label">Back to guides</span>
+      <span class="pn-title">All learning tracks</span>
+    </a>
+  </footer>
+
+</div>
+
+<script>
+  function copyMvp(btn) {
+    const block = document.getElementById('mvp-block');
+    const text = block.innerText.replace(/^COPY\s*/, '').trim();
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = 'COPIED ✓';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = 'COPY';
+        btn.classList.remove('copied');
+      }, 1800);
+    });
+  }
+</script>
+</body>
+</html>

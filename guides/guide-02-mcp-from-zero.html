@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>02 // MCP From Zero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Caveat:wght@500;700&family=JetBrains+Mono:wght@400;500;700&family=Sora:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0908; --bg-2: #15120e; --bg-3: #1f1a13;
+    --ink: #f0e6d2; --ink-dim: #9c8f7a; --ink-faint: #574f42;
+    --rule: #2a241c; --amber: #f0a93b; --gold: #d9a23a;
+    --moss: #8aa83a; --teal: #4ba39e; --rose: #d96b6b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg); color: var(--ink);
+    font-family: 'Sora', sans-serif; font-weight: 300; line-height: 1.55;
+    min-height: 100vh;
+  }
+  body::before {
+    content: ""; position: fixed; inset: 0;
+    background:
+      radial-gradient(circle at 50% 20%, rgba(240, 169, 59, 0.06), transparent 50%),
+      radial-gradient(circle at 90% 90%, rgba(74, 163, 158, 0.04), transparent 50%);
+    pointer-events: none; z-index: 0;
+  }
+  /* Site nav */
+  .site-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10, 9, 8, 0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule); padding: 14px 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 32px;
+    flex-wrap: wrap;
+  }
+  .site-title {
+    font-family: 'Fraunces', serif; font-size: 17px; font-weight: 500;
+    color: var(--ink); text-decoration: none; letter-spacing: -0.01em;
+  }
+  .site-title em { color: var(--amber); font-style: italic; }
+  .chapter-links { display: flex; gap: 4px; flex-wrap: wrap; }
+  .ch-link {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-faint); text-decoration: none;
+    padding: 6px 10px; border-radius: 3px; transition: all 0.18s;
+  }
+  .ch-link:hover { color: var(--ink); background: var(--bg-3); }
+  .ch-link.current { color: var(--amber); background: var(--bg-2); }
+  .ch-link .num { color: var(--amber); margin-right: 6px; }
+
+  /* Stage */
+  .stage {
+    max-width: 800px; margin: 0 auto;
+    padding: 60px 40px 40px;
+    position: relative; z-index: 1;
+    min-height: calc(100vh - 60px);
+    display: flex; flex-direction: column;
+  }
+  .top-bar {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--rule);
+  }
+  .scroll-title {
+    font-family: 'Caveat', cursive; font-size: 32px; font-weight: 700; color: var(--amber);
+  }
+  .progress {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--ink-faint); letter-spacing: 0.1em;
+  }
+  /* Slides */
+  .slide {
+    display: none; flex: 1; flex-direction: column; animation: rise 0.45s ease;
+  }
+  .slide.active { display: flex; }
+  @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  .level-num {
+    font-family: 'Caveat', cursive; font-size: 64px;
+    color: var(--amber); line-height: 1; margin-bottom: 4px;
+  }
+  .level-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 24px;
+  }
+  .slide h2 {
+    font-family: 'Fraunces', serif; font-weight: 500; font-size: 42px;
+    line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.01em;
+  }
+  .slide h2 em { color: var(--amber); font-style: italic; font-weight: 500; }
+  .slide p {
+    font-size: 18px; color: var(--ink-dim); margin-bottom: 16px; font-weight: 300;
+  }
+  .slide p strong { color: var(--ink); font-weight: 500; }
+  /* Visual area */
+  .visual {
+    margin: 28px 0; padding: 28px;
+    background: var(--bg-2); border: 1px solid var(--rule); border-radius: 4px;
+    position: relative;
+  }
+  .scene {
+    display: flex; align-items: center; justify-content: space-around;
+    gap: 20px; flex-wrap: wrap;
+  }
+  .character { text-align: center; flex: 1; min-width: 140px; }
+  .character .icon { font-size: 54px; margin-bottom: 8px; display: block; }
+  .character .name { font-family: 'Caveat', cursive; font-size: 22px; color: var(--ink); font-weight: 700; }
+  .character .role { font-size: 13px; color: var(--ink-faint); font-style: italic; margin-top: 2px; }
+  .barrier {
+    font-family: 'Caveat', cursive; color: var(--rose);
+    font-size: 22px; font-weight: 700; transform: rotate(-5deg);
+  }
+  .keychain {
+    display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 18px;
+  }
+  .key-tag {
+    background: var(--bg); border: 1px solid var(--amber); padding: 10px 14px;
+    border-radius: 14px 14px 14px 4px;
+    font-family: 'Caveat', cursive; font-size: 18px; color: var(--ink);
+    transform: rotate(-1deg);
+    box-shadow: 2px 2px 0 rgba(240, 169, 59, 0.15);
+    position: relative;
+  }
+  .key-tag:nth-child(even) { transform: rotate(1.5deg); }
+  .key-tag::before { content: "🔑"; margin-right: 6px; font-size: 14px; }
+  .compare-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 20px;
+  }
+  .compare-col { padding: 18px; border-radius: 4px; }
+  .compare-col.without {
+    background: rgba(217, 107, 107, 0.08); border-left: 3px solid var(--rose);
+  }
+  .compare-col.with {
+    background: rgba(74, 163, 158, 0.08); border-left: 3px solid var(--teal);
+  }
+  .compare-col .clabel {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    margin-bottom: 8px; color: var(--ink-faint);
+  }
+  .compare-col .ctext { font-size: 15px; color: var(--ink); }
+  .settings-mock {
+    background: var(--bg); border: 1px solid var(--rule); border-radius: 4px;
+    padding: 16px; margin-top: 18px;
+    font-family: 'JetBrains Mono', monospace; font-size: 13px;
+  }
+  .settings-mock .header-bar {
+    font-size: 11px; color: var(--ink-faint); letter-spacing: 0.12em;
+    text-transform: uppercase; margin-bottom: 12px;
+    padding-bottom: 8px; border-bottom: 1px dotted var(--rule);
+  }
+  .toggle-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 0; border-bottom: 1px dotted var(--rule);
+  }
+  .toggle-row:last-child { border-bottom: none; }
+  .toggle-row .tname { color: var(--ink); font-weight: 500; }
+  .toggle-row .tdesc { color: var(--ink-faint); font-size: 11px; }
+  .toggle {
+    width: 36px; height: 18px; border-radius: 999px;
+    background: var(--rule); position: relative; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .toggle::after {
+    content: ""; position: absolute; top: 2px; left: 2px;
+    width: 14px; height: 14px; background: var(--ink); border-radius: 50%;
+    transition: left 0.2s;
+  }
+  .toggle.on { background: var(--teal); }
+  .toggle.on::after { left: 20px; background: var(--bg); }
+  .arrow-flow {
+    display: flex; align-items: center; justify-content: center;
+    gap: 12px; flex-wrap: wrap; margin: 20px 0;
+    font-family: 'Caveat', cursive; font-size: 19px;
+  }
+  .arrow-flow .step {
+    background: var(--bg); border: 1px solid var(--rule);
+    padding: 8px 14px; border-radius: 4px; color: var(--ink);
+  }
+  .arrow-flow .arrow { color: var(--amber); font-size: 22px; font-weight: 700; }
+  .punchline {
+    color: var(--amber); font-family: 'Caveat', cursive;
+    font-size: 26px; margin-top: 24px; text-align: center;
+  }
+  .punchline strong { color: var(--ink); }
+  /* Navigation */
+  .nav {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--rule);
+  }
+  .nav-btn {
+    background: var(--amber); color: #1a1408; border: none;
+    padding: 12px 24px; font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;
+    border-radius: 3px; transition: all 0.18s;
+  }
+  .nav-btn:hover { background: #ffba47; transform: translateY(-1px); }
+  .nav-btn:disabled {
+    background: var(--rule); color: var(--ink-faint);
+    cursor: not-allowed; transform: none;
+  }
+  .dots { display: flex; gap: 8px; }
+  .dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--rule); cursor: pointer; transition: all 0.2s;
+  }
+  .dot.active { background: var(--amber); transform: scale(1.3); }
+  .dot.done { background: var(--gold); }
+  .closing {
+    margin-top: 24px; padding: 20px; background: var(--bg-2);
+    border-left: 3px solid var(--teal); border-radius: 0 4px 4px 0;
+    font-style: italic; font-size: 17px; color: var(--ink);
+  }
+  /* Page nav */
+  .page-nav {
+    max-width: 800px; margin: 60px auto 0;
+    padding: 32px 40px 40px;
+    border-top: 1px solid var(--rule);
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  }
+  .page-nav a {
+    color: var(--ink); text-decoration: none; padding: 16px 20px;
+    border: 1px solid var(--rule); border-radius: 3px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    background: var(--bg-2); transition: all 0.2s; flex: 1; max-width: 340px;
+  }
+  .page-nav a:hover { border-color: var(--amber); transform: translateY(-2px); }
+  .page-nav a.next { text-align: right; }
+  .pn-label {
+    display: block; font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 4px;
+  }
+  .pn-title { color: var(--ink); font-size: 14px; font-weight: 500; }
+  .page-nav a.next .pn-label::after { content: " →"; color: var(--amber); }
+  .page-nav a.prev .pn-label::before { content: "← "; color: var(--amber); }
+  @media (max-width: 600px) {
+    .stage { padding: 32px 20px; }
+    .slide h2 { font-size: 30px; }
+    .slide p { font-size: 16px; }
+    .compare-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <a href="../index.html" class="site-title">AI <em>Glossary</em></a>
+  <nav class="chapter-links">
+    <a href="../index.html" class="ch-link">Glossary</a>
+    <a href="../guides.html" class="ch-link current">Guides</a>
+    <a href="../resources.html" class="ch-link">Resources</a>
+    <span style="width:1px;background:#2a241c;align-self:stretch;margin:5px 8px"></span>
+    <a href="guide-01-overview.html" class="ch-link"><span class="num">01</span>Overview</a>
+    <a href="guide-02-mcp-from-zero.html" class="ch-link current"><span class="num">02</span>MCP From Zero</a>
+    <a href="guide-03-what-claude-sees.html" class="ch-link"><span class="num">03</span>What Claude Sees</a>
+    <a href="guide-04-convergence.html" class="ch-link"><span class="num">04</span>Convergence</a>
+    <a href="guide-05-starter-pack.html" class="ch-link"><span class="num">05</span>Starter Pack</a>
+  </nav>
+</header>
+
+<div class="stage">
+  <div class="top-bar">
+    <div class="scroll-title">MCP, from zero</div>
+    <div class="progress" id="progress">01 / 05</div>
+  </div>
+
+  <!-- LEVEL 1 -->
+  <div class="slide active" data-level="1">
+    <div class="level-num">01</div>
+    <div class="level-label">// the locked-out assistant</div>
+    <h2>Imagine you hire a <em>brilliant assistant</em>.</h2>
+    <p>First day on the job. Sharp, capable, ready to work. But there is a problem: they have no logins, no badges, no keys to anything in your office.</p>
+    <div class="visual">
+      <div class="scene">
+        <div class="character">
+          <span class="icon">🧑‍💼</span>
+          <div class="name">Claude</div>
+          <div class="role">your new assistant</div>
+        </div>
+        <div class="barrier">🚫 locked out</div>
+        <div class="character">
+          <span class="icon">📧 📅 📁</span>
+          <div class="name">your apps</div>
+          <div class="role">Gmail, Calendar, Drive</div>
+        </div>
+      </div>
+    </div>
+    <p>You ask them to "pull up the budget spreadsheet" and they cannot, they have no access to the drive. You ask them to "check my calendar" and they cannot, no login.</p>
+    <p>The only things they can work with are whatever you physically hand them, paste in front of them, or read out loud.</p>
+    <p class="punchline">That is Claude <strong>without</strong> MCP.</p>
+  </div>
+
+  <!-- LEVEL 2 -->
+  <div class="slide" data-level="2">
+    <div class="level-num">02</div>
+    <div class="level-label">// the keychain arrives</div>
+    <h2>Now you hand them a <em>keychain</em>.</h2>
+    <p>On the keychain are several keys. Each one is shaped differently. Each one opens exactly one door:</p>
+    <div class="visual">
+      <div class="keychain">
+        <div class="key-tag">Gmail key</div>
+        <div class="key-tag">Calendar key</div>
+        <div class="key-tag">Drive key</div>
+        <div class="key-tag">GitHub key</div>
+        <div class="key-tag">Slack key</div>
+      </div>
+      <p style="text-align:center;margin-top:18px;font-family:'Caveat',cursive;font-size:22px;color:var(--teal)">one keychain, many keys</p>
+    </div>
+    <p>Suddenly your assistant can do real work without you fetching everything for them. You say "draft a follow-up to today's 2pm meeting" and they walk to the calendar room, look up the meeting, walk to the email room, draft the reply, and send it.</p>
+    <p class="punchline"><strong>MCP is the keychain.</strong><br>Each "MCP server" is one key on it.</p>
+  </div>
+
+  <!-- LEVEL 3 -->
+  <div class="slide" data-level="3">
+    <div class="level-num">03</div>
+    <div class="level-label">// why every door needs its own key</div>
+    <h2>"Why not just one <em>master key</em>?"</h2>
+    <p>Because every app is locked differently. Gmail has its own language for "give me an email." GitHub has a completely different language for "give me an issue." Your database speaks SQL. There is no universal way to talk to all of them.</p>
+    <div class="visual">
+      <div class="arrow-flow">
+        <span class="step">Claude</span>
+        <span class="arrow">→</span>
+        <span class="step" style="background:var(--bg-3);border-color:var(--teal);color:var(--teal)">Gmail translator</span>
+        <span class="arrow">→</span>
+        <span class="step">Gmail</span>
+      </div>
+      <p style="text-align:center;font-size:14px;color:var(--ink-faint);margin-top:8px;font-style:italic">the "Gmail translator" is the Gmail MCP server</p>
+    </div>
+    <p>So the people who built MCP said: <strong>let us invent one common language (MCP).</strong> Then whoever owns an app builds a tiny translator that speaks both their app's language and MCP. Claude only learns one language.</p>
+    <p>Same trick as <strong>USB-C</strong>. Instead of every device needing its own charger, the world agreed on one plug shape. Now any USB-C charger works with any USB-C device.</p>
+    <p class="punchline">MCP = <strong>USB-C for AI assistants</strong></p>
+  </div>
+
+  <!-- LEVEL 4 -->
+  <div class="slide" data-level="4">
+    <div class="level-num">04</div>
+    <div class="level-label">// a Tuesday at your desk</div>
+    <h2>So what <em>actually changes</em> for you?</h2>
+    <p>Same simple request, asked on two different Tuesdays. One Tuesday you do not have MCP connected. The next Tuesday, you do.</p>
+    <p style="font-family:'Caveat',cursive;font-size:24px;color:var(--ink);margin-top:24px;text-align:center">
+      "Claude, summarize the last 5 emails from my boss."
+    </p>
+    <div class="compare-row">
+      <div class="compare-col without">
+        <div class="clabel">// without MCP</div>
+        <div class="ctext">
+          <strong>Claude:</strong> "I would love to but I cannot read your email. Could you paste them?"<br><br>
+          You open Gmail. You copy the first email. Paste. Copy the second. Paste. Ten minutes of copy-pasting later, Claude summarizes them.
+        </div>
+      </div>
+      <div class="compare-col with">
+        <div class="clabel">// with MCP (Gmail on)</div>
+        <div class="ctext">
+          Claude reaches into Gmail through the MCP server, fetches the five emails, summarizes them.<br><br>
+          <strong>One step.</strong> You did nothing extra.
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:24px"><strong>That is the entire user-facing point of MCP.</strong> It turns Claude from "smart but locked out of your apps" into "smart and actually able to use them on your behalf."</p>
+  </div>
+
+  <!-- LEVEL 5 -->
+  <div class="slide" data-level="5">
+    <div class="level-num">05</div>
+    <div class="level-label">// what YOU actually do</div>
+    <h2>You flip <em>switches</em>. That is it.</h2>
+    <p>If you are not a developer, you will never see JSON. You will never edit a config file. You will never run a server. You go into Claude's Settings, find <strong>Connectors</strong>, and toggle on the apps you want.</p>
+    <div class="settings-mock">
+      <div class="header-bar">Settings &nbsp;&rsaquo;&nbsp; Connectors</div>
+      <div class="toggle-row">
+        <div>
+          <div class="tname">Gmail</div>
+          <div class="tdesc">Read and draft emails on your behalf</div>
+        </div>
+        <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+      </div>
+      <div class="toggle-row">
+        <div>
+          <div class="tname">Google Calendar</div>
+          <div class="tdesc">Check your schedule, add events</div>
+        </div>
+        <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+      </div>
+      <div class="toggle-row">
+        <div>
+          <div class="tname">Google Drive</div>
+          <div class="tdesc">Fetch and edit your files</div>
+        </div>
+        <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+      </div>
+      <div class="toggle-row">
+        <div>
+          <div class="tname">Slack</div>
+          <div class="tdesc">Read messages, post replies</div>
+        </div>
+        <div class="toggle" onclick="this.classList.toggle('on')"></div>
+      </div>
+      <div class="toggle-row">
+        <div>
+          <div class="tname">GitHub</div>
+          <div class="tdesc">Browse repos, read issues, open PRs</div>
+        </div>
+        <div class="toggle" onclick="this.classList.toggle('on')"></div>
+      </div>
+    </div>
+    <p style="margin-top:20px">Behind the scenes, when you toggle one on, Claude starts up the matching MCP server. The "key" appears on the keychain. The next time you chat, Claude can use it.</p>
+    <div class="closing">
+      The whole technical layer (JSON-RPC, config files, manifests, transports) is for developers wiring up custom apps that have no pre-built connector. For everyone else, MCP is the toggle switch and the result.
+    </div>
+  </div>
+
+  <div class="nav">
+    <button class="nav-btn" id="prev" disabled>&larr; Back</button>
+    <div class="dots" id="dots"></div>
+    <button class="nav-btn" id="next">Next &rarr;</button>
+  </div>
+</div>
+
+<footer class="page-nav">
+  <a href="guide-01-overview.html" class="prev">
+    <span class="pn-label">Previous chapter</span>
+    <span class="pn-title">01 Overview</span>
+  </a>
+  <a href="guide-03-what-claude-sees.html" class="next">
+    <span class="pn-label">Next chapter</span>
+    <span class="pn-title">03 What Claude Sees</span>
+  </a>
+</footer>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const prev = document.getElementById('prev');
+  const next = document.getElementById('next');
+  const dotsWrap = document.getElementById('dots');
+  const progress = document.getElementById('progress');
+  let idx = 0;
+
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => go(i));
+    dotsWrap.appendChild(d);
+  });
+
+  function go(i) {
+    if (i < 0 || i >= slides.length) return;
+    slides[idx].classList.remove('active');
+    idx = i;
+    slides[idx].classList.add('active');
+    document.querySelectorAll('.dot').forEach((d, j) => {
+      d.classList.toggle('active', j === idx);
+      d.classList.toggle('done', j < idx);
+    });
+    prev.disabled = idx === 0;
+    next.disabled = idx === slides.length - 1;
+    next.textContent = idx === slides.length - 1 ? 'Done ✓' : 'Next →';
+    progress.textContent = String(idx + 1).padStart(2, '0') + ' / ' + String(slides.length).padStart(2, '0');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  prev.addEventListener('click', () => go(idx - 1));
+  next.addEventListener('click', () => go(idx + 1));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') go(idx + 1);
+    if (e.key === 'ArrowLeft') go(idx - 1);
+  });
+</script>
+</body>
+</html>

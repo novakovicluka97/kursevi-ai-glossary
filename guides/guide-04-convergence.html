@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>04 // The Convergence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700&family=JetBrains+Mono:wght@400;500;700&family=Sora:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0908; --bg-2: #15120e; --bg-3: #1f1a13;
+    --ink: #f0e6d2; --ink-dim: #9c8f7a; --ink-faint: #574f42;
+    --rule: #2a241c; --amber: #f0a93b; --rust: #c4421a;
+    --moss: #8aa83a; --teal: #4ba39e; --violet: #a17fc9; --rose: #d96b6b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg); color: var(--ink);
+    font-family: 'Sora', sans-serif; font-weight: 300; line-height: 1.55; min-height: 100vh;
+  }
+  body::before {
+    content: ""; position: fixed; inset: 0;
+    background:
+      radial-gradient(circle at 80% 10%, rgba(74, 163, 158, 0.05), transparent 50%),
+      radial-gradient(circle at 10% 90%, rgba(240, 169, 59, 0.04), transparent 50%);
+    pointer-events: none; z-index: 0;
+  }
+  .site-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10, 9, 8, 0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule); padding: 14px 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+  }
+  .site-title {
+    font-family: 'Fraunces', serif; font-size: 17px; font-weight: 500;
+    color: var(--ink); text-decoration: none; letter-spacing: -0.01em;
+  }
+  .site-title em { color: var(--amber); font-style: italic; }
+  .chapter-links { display: flex; gap: 4px; flex-wrap: wrap; }
+  .ch-link {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-faint); text-decoration: none;
+    padding: 6px 10px; border-radius: 3px; transition: all 0.18s;
+  }
+  .ch-link:hover { color: var(--ink); background: var(--bg-3); }
+  .ch-link.current { color: var(--amber); background: var(--bg-2); }
+  .ch-link .num { color: var(--amber); margin-right: 6px; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 48px 32px 80px; position: relative; z-index: 1; }
+  header.top { border-bottom: 1px solid var(--rule); padding-bottom: 28px; margin-bottom: 40px; }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); margin-bottom: 14px;
+  }
+  h1 {
+    font-family: 'Fraunces', serif; font-weight: 400;
+    font-size: clamp(34px, 4.5vw, 54px); line-height: 1.05;
+    letter-spacing: -0.02em; margin-bottom: 14px;
+  }
+  h1 em { font-style: italic; color: var(--amber); font-weight: 500; }
+  .lede { color: var(--ink-dim); max-width: 720px; font-size: 16px; }
+  /* Sections */
+  .section {
+    background: var(--bg-2); border: 1px solid var(--rule);
+    border-radius: 4px; padding: 32px; margin-bottom: 28px;
+  }
+  .stag {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 8px;
+  }
+  .section.q1 .stag { color: var(--rose); }
+  .section.q2 .stag { color: var(--teal); }
+  .section.q3 .stag { color: var(--violet); }
+  .section.q4 .stag { color: var(--moss); }
+  .section h2 {
+    font-family: 'Fraunces', serif; font-size: 30px; font-weight: 500;
+    letter-spacing: -0.01em; margin-bottom: 8px;
+  }
+  .section h2 em { font-style: italic; color: var(--amber); font-weight: 500; }
+  .section .sub { color: var(--ink-dim); font-size: 15px; margin-bottom: 24px; max-width: 760px; }
+  /* Chain */
+  .chain {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px;
+    align-items: stretch; margin: 24px 0;
+  }
+  .chain-step {
+    background: var(--bg); border: 1px solid var(--rule); padding: 14px 12px;
+    border-radius: 3px; text-align: center; position: relative;
+    display: flex; flex-direction: column; justify-content: center; min-height: 110px;
+  }
+  .chain-step .icon { font-size: 22px; margin-bottom: 6px; }
+  .chain-step .name {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    color: var(--amber); letter-spacing: 0.06em; margin-bottom: 4px;
+  }
+  .chain-step .desc { font-size: 10px; color: var(--ink-dim); line-height: 1.4; }
+  .chain-step::after {
+    content: "→"; position: absolute; right: -10px; top: 50%;
+    transform: translateY(-50%); color: var(--amber); font-size: 14px; z-index: 2;
+  }
+  .chain-step:last-child::after { display: none; }
+  .chain-step.skill { border-color: var(--moss); }
+  .chain-step.tool { border-color: var(--teal); }
+  .chain-step.cli { border-color: var(--amber); }
+  .chain-step.api { border-color: var(--rust); }
+  .chain-caption {
+    text-align: center; font-size: 13px; color: var(--ink-dim);
+    font-style: italic; margin-top: 8px;
+  }
+  /* Code */
+  .code {
+    background: var(--bg); border: 1px solid var(--rule); border-radius: 3px;
+    padding: 18px; font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; line-height: 1.65; color: var(--ink-dim);
+    overflow-x: auto; white-space: pre; margin: 16px 0;
+  }
+  .code .kw { color: var(--amber); }
+  .code .str { color: #c4e17f; }
+  .code .com { color: var(--ink-faint); font-style: italic; }
+  .code .key { color: var(--teal); }
+  .code .head { color: var(--violet); font-weight: 700; }
+  .code .punct { color: var(--ink-faint); }
+  /* API structure */
+  .api-shape {
+    display: grid; grid-template-columns: 200px 1fr; gap: 0; margin: 20px 0;
+    background: var(--bg); border: 1px solid var(--rule); border-radius: 3px; overflow: hidden;
+  }
+  .api-row { display: contents; }
+  .api-field {
+    padding: 14px 18px; background: var(--bg-3);
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--ink-dim); border-bottom: 1px solid var(--rule);
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .api-field .fname { color: var(--amber); font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+  .api-field .fsub {
+    color: var(--ink-faint); font-size: 10px;
+    text-transform: uppercase; letter-spacing: 0.1em;
+  }
+  .api-value {
+    padding: 14px 18px; font-size: 12px; color: var(--ink);
+    border-bottom: 1px solid var(--rule); line-height: 1.6;
+  }
+  .api-row:last-child .api-field, .api-row:last-child .api-value { border-bottom: none; }
+  .api-value .label-tag {
+    display: inline-block; padding: 2px 8px; border-radius: 999px;
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 0.08em; margin-left: 8px; text-transform: uppercase;
+  }
+  .label-tag.persistent { background: rgba(138, 168, 58, 0.15); color: var(--moss); border: 1px solid var(--moss); }
+  .label-tag.volatile { background: rgba(217, 107, 107, 0.12); color: var(--rose); border: 1px solid var(--rose); }
+  /* Tool search */
+  .ts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+  .ts-card { background: var(--bg); border: 1px solid var(--rule); border-radius: 3px; padding: 18px; }
+  .ts-card.bad { border-left: 3px solid var(--rose); }
+  .ts-card.good { border-left: 3px solid var(--moss); }
+  .ts-title {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px;
+  }
+  .ts-card.bad .ts-title { color: var(--rose); }
+  .ts-card.good .ts-title { color: var(--moss); }
+  .ts-card h4 { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; margin-bottom: 8px; }
+  .ts-card p { font-size: 13px; color: var(--ink-dim); }
+  .ts-stat {
+    margin-top: 14px; padding: 10px 12px; background: var(--bg-3);
+    border-radius: 3px; font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  }
+  .ts-stat .stat-num {
+    color: var(--amber); font-size: 22px; font-weight: 700;
+    font-family: 'Fraunces', serif; display: block; line-height: 1; margin-bottom: 4px;
+  }
+  .ts-card.good .stat-num { color: var(--moss); }
+  .ts-card.bad .stat-num { color: var(--rose); }
+  /* Plugin */
+  .plug-box {
+    border: 2px dashed var(--amber); padding: 24px; border-radius: 4px;
+    background: rgba(240, 169, 59, 0.03); margin: 16px 0; position: relative;
+  }
+  .plug-box::before {
+    content: "PLUGIN: image-studio"; position: absolute; top: -10px; left: 20px;
+    background: var(--bg-2); padding: 0 10px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.14em; color: var(--amber);
+  }
+  .plug-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .plug-half { background: var(--bg); border: 1px solid var(--rule); padding: 16px; border-radius: 3px; }
+  .plug-half h5 {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px;
+  }
+  .plug-half.skills h5 { color: var(--moss); }
+  .plug-half.mcp h5 { color: var(--teal); }
+  .plug-half ul { list-style: none; padding: 0; }
+  .plug-half li {
+    font-size: 12px; color: var(--ink-dim); padding: 4px 0;
+    border-bottom: 1px dotted var(--rule);
+  }
+  .plug-half li:last-child { border-bottom: none; }
+  .plug-half li code { font-family: 'JetBrains Mono', monospace; color: var(--amber); font-size: 11px; }
+  .annotation {
+    margin-top: 14px; padding: 14px 18px;
+    border-left: 2px solid var(--amber); background: rgba(240, 169, 59, 0.05);
+    font-size: 14px; color: var(--ink-dim); border-radius: 0 3px 3px 0;
+  }
+  .annotation strong { color: var(--ink); font-weight: 500; }
+  .annotation.warn { border-left-color: var(--rose); background: rgba(217, 107, 107, 0.05); }
+  /* Closing */
+  .closing {
+    background: var(--bg-2); border: 1px solid var(--amber);
+    border-radius: 4px; padding: 28px 32px; margin-top: 36px; position: relative;
+  }
+  .closing::before {
+    content: "// the convergence"; position: absolute; top: -10px; left: 24px;
+    background: var(--bg); padding: 0 12px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.14em; color: var(--amber);
+  }
+  .closing p {
+    font-family: 'Fraunces', serif; font-size: 19px; line-height: 1.5; color: var(--ink);
+  }
+  .closing p + p { margin-top: 14px; }
+  .closing em { color: var(--amber); font-style: italic; font-weight: 500; }
+  .closing strong { color: var(--ink); font-weight: 600; }
+  /* Page nav */
+  .page-nav {
+    margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--rule);
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  }
+  .page-nav a {
+    color: var(--ink); text-decoration: none; padding: 16px 20px;
+    border: 1px solid var(--rule); border-radius: 3px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    background: var(--bg-2); transition: all 0.2s; flex: 1; max-width: 360px;
+  }
+  .page-nav a:hover { border-color: var(--amber); transform: translateY(-2px); }
+  .page-nav a.next { text-align: right; }
+  .pn-label {
+    display: block; font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 4px;
+  }
+  .pn-title { color: var(--ink); font-size: 14px; font-weight: 500; }
+  .page-nav a.next .pn-label::after { content: " →"; color: var(--amber); }
+  .page-nav a.prev .pn-label::before { content: "← "; color: var(--amber); }
+  @media (max-width: 900px) {
+    .chain { grid-template-columns: 1fr; }
+    .chain-step::after { content: "↓"; right: 50%; top: 100%; transform: translateX(50%) translateY(-2px); }
+    .ts-grid, .plug-grid { grid-template-columns: 1fr; }
+    .api-shape { grid-template-columns: 1fr; }
+    .api-field { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <a href="../index.html" class="site-title">AI <em>Glossary</em></a>
+  <nav class="chapter-links">
+    <a href="../index.html" class="ch-link">Glossary</a>
+    <a href="../guides.html" class="ch-link current">Guides</a>
+    <a href="../resources.html" class="ch-link">Resources</a>
+    <span style="width:1px;background:#2a241c;align-self:stretch;margin:5px 8px"></span>
+    <a href="guide-01-overview.html" class="ch-link"><span class="num">01</span>Overview</a>
+    <a href="guide-02-mcp-from-zero.html" class="ch-link"><span class="num">02</span>MCP From Zero</a>
+    <a href="guide-03-what-claude-sees.html" class="ch-link"><span class="num">03</span>What Claude Sees</a>
+    <a href="guide-04-convergence.html" class="ch-link current"><span class="num">04</span>Convergence</a>
+    <a href="guide-05-starter-pack.html" class="ch-link"><span class="num">05</span>Starter Pack</a>
+  </nav>
+</header>
+
+<div class="wrap">
+
+  <header class="top">
+    <div class="eyebrow">// chapter 04 // the deep stuff</div>
+    <h1>The skill that calls an <em>API</em>, the field that holds <em>tools</em>, and the <em>hybrid</em> that already exists</h1>
+    <p class="lede">
+      Three sharp questions, three precise answers. A real skill from the skills.sh directory is the case study. The API structure is the diagram. Tool Search is the answer to "why can't tools load conditionally too." Plugins are the hybrid people keep asking about.
+    </p>
+  </header>
+
+  <section class="section q1">
+    <div class="stag">// question 01</div>
+    <h2>"If a skill calls an API, isn't it just a tool?"</h2>
+    <p class="sub">
+      It looks that way, but a skill never directly touches the network. It commands a tool that Claude already had to do the touching. Here is the actual chain for the inference.sh image-generation skill from skills.sh.
+    </p>
+    <div class="chain">
+      <div class="chain-step skill">
+        <div class="icon">📄</div>
+        <div class="name">SKILL</div>
+        <div class="desc">markdown text loaded into context</div>
+      </div>
+      <div class="chain-step">
+        <div class="icon">🧠</div>
+        <div class="name">CLAUDE</div>
+        <div class="desc">reads the skill, decides to act</div>
+      </div>
+      <div class="chain-step tool">
+        <div class="icon">⚙️</div>
+        <div class="name">BASH TOOL</div>
+        <div class="desc">Claude's built-in. emits tool_use for shell command</div>
+      </div>
+      <div class="chain-step cli">
+        <div class="icon">🖥️</div>
+        <div class="name">belt CLI</div>
+        <div class="desc">runs on your machine, parses args</div>
+      </div>
+      <div class="chain-step api">
+        <div class="icon">☁️</div>
+        <div class="name">inference.sh</div>
+        <div class="desc">the actual HTTP API call</div>
+      </div>
+      <div class="chain-step">
+        <div class="icon">🖼️</div>
+        <div class="name">IMAGE URL</div>
+        <div class="desc">flows back through every step</div>
+      </div>
+    </div>
+    <div class="chain-caption">six links in the chain. only step three is a "tool" in the Claude sense.</div>
+    <div class="annotation">
+      <strong>The real lesson:</strong> a skill is inert markdown. It needs an existing tool (Bash here, but could be Python execution, web fetch, anything) to actually do work in the world. The skill orchestrates. The tool executes. The CLI bridges the tool to the API. The skill never "becomes" a tool; it directs one. Without Claude having a Bash tool, this skill does literally nothing.
+    </div>
+    <div class="code"><span class="head"># what claude actually emits when running this skill</span>
+<span class="key">tool_use</span> <span class="punct">{</span>
+  <span class="key">name</span><span class="punct">:</span> <span class="str">"Bash"</span>,
+  <span class="key">input</span><span class="punct">:</span> <span class="punct">{</span>
+    <span class="key">command</span><span class="punct">:</span> <span class="str">"belt app run falai/flux-dev-lora --input '{\"prompt\": \"a cat astronaut\"}'"</span>
+  <span class="punct">}</span>
+<span class="punct">}</span>
+
+<span class="com"># bash runs it. belt CLI hits inference.sh. URL comes back.</span>
+<span class="com"># claude only ever called one tool: Bash.</span>
+</div>
+  </section>
+
+  <section class="section q3">
+    <div class="stag">// question 02</div>
+    <h2>"Are tools in the <em>same context</em> as system instructions?"</h2>
+    <p class="sub">
+      There is one input the model reads. But that input is built from three distinct API fields in the request. Here they are.
+    </p>
+    <div class="api-shape">
+      <div class="api-row">
+        <div class="api-field">
+          <span class="fname">system</span>
+          <span class="fsub">top-level field</span>
+        </div>
+        <div class="api-value">
+          The system prompt. Skills load here, or in a system-style block prepended to messages.
+          <span class="label-tag persistent">persistent</span>
+        </div>
+      </div>
+      <div class="api-row">
+        <div class="api-field">
+          <span class="fname">tools</span>
+          <span class="fsub">top-level field</span>
+        </div>
+        <div class="api-value">
+          Array of structured tool declarations. Built-in tools (Bash, web_search) and MCP tools both live here.
+          <span class="label-tag persistent">persistent</span>
+        </div>
+      </div>
+      <div class="api-row">
+        <div class="api-field">
+          <span class="fname">messages</span>
+          <span class="fsub">top-level field</span>
+        </div>
+        <div class="api-value">
+          The growing conversation: your turns, Claude's replies, tool_use and tool_result blocks.
+          <span class="label-tag volatile">prunable</span>
+        </div>
+      </div>
+    </div>
+    <div class="annotation">
+      <strong>Your intuition was correct:</strong> when context fills up, the host's compaction logic typically prunes or summarizes old <code style="color:var(--amber);font-family:'JetBrains Mono',monospace">messages</code> first. The <code style="color:var(--amber);font-family:'JetBrains Mono',monospace">system</code> and <code style="color:var(--amber);font-family:'JetBrains Mono',monospace">tools</code> fields are held constant across turns and survive compaction. So both skills and MCP tools are privileged residents of context, while old chat turns are tenants who can be evicted.
+    </div>
+    <div class="annotation warn">
+      <strong>One caveat:</strong> "persistent" means "the host keeps sending them in every turn." If the compactor is dumb and the conversation runs really long, in theory they could rotate out. But every well-built client keeps system and tools at the top, every turn. Treat them as effectively permanent.
+    </div>
+  </section>
+
+  <section class="section q2">
+    <div class="stag">// question 03 // your real insight</div>
+    <h2>"Why can't tools be conditionally loaded like skills?"</h2>
+    <p class="sub">
+      They can. Anthropic already shipped this. It's called <strong style="color:var(--ink)">Tool Search</strong>. Your hybrid intuition is exactly the direction the architecture is moving.
+    </p>
+    <div class="ts-grid">
+      <div class="ts-card bad">
+        <div class="ts-title">// OLD WORLD // all tools eager</div>
+        <h4>Connect 15 MCP servers</h4>
+        <p>Every tool from every server gets dumped into the <code style="color:var(--amber);font-family:'JetBrains Mono',monospace">tools</code> field at session start. Hundreds of declarations, often 50,000+ tokens before you've typed anything.</p>
+        <div class="ts-stat">
+          <span class="stat-num">49%</span>
+          accuracy on Opus 4 with crowded tool catalog
+        </div>
+      </div>
+      <div class="ts-card good">
+        <div class="ts-title">// NEW WORLD // tool search</div>
+        <h4>Same 15 servers, lazy</h4>
+        <p>Only a meta-tool <code style="color:var(--amber);font-family:'JetBrains Mono',monospace">tool_search</code> is loaded by default. Real tool catalog sits indexed on the side. When Claude needs a capability, it searches by keyword and only the matching tools enter context.</p>
+        <div class="ts-stat">
+          <span class="stat-num">74%</span>
+          accuracy on the same workload, same Opus 4
+        </div>
+      </div>
+    </div>
+    <div class="code"><span class="head"># turn 1: claude sees only the meta-tool</span>
+<span class="key">tools</span><span class="punct">:</span> <span class="punct">[</span> <span class="punct">{</span> <span class="key">name</span><span class="punct">:</span> <span class="str">"tool_search"</span><span class="punct">,</span> <span class="key">description</span><span class="punct">:</span> <span class="str">"find tools by keyword"</span> <span class="punct">}</span> <span class="punct">]</span>
+
+<span class="head"># user: "send a message to the engineering slack channel"</span>
+
+<span class="head"># claude calls the meta-tool first</span>
+<span class="key">tool_use</span> <span class="punct">{</span> <span class="key">name</span><span class="punct">:</span> <span class="str">"tool_search"</span><span class="punct">,</span> <span class="key">input</span><span class="punct">:</span> <span class="punct">{</span> <span class="key">query</span><span class="punct">:</span> <span class="str">"slack message post channel"</span> <span class="punct">}</span> <span class="punct">}</span>
+
+<span class="head"># host returns matching tools, injects them for this turn only</span>
+<span class="key">tool_result</span><span class="punct">:</span> <span class="str">"found 3 tools: slack_send_message, slack_list_channels, slack_get_user"</span>
+
+<span class="head"># now claude calls the real tool</span>
+<span class="key">tool_use</span> <span class="punct">{</span> <span class="key">name</span><span class="punct">:</span> <span class="str">"slack_send_message"</span><span class="punct">,</span> <span class="key">input</span><span class="punct">:</span> <span class="punct">{</span> <span class="key">channel</span><span class="punct">:</span> <span class="str">"engineering"</span><span class="punct">,</span> <span class="key">text</span><span class="punct">:</span> <span class="str">"..."</span> <span class="punct">}</span> <span class="punct">}</span>
+
+<span class="com"># the other 14 servers' tools never entered context this turn.</span>
+</div>
+    <div class="annotation">
+      <strong>Identical in spirit to skill progressive disclosure.</strong> Skills scan descriptions, load bodies on match. Tool Search scans tool names and descriptions, loads schemas on match. Two implementations of the same idea: do not pay token cost for things you have not used yet.
+    </div>
+  </section>
+
+  <section class="section q4">
+    <div class="stag">// question 04 // the hybrid already exists</div>
+    <h2>"Couldn't skills just <em>include</em> MCP tools?"</h2>
+    <p class="sub">
+      That's a plugin. A plugin is the bundle that ships skills and MCP servers together, each obeying its own loading rules.
+    </p>
+    <div class="plug-box">
+      <div class="plug-grid">
+        <div class="plug-half skills">
+          <h5>// skills/ (progressive disclosure)</h5>
+          <ul>
+            <li><code>flux-prompt-engineer/</code> SKILL.md teaches Claude how to craft FLUX prompts</li>
+            <li><code>character-consistency/</code> SKILL.md explains seed reuse for character lock</li>
+            <li><code>style-transfer/</code> SKILL.md walks through reference image workflows</li>
+          </ul>
+        </div>
+        <div class="plug-half mcp">
+          <h5>// .mcp.json (tool search lazy load)</h5>
+          <ul>
+            <li><code>generate_image</code> tool to call inference.sh</li>
+            <li><code>generate_video</code> tool for Veo, Seedance, etc.</li>
+            <li><code>upscale_image</code> tool for super-resolution</li>
+            <li><code>get_job_status</code> tool for async jobs</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="annotation">
+      <strong>The two halves work together.</strong> When a user asks "make a consistent character across three poses," the <code style="color:var(--amber);font-family:'JetBrains Mono',monospace">character-consistency</code> skill fires (progressive disclosure, body loads). The skill's procedure tells Claude to call the <code style="color:var(--amber);font-family:'JetBrains Mono',monospace">generate_image</code> tool three times with a fixed seed. That tool gets located via tool search and called. Skill = procedure. Tool = capability. Plugin = the box they ship in.
+    </div>
+  </section>
+
+  <div class="closing">
+    <p>
+      <em>Skills, tools, and plugins are not three different things so much as three layers of the same idea.</em> Skills are <strong>procedural knowledge</strong>. Tools are <strong>callable capabilities</strong>. Plugins are <strong>bundled distribution</strong>. The loading discipline is converging: only pay for what you use, only in the moment you need it.
+    </p>
+    <p>
+      The image skill from skills.sh, the Gmail MCP connector, the legal-counsel plugin from last week are all doing variations of the same dance: keep the catalog small and indexed, expand the specific piece on demand, throw it away when done. The vocabulary differs. The shape is the same.
+    </p>
+  </div>
+
+  <footer class="page-nav">
+    <a href="guide-03-what-claude-sees.html" class="prev">
+      <span class="pn-label">Previous chapter</span>
+      <span class="pn-title">03 What Claude Sees</span>
+    </a>
+    <a href="guide-05-starter-pack.html" class="next">
+      <span class="pn-label">Final chapter</span>
+      <span class="pn-title">05 Starter Pack</span>
+    </a>
+  </footer>
+
+</div>
+</body>
+</html>

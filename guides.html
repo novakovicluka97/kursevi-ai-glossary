@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guides — Learning Tracks for AI &amp; Claude | AI Glossary</title>
+<meta name="description" content="A branching tree of learning tracks. Each track builds on the one before it — from AI foundations through building with Claude Code and the deep-dive extensibility guides.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">AI <em>Glossary</em></a>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Glossary</a>
+      <a href="guides.html" class="nav-link current">Guides</a>
+      <a href="resources.html" class="nav-link">Resources</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="hero">
+    <div class="eyebrow">// learning tracks</div>
+    <h1>The glossary, arranged as a <em>tree</em>.</h1>
+    <p class="lede">
+      Five tracks, each one a guided reading order through related topics. They are stacked by dependency: every track assumes you finished the one feeding into it. Start at the root and climb — or jump to whatever branch you came for.
+    </p>
+    <p class="lede" style="color:var(--ink-faint);font-size:14px">
+      Tracks 1–3 and 5 walk you through glossary topics in order. Track 4 is the deep-dive — five fully interactive guide chapters.
+    </p>
+  </section>
+
+  <!-- ── THE SKILL TREE ──────────────────────────────────── -->
+  <div class="section-label"><span class="num">//</span> the dependency tree</div>
+
+  <div class="tree">
+
+    <a class="tree-link" href="#track-1">
+      <div class="tn-top">
+        <span class="tn-num">TRACK 01</span>
+        <span class="tn-pill start">Start here</span>
+      </div>
+      <h3>AI Foundations</h3>
+      <div class="tn-desc">How AI learns and thinks — from a single neuron up to Claude.</div>
+    </a>
+
+    <div class="connector"></div>
+
+    <a class="tree-link" href="#track-2">
+      <div class="tn-top">
+        <span class="tn-num">TRACK 02</span>
+        <span class="tn-pill">8 topics</span>
+      </div>
+      <h3>Working With AI</h3>
+      <div class="tn-desc">Prompting, context, and the levers that shape a model's output.</div>
+    </a>
+
+    <div class="connector"></div>
+
+    <a class="tree-link" href="#track-3">
+      <div class="tn-top">
+        <span class="tn-num">TRACK 03</span>
+        <span class="tn-pill">15 topics</span>
+      </div>
+      <h3>Building With AI</h3>
+      <div class="tn-desc">APIs, IDEs, and Claude Code — turning a model into real software.</div>
+    </a>
+
+    <svg class="fork" viewBox="0 0 720 52" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M360,0 V20 M180,20 H540" />
+      <path class="leg" d="M180,20 V52 M540,20 V52" />
+    </svg>
+
+    <div class="tier tier-branch">
+      <a class="tree-link" href="#track-4">
+        <div class="tn-top">
+          <span class="tn-num">TRACK 04</span>
+          <span class="tn-pill">5 guides</span>
+        </div>
+        <h3>Claude Extensibility</h3>
+        <div class="tn-desc">The deep dive — skills, MCP, and plugins, side by side.</div>
+      </a>
+      <a class="tree-link" href="#track-5">
+        <div class="tn-top">
+          <span class="tn-num">TRACK 05</span>
+          <span class="tn-pill">11 topics</span>
+        </div>
+        <h3>Ship It: Hosting &amp; SEO</h3>
+        <div class="tn-desc">Get a site live and make search engines and AI find it.</div>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- ── THE TRACKS ──────────────────────────────────────── -->
+  <div class="section-label"><span class="num">//</span> the five tracks, in detail</div>
+
+  <!-- Track 1 -->
+  <section class="track" id="track-1">
+    <div class="track-head">
+      <h2><span class="t-idx">01 — </span>AI Foundations</h2>
+      <span class="track-prereq open">Open · start here</span>
+    </div>
+    <p class="track-desc">
+      No background needed. This track answers "what is AI, really?" — building from the smallest pieces up to the modern assistants you actually use. Read it in order; each topic leans on the last.
+    </p>
+    <div class="steps">
+      <a class="step" href="topics/artificial-intelligence.html">
+        <span class="step-num">01</span><span class="step-name">Artificial Intelligence</span>
+        <span class="step-note">the big picture</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/machine-learning.html">
+        <span class="step-num">02</span><span class="step-name">Machine Learning</span>
+        <span class="step-note">learning from data</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/neural-network.html">
+        <span class="step-num">03</span><span class="step-name">Neural Network</span>
+        <span class="step-note">the core structure</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/deep-learning.html">
+        <span class="step-num">04</span><span class="step-name">Deep Learning</span>
+        <span class="step-note">many layers deep</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/transformer.html">
+        <span class="step-num">05</span><span class="step-name">Transformer</span>
+        <span class="step-note">the breakthrough</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/llm.html">
+        <span class="step-num">06</span><span class="step-name">Large Language Model</span>
+        <span class="step-note">scale changes everything</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/claude.html">
+        <span class="step-num">07</span><span class="step-name">Claude</span>
+        <span class="step-note">a model you can use</span><span class="step-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Track 2 -->
+  <section class="track" id="track-2">
+    <div class="track-head">
+      <h2><span class="t-idx">02 — </span>Working With AI</h2>
+      <span class="track-prereq locked">Needs Track 01</span>
+    </div>
+    <p class="track-desc">
+      You know what a model is — now learn to drive one. This track covers the prompt, the context window, and the dials that decide whether you get a useful answer or a confident wrong one.
+    </p>
+    <div class="steps">
+      <a class="step" href="topics/prompt.html">
+        <span class="step-num">01</span><span class="step-name">Prompt</span>
+        <span class="step-note">your half of the conversation</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/markdown-format.html">
+        <span class="step-num">02</span><span class="step-name">Markdown</span>
+        <span class="step-note">structure a prompt cleanly</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/context-window.html">
+        <span class="step-num">03</span><span class="step-name">Context Window</span>
+        <span class="step-note">the model's working memory</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/token.html">
+        <span class="step-num">04</span><span class="step-name">Token</span>
+        <span class="step-note">how text is measured</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/temperature.html">
+        <span class="step-num">05</span><span class="step-name">Temperature</span>
+        <span class="step-note">the creativity dial</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/hallucination.html">
+        <span class="step-num">06</span><span class="step-name">Hallucination</span>
+        <span class="step-note">when to distrust the answer</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/rag.html">
+        <span class="step-num">07</span><span class="step-name">RAG</span>
+        <span class="step-note">grounding answers in sources</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/tool-use.html">
+        <span class="step-num">08</span><span class="step-name">Tool Use</span>
+        <span class="step-note">letting the model act</span><span class="step-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Track 3 -->
+  <section class="track" id="track-3">
+    <div class="track-head">
+      <h2><span class="t-idx">03 — </span>Building With AI</h2>
+      <span class="track-prereq locked">Needs Track 02</span>
+    </div>
+    <p class="track-desc">
+      The longest track, and the most hands-on. It moves from the plumbing every app needs — APIs, JSON, an IDE — into Claude Code and everything that extends it, and finishes with agents that run on their own.
+    </p>
+    <div class="steps">
+      <a class="step" href="topics/api.html">
+        <span class="step-num">01</span><span class="step-name">API</span>
+        <span class="step-note">how software connects</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/json.html">
+        <span class="step-num">02</span><span class="step-name">JSON</span>
+        <span class="step-note">the data format in between</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/ide.html">
+        <span class="step-num">03</span><span class="step-name">IDE</span>
+        <span class="step-note">where code gets written</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/claude-code.html">
+        <span class="step-num">04</span><span class="step-name">Claude Code</span>
+        <span class="step-note">the agentic coding tool</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/claude-md.html">
+        <span class="step-num">05</span><span class="step-name">CLAUDE.md &amp; Memory</span>
+        <span class="step-note">persistent instructions</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/claude-skills.html">
+        <span class="step-num">06</span><span class="step-name">Skills</span>
+        <span class="step-note">reusable capabilities</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/slash-commands.html">
+        <span class="step-num">07</span><span class="step-name">Slash Commands</span>
+        <span class="step-note">shortcuts for repeat tasks</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/mcp.html">
+        <span class="step-num">08</span><span class="step-name">MCP</span>
+        <span class="step-note">connect external tools</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/subagents.html">
+        <span class="step-num">09</span><span class="step-name">Subagents</span>
+        <span class="step-note">delegate focused work</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/hooks.html">
+        <span class="step-num">10</span><span class="step-name">Hooks</span>
+        <span class="step-note">automate on events</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/plugins.html">
+        <span class="step-num">11</span><span class="step-name">Plugins</span>
+        <span class="step-note">bundle it all together</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/agent-sdk.html">
+        <span class="step-num">12</span><span class="step-name">Agent SDK</span>
+        <span class="step-note">build your own agent</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/workflow.html">
+        <span class="step-num">13</span><span class="step-name">Workflow</span>
+        <span class="step-note">a fixed sequence of steps</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/ai-agent.html">
+        <span class="step-num">14</span><span class="step-name">AI Agent</span>
+        <span class="step-note">the model picks the path</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/ai-automation.html">
+        <span class="step-num">15</span><span class="step-name">AI Automation</span>
+        <span class="step-note">put it on autopilot</span><span class="step-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Track 4 -->
+  <section class="track" id="track-4">
+    <div class="track-head">
+      <h2><span class="t-idx">04 — </span>Claude Extensibility</h2>
+      <span class="track-prereq locked">Needs Track 03</span>
+    </div>
+    <p class="track-desc">
+      The deep dive. Five fully interactive guide chapters that take the extensibility topics from Track 3 — skills, MCP, plugins — and pin down exactly how they differ, what each one puts into Claude's context window, and what to install. Built around the questions that actually come up.
+    </p>
+    <div class="steps" style="margin-top:4px">
+      <a class="guide-row" href="guides/guide-01-overview.html">
+        <span class="gr-num">01</span>
+        <span>
+          <span class="gr-title">The three things, side by side</span>
+          <span class="gr-desc">An interactive playground for skills, MCP, and plugins, then a nine-dimension comparison table.</span>
+        </span>
+        <span class="gr-meta">interactive<br>~10 min</span>
+      </a>
+      <a class="guide-row" href="guides/guide-02-mcp-from-zero.html">
+        <span class="gr-num">02</span>
+        <span>
+          <span class="gr-title">MCP from zero, in five layers</span>
+          <span class="gr-desc">Five click-through screens that build the keychain analogy with no jargon.</span>
+        </span>
+        <span class="gr-meta">walk-through<br>~6 min</span>
+      </a>
+      <a class="guide-row" href="guides/guide-03-what-claude-sees.html">
+        <span class="gr-num">03</span>
+        <span>
+          <span class="gr-title">What Claude actually sees</span>
+          <span class="gr-desc">When you flip a tool on, what literally changes in the context window — with an animated handshake.</span>
+        </span>
+        <span class="gr-meta">technical<br>~8 min</span>
+      </a>
+      <a class="guide-row" href="guides/guide-04-convergence.html">
+        <span class="gr-num">04</span>
+        <span>
+          <span class="gr-title">The convergence</span>
+          <span class="gr-desc">Three sharp architecture questions, three precise answers — and why the three approaches are merging.</span>
+        </span>
+        <span class="gr-meta">deep dive<br>~9 min</span>
+      </a>
+      <a class="guide-row" href="guides/guide-05-starter-pack.html">
+        <span class="gr-num">05</span>
+        <span>
+          <span class="gr-title">The starter pack</span>
+          <span class="gr-desc">Where to browse, the consensus plugin picks, and copy-paste install commands.</span>
+        </span>
+        <span class="gr-meta">practical<br>~5 min</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Track 5 -->
+  <section class="track" id="track-5">
+    <div class="track-head">
+      <h2><span class="t-idx">05 — </span>Ship It: Hosting &amp; SEO</h2>
+      <span class="track-prereq locked">Needs Track 03</span>
+    </div>
+    <p class="track-desc">
+      You built something — now get it in front of people. This track covers what kind of site you actually have, how to put it online for free, and how to make search engines and AI crawlers understand it.
+    </p>
+    <div class="steps">
+      <a class="step" href="topics/html-vs-full-stack.html">
+        <span class="step-num">01</span><span class="step-name">HTML vs Full-Stack App</span>
+        <span class="step-note">know what you're shipping</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/static-websites.html">
+        <span class="step-num">02</span><span class="step-name">Static Websites</span>
+        <span class="step-note">the simplest thing to host</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/github-pages.html">
+        <span class="step-num">03</span><span class="step-name">GitHub Pages</span>
+        <span class="step-note">free hosting, step by step</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/technical-seo.html">
+        <span class="step-num">04</span><span class="step-name">Technical SEO</span>
+        <span class="step-note">the discovery overview</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/meta-tags.html">
+        <span class="step-num">05</span><span class="step-name">Meta Tags &amp; OG Tags</span>
+        <span class="step-note">how links look when shared</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/sitemap-xml.html">
+        <span class="step-num">06</span><span class="step-name">sitemap.xml</span>
+        <span class="step-note">list your pages for crawlers</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/robots-txt.html">
+        <span class="step-num">07</span><span class="step-name">robots.txt</span>
+        <span class="step-note">control what gets crawled</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/structured-data.html">
+        <span class="step-num">08</span><span class="step-name">Structured Data</span>
+        <span class="step-note">spell out what content means</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/canonical-urls.html">
+        <span class="step-num">09</span><span class="step-name">Canonical URLs</span>
+        <span class="step-note">avoid duplicate-page penalties</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/google-search-console.html">
+        <span class="step-num">10</span><span class="step-name">Google Search Console</span>
+        <span class="step-note">measure what's working</span><span class="step-arrow">→</span>
+      </a>
+      <a class="step" href="topics/site-webmanifest.html">
+        <span class="step-num">11</span><span class="step-name">site.webmanifest</span>
+        <span class="step-note">make it installable</span><span class="step-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <div class="cta-banner" style="margin-top:36px">
+    <div class="cta-text">
+      <h3>Finished a track?</h3>
+      <p>Lock it in with ten quick questions, or browse every term on its own in the glossary.</p>
+    </div>
+    <a href="quiz.html" class="btn solid">Take the Quiz</a>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <p>AI Glossary <span class="sep">//</span> 5 learning tracks <span class="sep">//</span> updated May 2026</p>
+  <p>Live at <a href="https://novakovicluka97.github.io/kursevi-ai-glossary/">novakovicluka97.github.io/kursevi-ai-glossary</a></p>
+</footer>
+
+</body>
+</html>

@@ -1,261 +1,420 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Glossary - A Complete Dictionary for Understanding AI</title>
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Glossary — Glossary, Guides &amp; Resources for Understanding AI</title>
+<meta name="description" content="A complete, cross-linked reference for modern AI: 61 glossary topics, learning guides, and a curated set of prompts, plugins, and tools.">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-        <h1>AI Glossary</h1>
-        <p class="subtitle">A comprehensive dictionary for understanding Artificial Intelligence — from fundamentals to modern tools.</p>
-    </header>
 
-    <div id="glossary-search"></div>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">AI <em>Glossary</em></a>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link current">Glossary</a>
+      <a href="guides.html" class="nav-link">Guides</a>
+      <a href="resources.html" class="nav-link">Resources</a>
+    </nav>
+  </div>
+</header>
 
-    <p>
-        This glossary is a Wikipedia-style reference covering the essential concepts, tools, and terminology needed to understand modern AI. Each topic links to related concepts, creating an interconnected knowledge base. Start anywhere — follow the links to build your understanding.
+<div class="wrap">
+
+  <section class="hero">
+    <div class="eyebrow">// the reference</div>
+    <h1>Every AI term that <em>actually matters</em>, defined.</h1>
+    <p class="lede">
+      A Wikipedia-style reference for modern artificial intelligence — from neural networks to Claude Code. Every topic is cross-linked, so you can start anywhere and follow the threads.
     </p>
-
-    <p style="background:#f0f4ff; padding:12px 16px; border-radius:4px; border:1px solid #cde;">
-        <strong><a href="quiz.html">Take the Quiz</a></strong> — Test your knowledge with 10 random questions from the glossary.
-    </p>
-
-    <p style="background:#f0f4ff; padding:12px 16px; border-radius:4px; border:1px solid #cde;">
-        <strong><a href="resources.html">Resources</a></strong> — Useful links and reusable prompts to help you work with AI.
-    </p>
-
-    <h2>All Topics (A-Z)</h2>
-
-    <div class="topic-grid">
-        <ul class="topic-list">
-            <li>
-                <a href="topics/agent-sdk.html">Agent SDK</a>
-                <span class="topic-description">— Development kit for building custom AI agents</span>
-            </li>
-            <li>
-                <a href="topics/ai-agent.html">AI Agent</a>
-                <span class="topic-description">— AI systems that autonomously plan and execute tasks</span>
-            </li>
-            <li>
-                <a href="topics/ai-automation.html">AI Automation</a>
-                <span class="topic-description">— Automated workflows using AI (n8n, Make, Zapier)</span>
-            </li>
-            <li>
-                <a href="topics/ai-model.html">AI Model</a>
-                <span class="topic-description">— The trained mathematical system inside AI applications</span>
-            </li>
-            <li class="major-topic">
-                <a href="topics/applications.html">Applications</a>
-                <span class="topic-description">— Software by platform: web, mobile, and desktop</span>
-                <span class="subtopics">
-                    <a href="topics/web-apps.html">Web Apps</a>
-                    <a href="topics/static-websites.html">Static Websites</a>
-                    <a href="topics/full-stack-apps.html">Full-Stack Apps</a>
-                    <a href="topics/mobile-apps.html">Mobile Apps</a>
-                    <a href="topics/desktop-apps.html">Desktop Apps</a>
-                </span>
-            </li>
-            <li>
-                <a href="topics/api.html">API</a>
-                <span class="topic-description">— How software programs communicate with each other</span>
-            </li>
-            <li>
-                <a href="topics/artificial-intelligence.html">Artificial Intelligence</a>
-                <span class="topic-description">— The field of creating systems that perform human-like tasks</span>
-            </li>
-            <li>
-                <a href="topics/claude.html">Claude</a>
-                <span class="topic-description">— Anthropic's AI assistant and language model family</span>
-            </li>
-            <li class="major-topic">
-                <a href="topics/claude-code.html">Claude Code</a>
-                <span class="topic-description">— Agentic coding tool that lives in your terminal</span>
-                <span class="subtopics">
-                    <a href="topics/claude-skills.html">Skills</a>
-                    <a href="topics/slash-commands.html">Slash Commands</a>
-                    <a href="topics/claude-md.html">CLAUDE.md &amp; Memory</a>
-                    <a href="topics/subagents.html">Subagents</a>
-                    <a href="topics/mcp.html">MCP</a>
-                    <a href="topics/hooks.html">Hooks</a>
-                    <a href="topics/plugins.html">Plugins</a>
-                    <a href="topics/checkpoints.html">Checkpoints</a>
-                    <a href="topics/cli.html">CLI</a>
-                </span>
-            </li>
-            <li>
-                <a href="topics/claude-design.html">Claude Design</a>
-                <span class="topic-description">— AI-powered visual creation and prototyping tool</span>
-            </li>
-            <li>
-                <a href="topics/context-window.html">Context Window</a>
-                <span class="topic-description">— How much text an AI model can process at once</span>
-            </li>
-            <li>
-                <a href="topics/deep-learning.html">Deep Learning</a>
-                <span class="topic-description">— Neural networks with many layers for complex patterns</span>
-            </li>
-            <li>
-                <a href="topics/embedding.html">Embedding</a>
-                <span class="topic-description">— Numerical representation of meaning as vectors</span>
-            </li>
-            <li>
-                <a href="topics/fine-tuning.html">Fine-tuning</a>
-                <span class="topic-description">— Specializing a pre-trained model on specific data</span>
-            </li>
-            <li class="major-topic">
-                <a href="topics/formats.html">Formats</a>
-                <span class="topic-description">— How to structure text and data for AI</span>
-                <span class="subtopics">
-                    <a href="topics/markdown-format.html">Markdown</a>
-                    <a href="topics/xml.html">XML</a>
-                    <a href="topics/json.html">JSON</a>
-                    <a href="topics/html.html">HTML</a>
-                </span>
-            </li>
-            <li>
-                <a href="topics/github-pages.html">GitHub Pages</a>
-                <span class="topic-description">— Free hosting for static sites, step-by-step deployment</span>
-            </li>
-            <li>
-                <a href="topics/hallucination.html">Hallucination</a>
-                <span class="topic-description">— When AI generates plausible but incorrect information</span>
-            </li>
-            <li>
-                <a href="topics/human-in-the-loop.html">Human-in-the-Loop</a>
-                <span class="topic-description">— Safety pattern for human oversight of AI actions</span>
-            </li>
-        </ul>
-        <ul class="topic-list">
-            <li>
-                <a href="topics/html-vs-full-stack.html">HTML vs Full Stack App</a>
-                <span class="topic-description">— Static pages vs. complete software systems</span>
-            </li>
-            <li>
-                <a href="topics/ide.html">IDE</a>
-                <span class="topic-description">— Integrated Development Environment for writing code</span>
-            </li>
-            <li>
-                <a href="topics/inference.html">Inference</a>
-                <span class="topic-description">— When a trained AI model generates output</span>
-            </li>
-            <li>
-                <a href="topics/llm.html">Large Language Model (LLM)</a>
-                <span class="topic-description">— AI models trained on massive text to understand language</span>
-            </li>
-            <li>
-                <a href="topics/machine-learning.html">Machine Learning</a>
-                <span class="topic-description">— Systems that learn patterns from data</span>
-            </li>
-            <li>
-                <a href="topics/multi-agent.html">Multi-Agent Systems</a>
-                <span class="topic-description">— Multiple specialized AI agents coordinating on tasks</span>
-            </li>
-            <li>
-                <a href="topics/natural-language-processing.html">Natural Language Processing</a>
-                <span class="topic-description">— Teaching computers to understand human language</span>
-            </li>
-            <li>
-                <a href="topics/neural-network.html">Neural Network</a>
-                <span class="topic-description">— Brain-inspired computing system of interconnected nodes</span>
-            </li>
-            <li>
-                <a href="topics/prompt.html">Prompt</a>
-                <span class="topic-description">— The input you give to an AI model</span>
-            </li>
-            <li>
-                <a href="topics/rag.html">RAG (Retrieval-Augmented Generation)</a>
-                <span class="topic-description">— Grounding AI responses in retrieved sources</span>
-            </li>
-            <li>
-                <a href="topics/routing.html">Routing</a>
-                <span class="topic-description">— Classifying inputs to direct them down specialized paths</span>
-            </li>
-            <li>
-                <a href="topics/temperature.html">Temperature</a>
-                <span class="topic-description">— Setting that controls AI response randomness</span>
-            </li>
-            <li class="major-topic">
-                <a href="topics/technical-seo.html">Technical SEO</a>
-                <span class="topic-description">— Optimizing your site for search engines and AI discovery</span>
-                <span class="subtopics">
-                    <a href="topics/meta-tags.html">Meta Tags &amp; OG Tags</a>
-                    <a href="topics/sitemap-xml.html">sitemap.xml</a>
-                    <a href="topics/robots-txt.html">robots.txt</a>
-                    <a href="topics/google-search-console.html">Google Search Console</a>
-                    <a href="topics/structured-data.html">Structured Data</a>
-                    <a href="topics/canonical-urls.html">Canonical URLs</a>
-                    <a href="topics/site-webmanifest.html">site.webmanifest</a>
-                </span>
-            </li>
-            <li>
-                <a href="topics/token.html">Token</a>
-                <span class="topic-description">— The basic unit of text AI processes</span>
-            </li>
-            <li>
-                <a href="topics/tool-use.html">Tool Use (Function Calling)</a>
-                <span class="topic-description">— How AI models take actions by calling external functions</span>
-            </li>
-            <li>
-                <a href="topics/training-data.html">Training Data</a>
-                <span class="topic-description">— The examples an AI model learns from</span>
-            </li>
-            <li>
-                <a href="topics/transformer.html">Transformer</a>
-                <span class="topic-description">— The architecture behind all modern language AI</span>
-            </li>
-            <li>
-                <a href="topics/workflow.html">Workflow</a>
-                <span class="topic-description">— Multi-step automated processes using AI</span>
-            </li>
-        </ul>
+    <div class="glossary-meta">
+      <span><strong>61</strong> topics</span>
+      <span><strong>7</strong> sections</span>
+      <span><strong>fully</strong> cross-linked</span>
     </div>
+  </section>
 
-    <h2>Learning Paths</h2>
-    <p>Not sure where to start? Here are suggested reading orders:</p>
+  <div id="glossary-search"></div>
 
-    <h3>Complete Beginner</h3>
-    <p>
-        <a href="topics/artificial-intelligence.html">AI</a> →
-        <a href="topics/machine-learning.html">Machine Learning</a> →
-        <a href="topics/neural-network.html">Neural Network</a> →
-        <a href="topics/deep-learning.html">Deep Learning</a> →
-        <a href="topics/llm.html">LLM</a> →
-        <a href="topics/claude.html">Claude</a>
-    </p>
+  <div class="filter-bar" id="filter-bar">
+    <button class="filter-chip active" data-filter="all">All<span class="cnt">61</span></button>
+    <button class="filter-chip" data-filter="foundations">Foundations<span class="cnt">11</span></button>
+    <button class="filter-chip" data-filter="working">Working with AI<span class="cnt">9</span></button>
+    <button class="filter-chip" data-filter="claude-code">Claude Code<span class="cnt">11</span></button>
+    <button class="filter-chip" data-filter="agents">Agents &amp; Automation<span class="cnt">6</span></button>
+    <button class="filter-chip" data-filter="apps">Building Apps<span class="cnt">11</span></button>
+    <button class="filter-chip" data-filter="formats">Formats &amp; Data<span class="cnt">5</span></button>
+    <button class="filter-chip" data-filter="seo">Technical SEO<span class="cnt">8</span></button>
+  </div>
 
-    <h3>Using AI Effectively</h3>
-    <p>
-        <a href="topics/prompt.html">Prompt</a> →
-        <a href="topics/markdown-format.html">Markdown</a> →
-        <a href="topics/context-window.html">Context Window</a> →
-        <a href="topics/temperature.html">Temperature</a> →
-        <a href="topics/hallucination.html">Hallucination</a> →
-        <a href="topics/rag.html">RAG</a>
-    </p>
+  <!-- ── Foundations ─────────────────────────────────────── -->
+  <section class="cat-section" data-cat="foundations">
+    <div class="section-label"><span class="num">01</span> Foundations — how AI learns and thinks</div>
+    <div class="topic-cards">
+      <a class="topic-card" href="topics/artificial-intelligence.html">
+        <span class="tc-name">Artificial Intelligence</span>
+        <span class="tc-desc">The field of building systems that perform tasks needing human-like intelligence.</span>
+      </a>
+      <a class="topic-card" href="topics/machine-learning.html">
+        <span class="tc-name">Machine Learning</span>
+        <span class="tc-desc">Systems that learn patterns from data instead of following hand-written rules.</span>
+      </a>
+      <a class="topic-card" href="topics/neural-network.html">
+        <span class="tc-name">Neural Network</span>
+        <span class="tc-desc">A brain-inspired computing system of interconnected nodes in layers.</span>
+      </a>
+      <a class="topic-card" href="topics/deep-learning.html">
+        <span class="tc-name">Deep Learning</span>
+        <span class="tc-desc">Neural networks with many layers that learn complex patterns.</span>
+      </a>
+      <a class="topic-card" href="topics/transformer.html">
+        <span class="tc-name">Transformer</span>
+        <span class="tc-desc">The architecture behind every modern language model.</span>
+      </a>
+      <a class="topic-card" href="topics/natural-language-processing.html">
+        <span class="tc-name">Natural Language Processing</span>
+        <span class="tc-desc">Teaching computers to understand and generate human language.</span>
+      </a>
+      <a class="topic-card" href="topics/training-data.html">
+        <span class="tc-name">Training Data</span>
+        <span class="tc-desc">The collection of examples an AI model learns from.</span>
+      </a>
+      <a class="topic-card" href="topics/inference.html">
+        <span class="tc-name">Inference</span>
+        <span class="tc-desc">The phase when a trained model actually generates output.</span>
+      </a>
+      <a class="topic-card" href="topics/ai-model.html">
+        <span class="tc-name">AI Model</span>
+        <span class="tc-desc">The trained mathematical system inside every AI application.</span>
+      </a>
+      <a class="topic-card" href="topics/embedding.html">
+        <span class="tc-name">Embedding</span>
+        <span class="tc-desc">A numerical representation of meaning as a vector of numbers.</span>
+      </a>
+      <a class="topic-card" href="topics/fine-tuning.html">
+        <span class="tc-name">Fine-tuning</span>
+        <span class="tc-desc">Specializing a pre-trained model on focused, task-specific data.</span>
+      </a>
+    </div>
+  </section>
 
-    <h3>Building with AI</h3>
-    <p>
-        <a href="topics/api.html">API</a> →
-        <a href="topics/json.html">JSON</a> →
-        <a href="topics/ide.html">IDE</a> →
-        <a href="topics/claude-code.html">Claude Code</a> →
-        <a href="topics/claude-skills.html">Claude Skills</a> →
-        <a href="topics/mcp.html">MCP</a> →
-        <a href="topics/tool-use.html">Tool Use</a> →
-        <a href="topics/agent-sdk.html">Agent SDK</a> →
-        <a href="topics/workflow.html">Workflow</a> →
-        <a href="topics/ai-agent.html">AI Agent</a> →
-        <a href="topics/ai-automation.html">AI Automation</a>
-    </p>
+  <!-- ── Working with AI ─────────────────────────────────── -->
+  <section class="cat-section" data-cat="working">
+    <div class="section-label"><span class="num">02</span> Working with AI — using language models well</div>
+    <div class="topic-cards">
+      <a class="topic-card" href="topics/llm.html">
+        <span class="tc-name">Large Language Model</span>
+        <span class="tc-desc">AI models trained on massive text to understand and generate language.</span>
+      </a>
+      <a class="topic-card" href="topics/claude.html">
+        <span class="tc-name">Claude</span>
+        <span class="tc-desc">Anthropic's AI assistant and family of language models.</span>
+      </a>
+      <a class="topic-card" href="topics/prompt.html">
+        <span class="tc-name">Prompt</span>
+        <span class="tc-desc">The input you give an AI model — the instruction that drives it.</span>
+      </a>
+      <a class="topic-card" href="topics/context-window.html">
+        <span class="tc-name">Context Window</span>
+        <span class="tc-desc">How much text a model can hold in mind at once.</span>
+      </a>
+      <a class="topic-card" href="topics/token.html">
+        <span class="tc-name">Token</span>
+        <span class="tc-desc">The basic unit of text an AI model reads and writes.</span>
+      </a>
+      <a class="topic-card" href="topics/temperature.html">
+        <span class="tc-name">Temperature</span>
+        <span class="tc-desc">The setting that controls how random or creative responses are.</span>
+      </a>
+      <a class="topic-card" href="topics/hallucination.html">
+        <span class="tc-name">Hallucination</span>
+        <span class="tc-desc">When AI generates plausible but factually wrong information.</span>
+      </a>
+      <a class="topic-card" href="topics/rag.html">
+        <span class="tc-name">RAG</span>
+        <span class="tc-desc">Retrieval-Augmented Generation — grounding answers in real sources.</span>
+      </a>
+      <a class="topic-card" href="topics/tool-use.html">
+        <span class="tc-name">Tool Use</span>
+        <span class="tc-desc">How models take action by calling external functions.</span>
+      </a>
+    </div>
+  </section>
 
-    <footer style="margin-top:40px; padding-top:15px; border-top:1px solid #ddd; font-size:0.85em; color:#666;">
-        <p>AI Glossary — 61 topics covering the foundations of artificial intelligence. Last updated: May 2026.</p>
-        <p>Live at: <a href="https://novakovicluka97.github.io/kursevi-ai-glossary/">https://novakovicluka97.github.io/kursevi-ai-glossary/</a></p>
-    </footer>
+  <!-- ── Claude Code ─────────────────────────────────────── -->
+  <section class="cat-section" data-cat="claude-code">
+    <div class="section-label"><span class="num">03</span> Claude Code — the agentic coding toolkit</div>
+    <div class="topic-cards">
+      <div class="hub-card">
+        <a class="hub-name" href="topics/claude-code.html">Claude Code</a>
+        <p class="hub-desc">An agentic coding tool that lives in your terminal and works through natural language. The hub of this section — everything below extends it.</p>
+        <div class="hub-subs">
+          <a href="topics/claude-skills.html">Skills</a>
+          <a href="topics/slash-commands.html">Slash Commands</a>
+          <a href="topics/claude-md.html">CLAUDE.md</a>
+          <a href="topics/subagents.html">Subagents</a>
+          <a href="topics/mcp.html">MCP</a>
+          <a href="topics/hooks.html">Hooks</a>
+          <a href="topics/plugins.html">Plugins</a>
+          <a href="topics/checkpoints.html">Checkpoints</a>
+          <a href="topics/cli.html">CLI</a>
+        </div>
+      </div>
+      <a class="topic-card" href="topics/claude-skills.html">
+        <span class="tc-name">Skills</span>
+        <span class="tc-desc">Reusable instruction sets that extend what Claude Code can do.</span>
+      </a>
+      <a class="topic-card" href="topics/slash-commands.html">
+        <span class="tc-name">Slash Commands</span>
+        <span class="tc-desc">Custom shortcuts for repeatable Claude Code tasks.</span>
+      </a>
+      <a class="topic-card" href="topics/claude-md.html">
+        <span class="tc-name">CLAUDE.md &amp; Memory</span>
+        <span class="tc-desc">Persistent project instructions and memory for Claude.</span>
+      </a>
+      <a class="topic-card" href="topics/subagents.html">
+        <span class="tc-name">Subagents</span>
+        <span class="tc-desc">Specialized AI helpers spawned for focused, parallel tasks.</span>
+      </a>
+      <a class="topic-card" href="topics/mcp.html">
+        <span class="tc-name">MCP</span>
+        <span class="tc-desc">An open standard connecting AI to external tools and data.</span>
+      </a>
+      <a class="topic-card" href="topics/hooks.html">
+        <span class="tc-name">Hooks</span>
+        <span class="tc-desc">Scripts that fire automatically on Claude Code events.</span>
+      </a>
+      <a class="topic-card" href="topics/plugins.html">
+        <span class="tc-name">Plugins</span>
+        <span class="tc-desc">Bundled skills, commands, agents, and MCP servers in one install.</span>
+      </a>
+      <a class="topic-card" href="topics/checkpoints.html">
+        <span class="tc-name">Checkpoints</span>
+        <span class="tc-desc">Save points in a session you can roll back to.</span>
+      </a>
+      <a class="topic-card" href="topics/cli.html">
+        <span class="tc-name">CLI</span>
+        <span class="tc-desc">The command-line interface that runs Claude Code.</span>
+      </a>
+      <a class="topic-card" href="topics/agent-sdk.html">
+        <span class="tc-name">Agent SDK</span>
+        <span class="tc-desc">A development kit for building custom agents on Claude's tools.</span>
+      </a>
+    </div>
+  </section>
 
-    <script src="js/search-index.js"></script>
-    <script src="js/search.js"></script>
+  <!-- ── Agents & Automation ─────────────────────────────── -->
+  <section class="cat-section" data-cat="agents">
+    <div class="section-label"><span class="num">04</span> Agents &amp; Automation — when AI takes action</div>
+    <div class="topic-cards">
+      <a class="topic-card" href="topics/ai-agent.html">
+        <span class="tc-name">AI Agent</span>
+        <span class="tc-desc">An AI system that autonomously plans and executes multi-step tasks.</span>
+      </a>
+      <a class="topic-card" href="topics/multi-agent.html">
+        <span class="tc-name">Multi-Agent Systems</span>
+        <span class="tc-desc">Several specialized agents coordinating to solve a problem.</span>
+      </a>
+      <a class="topic-card" href="topics/workflow.html">
+        <span class="tc-name">Workflow</span>
+        <span class="tc-desc">A predetermined sequence of steps the model executes.</span>
+      </a>
+      <a class="topic-card" href="topics/routing.html">
+        <span class="tc-name">Routing</span>
+        <span class="tc-desc">Classifying inputs to direct them down specialized paths.</span>
+      </a>
+      <a class="topic-card" href="topics/human-in-the-loop.html">
+        <span class="tc-name">Human-in-the-Loop</span>
+        <span class="tc-desc">A safety pattern that pauses AI for human review at key points.</span>
+      </a>
+      <a class="topic-card" href="topics/ai-automation.html">
+        <span class="tc-name">AI Automation</span>
+        <span class="tc-desc">Automated workflows powered by AI — n8n, Make, Zapier.</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── Building Apps ───────────────────────────────────── -->
+  <section class="cat-section" data-cat="apps">
+    <div class="section-label"><span class="num">05</span> Building Apps — software you can ship</div>
+    <div class="topic-cards">
+      <div class="hub-card">
+        <a class="hub-name" href="topics/applications.html">Applications</a>
+        <p class="hub-desc">Software organized by platform — web, mobile, and desktop. The hub of this section.</p>
+        <div class="hub-subs">
+          <a href="topics/web-apps.html">Web Apps</a>
+          <a href="topics/static-websites.html">Static Websites</a>
+          <a href="topics/full-stack-apps.html">Full-Stack Apps</a>
+          <a href="topics/mobile-apps.html">Mobile Apps</a>
+          <a href="topics/desktop-apps.html">Desktop Apps</a>
+        </div>
+      </div>
+      <a class="topic-card" href="topics/web-apps.html">
+        <span class="tc-name">Web Apps</span>
+        <span class="tc-desc">Interactive applications that run inside the browser.</span>
+      </a>
+      <a class="topic-card" href="topics/static-websites.html">
+        <span class="tc-name">Static Websites</span>
+        <span class="tc-desc">Sites served as fixed files, with no server logic.</span>
+      </a>
+      <a class="topic-card" href="topics/full-stack-apps.html">
+        <span class="tc-name">Full-Stack Apps</span>
+        <span class="tc-desc">Complete systems with a frontend, backend, and database.</span>
+      </a>
+      <a class="topic-card" href="topics/mobile-apps.html">
+        <span class="tc-name">Mobile Apps</span>
+        <span class="tc-desc">Native and cross-platform applications for phones.</span>
+      </a>
+      <a class="topic-card" href="topics/desktop-apps.html">
+        <span class="tc-name">Desktop Apps</span>
+        <span class="tc-desc">Software installed and run directly on a computer.</span>
+      </a>
+      <a class="topic-card" href="topics/html-vs-full-stack.html">
+        <span class="tc-name">HTML vs Full-Stack</span>
+        <span class="tc-desc">Static documents compared with complete software systems.</span>
+      </a>
+      <a class="topic-card" href="topics/api.html">
+        <span class="tc-name">API</span>
+        <span class="tc-desc">The rules that let software programs talk to each other.</span>
+      </a>
+      <a class="topic-card" href="topics/ide.html">
+        <span class="tc-name">IDE</span>
+        <span class="tc-desc">An Integrated Development Environment for writing code.</span>
+      </a>
+      <a class="topic-card" href="topics/claude-design.html">
+        <span class="tc-name">Claude Design</span>
+        <span class="tc-desc">An AI-powered visual creation and prototyping tool.</span>
+      </a>
+      <a class="topic-card" href="topics/github-pages.html">
+        <span class="tc-name">GitHub Pages</span>
+        <span class="tc-desc">Free hosting for static sites — a step-by-step deploy path.</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── Formats & Data ──────────────────────────────────── -->
+  <section class="cat-section" data-cat="formats">
+    <div class="section-label"><span class="num">06</span> Formats &amp; Data — structuring text for AI</div>
+    <div class="topic-cards">
+      <div class="hub-card">
+        <a class="hub-name" href="topics/formats.html">Formats</a>
+        <p class="hub-desc">How to structure text and data so AI reads it cleanly. The hub of this section.</p>
+        <div class="hub-subs">
+          <a href="topics/markdown-format.html">Markdown</a>
+          <a href="topics/xml.html">XML</a>
+          <a href="topics/json.html">JSON</a>
+          <a href="topics/html.html">HTML</a>
+        </div>
+      </div>
+      <a class="topic-card" href="topics/markdown-format.html">
+        <span class="tc-name">Markdown</span>
+        <span class="tc-desc">Lightweight text formatting that survives AI preprocessing.</span>
+      </a>
+      <a class="topic-card" href="topics/xml.html">
+        <span class="tc-name">XML</span>
+        <span class="tc-desc">Tag-based structure that Claude was specifically tuned to follow.</span>
+      </a>
+      <a class="topic-card" href="topics/json.html">
+        <span class="tc-name">JSON</span>
+        <span class="tc-desc">A lightweight key-value format for exchanging data.</span>
+      </a>
+      <a class="topic-card" href="topics/html.html">
+        <span class="tc-name">HTML</span>
+        <span class="tc-desc">The markup language that structures every web page.</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── Technical SEO ───────────────────────────────────── -->
+  <section class="cat-section" data-cat="seo">
+    <div class="section-label"><span class="num">07</span> Technical SEO — being found by search &amp; AI</div>
+    <div class="topic-cards">
+      <div class="hub-card">
+        <a class="hub-name" href="topics/technical-seo.html">Technical SEO</a>
+        <p class="hub-desc">Optimizing your site so search engines and AI can discover it. The hub of this section.</p>
+        <div class="hub-subs">
+          <a href="topics/meta-tags.html">Meta Tags</a>
+          <a href="topics/sitemap-xml.html">sitemap.xml</a>
+          <a href="topics/robots-txt.html">robots.txt</a>
+          <a href="topics/structured-data.html">Structured Data</a>
+          <a href="topics/canonical-urls.html">Canonical URLs</a>
+          <a href="topics/google-search-console.html">Search Console</a>
+          <a href="topics/site-webmanifest.html">site.webmanifest</a>
+        </div>
+      </div>
+      <a class="topic-card" href="topics/meta-tags.html">
+        <span class="tc-name">Meta Tags &amp; OG Tags</span>
+        <span class="tc-desc">Page metadata for search results and social sharing.</span>
+      </a>
+      <a class="topic-card" href="topics/sitemap-xml.html">
+        <span class="tc-name">sitemap.xml</span>
+        <span class="tc-desc">A map of your site's pages for search crawlers.</span>
+      </a>
+      <a class="topic-card" href="topics/robots-txt.html">
+        <span class="tc-name">robots.txt</span>
+        <span class="tc-desc">Rules telling crawlers which pages they may access.</span>
+      </a>
+      <a class="topic-card" href="topics/structured-data.html">
+        <span class="tc-name">Structured Data</span>
+        <span class="tc-desc">Machine-readable schema markup that explains your content.</span>
+      </a>
+      <a class="topic-card" href="topics/canonical-urls.html">
+        <span class="tc-name">Canonical URLs</span>
+        <span class="tc-desc">Declaring the primary version of a page to avoid duplicates.</span>
+      </a>
+      <a class="topic-card" href="topics/google-search-console.html">
+        <span class="tc-name">Google Search Console</span>
+        <span class="tc-desc">Google's dashboard for monitoring search performance.</span>
+      </a>
+      <a class="topic-card" href="topics/site-webmanifest.html">
+        <span class="tc-name">site.webmanifest</span>
+        <span class="tc-desc">The config file that makes a site installable as an app.</span>
+      </a>
+    </div>
+  </section>
+
+  <div class="no-results" id="no-results" style="display:none;">No section matches that filter.</div>
+
+  <div class="section-label"><span class="num">→</span> Test yourself</div>
+  <div class="cta-banner">
+    <div class="cta-text">
+      <h3>Think it stuck?</h3>
+      <p>Ten random questions drawn straight from the glossary. Instant feedback on every answer.</p>
+    </div>
+    <a href="quiz.html" class="btn solid">Take the Quiz</a>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <p>AI Glossary <span class="sep">//</span> 61 cross-linked topics <span class="sep">//</span> updated May 2026</p>
+  <p>Live at <a href="https://novakovicluka97.github.io/kursevi-ai-glossary/">novakovicluka97.github.io/kursevi-ai-glossary</a></p>
+</footer>
+
+<script src="js/search-index.js"></script>
+<script src="js/search.js"></script>
+<script>
+  // Category filtering — show one section at a time, or all.
+  (function () {
+    var chips = document.querySelectorAll('.filter-chip');
+    var sections = document.querySelectorAll('.cat-section');
+    var noResults = document.getElementById('no-results');
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        chips.forEach(function (c) { c.classList.remove('active'); });
+        chip.classList.add('active');
+        var f = chip.getAttribute('data-filter');
+        var shown = 0;
+        sections.forEach(function (s) {
+          var match = f === 'all' || s.getAttribute('data-cat') === f;
+          s.classList.toggle('hide', !match);
+          if (match) shown++;
+        });
+        noResults.style.display = shown ? 'none' : 'block';
+      });
+    });
+  })();
+</script>
 </body>
 </html>
